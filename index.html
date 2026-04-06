@@ -114,6 +114,24 @@
             border-color: var(--accent);
         }
 
+        .nav-btn small {
+            display: block;
+            font-size: 0.7rem;
+            opacity: 0.8;
+            font-weight: normal;
+        }
+
+        .nav-btn:hover {
+            background: rgba(212, 175, 55, 0.1);
+            border-color: var(--accent);
+        }
+
+        .nav-btn:not(.active):hover {
+            background: rgba(212, 175, 55, 0.2);
+            color: #fff;
+            transform: translateY(-1px);
+        }
+
         .back-bar {
             background: var(--primary);
             padding: 10px 15px;
@@ -446,7 +464,6 @@
 
         .hotel-link:hover {
             background: linear-gradient(135deg, #e8c878, var(--accent));
-            color: var(--primary);
         }
 
         /* ═══════════════════════════════════════
@@ -579,7 +596,6 @@
 
         .train-link:hover {
             background: linear-gradient(135deg, #e8c878, var(--accent));
-            color: var(--primary);
         }
 
         /* ═══════════════════════════════════════
@@ -623,6 +639,233 @@
             color: var(--text-muted);
         }
 
+        .attraction-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: linear-gradient(135deg, var(--accent), #e8c878);
+            color: var(--primary);
+            padding: 6px 12px;
+            border-radius: 8px;
+            font-size: .75rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: .3s;
+            margin-top: 8px;
+        }
+
+        .attraction-link:hover {
+            background: linear-gradient(135deg, #e8c878, var(--accent));
+            transform: translateY(-1px);
+        }
+
+        /* ═══════════════════════════════════════
+           NEARBY RESTAURANTS COMPONENTS
+        ═══════════════════════════════════════ */
+        .nearby-controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 20px 0;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .add-hotel-btn {
+            background: linear-gradient(135deg, var(--accent), #e8c878);
+            color: var(--primary);
+            border: none;
+            padding: 10px 20px;
+            border-radius: 12px;
+            font-size: .9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: .3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .add-hotel-btn:hover {
+            background: linear-gradient(135deg, #e8c878, var(--accent));
+            transform: translateY(-1px);
+        }
+
+        .filter-controls {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .filter-select {
+            padding: 8px 12px;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: .85rem;
+            background: var(--card-bg);
+            color: var(--text-main);
+        }
+
+        .search-input {
+            padding: 8px 12px;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: .85rem;
+            background: var(--card-bg);
+            color: var(--text-main);
+            width: 200px;
+        }
+
+        .landmark-group {
+            margin-bottom: 30px;
+        }
+
+        .landmark-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid var(--accent);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .cuisine-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin: 12px 0;
+        }
+
+        .cuisine-tag {
+            background: #f1f5f9;
+            color: var(--text-main);
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: .75rem;
+            font-weight: 600;
+        }
+
+        .cuisine-tag.vegan { background: #dcfce7; color: #166534; }
+        .cuisine-tag.vegetarian { background: #fef3c7; color: #92400e; }
+        .cuisine-tag.continental { background: #ddd6fe; color: #5b21b6; }
+        .cuisine-tag.indian { background: #fed7d7; color: #c53030; }
+        .cuisine-tag.italian { background: #fef2f2; color: #dc2626; }
+        .cuisine-tag.mediterranean { background: #ecfdf5; color: #059669; }
+        .cuisine-tag.halal { background: #f0f9ff; color: #0369a1; }
+        .cuisine-tag.gluten-free { background: #fefce8; color: #ca8a04; }
+        .cuisine-tag.default { background: #f1f5f9; color: var(--text-main); }
+
+        .no-hotels {
+            text-align: center;
+            color: var(--text-muted);
+            padding: 40px 20px;
+            font-style: italic;
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            animation: fadeIn .3s ease;
+        }
+
+        .modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 30px;
+            width: 90%;
+            max-width: 500px;
+            max-height: 80vh;
+            overflow-y: auto;
+            position: relative;
+            animation: slideIn .3s ease;
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(30px) scale(0.9); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-muted);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+            color: var(--text-main);
+        }
+
+        .form-input, .form-textarea, .form-select {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: .9rem;
+            background: var(--card-bg);
+            color: var(--text-main);
+        }
+
+        .form-textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        .form-submit {
+            background: linear-gradient(135deg, var(--accent), #e8c878);
+            color: var(--primary);
+            border: none;
+            padding: 12px 24px;
+            border-radius: 12px;
+            font-size: .9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: .3s;
+            width: 100%;
+        }
+
+        .form-submit:hover {
+            background: linear-gradient(135deg, #e8c878, var(--accent));
+        }
+
+        .form-submit:disabled {
+            background: linear-gradient(135deg, #d1d5db, #9ca3af) !important;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .form-submit:disabled:hover {
+            background: linear-gradient(135deg, #d1d5db, #9ca3af) !important;
+            transform: none;
+        }
+
         /* ═══════════════════════════════════════
            SPECIAL CARDS & COMPONENTS
         ═══════════════════════════════════════ */
@@ -655,9 +898,35 @@
             font-size: .8rem;
             padding: 20px;
         }
+
+        /* ═══════════════════════════════════════
+           DEBUG/STATUS INDICATORS
+        ═══════════════════════════════════════ */
+        .connection-status {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            background: #10b981;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            z-index: 3000;
+        }
+
+        .connection-status.error {
+            background: #ef4444;
+        }
+
+        .connection-status.testing {
+            background: #f59e0b;
+        }
     </style>
 </head>
 <body>
+
+    <!-- Connection Status Indicator -->
+    <div id="connection-status" class="connection-status testing">Testing Google Sheets...</div>
 
     <!-- ═══════════════════════════════════════
          HERO SECTION - Main header with trip title
@@ -690,6 +959,20 @@
                     <div class="dash-sub">5 hotels · 3 countries</div>
                 </div>
 
+                <!-- Nearby Restaurants Card -->
+                <div class="dash-card" onclick="navigate('nearby-hotels')">
+                    <i class="fa-solid fa-utensils dash-icon"></i>
+                    <div class="dash-title">Nearby Restaurants</div>
+                    <div class="dash-sub">Local recommendations</div>
+                </div>
+
+                <!-- Attractions Card -->
+                <div class="dash-card" onclick="navigate('attractions')">
+                    <i class="fa-solid fa-ticket dash-icon"></i>
+                    <div class="dash-title">Attractions</div>
+                    <div class="dash-sub">Day-wise entry tickets</div>
+                </div>
+
                 <!-- Documents Card (Full Width) -->
                 <div class="dash-card full-width" onclick="navigate('documents')">
                     <i class="fa-solid fa-folder-open dash-icon"></i>
@@ -702,12 +985,44 @@
     </div>
 
     <!-- ═══════════════════════════════════════
+         NEARBY RESTAURANTS PAGE - User-contributed local restaurants
+    ═══════════════════════════════════════ -->
+    <div id="page-nearby-hotels" class="page">
+        <div class="back-bar">
+            <button class="back-btn" onclick="navigateBack()">
+                <i class="fa-solid fa-arrow-left"></i> Back
+            </button>
+        </div>
+
+        <!-- Dynamic City navigation tabs - populated by JavaScript -->
+        <nav id="city-navigation" class="nav-container">
+            <div style="text-align: center; padding: 15px; color: var(--text-muted); font-style: italic;">
+                <i class="fa-solid fa-spinner fa-spin" style="margin-right: 8px;"></i>
+                Loading cities from your Google Sheets...
+            </div>
+        </nav>
+
+        <div class="container">
+            <!-- Dynamic City Content - populated by JavaScript -->
+            <div id="dynamic-cities-container">
+                <div style="text-align: center; padding: 40px; color: var(--text-muted);">
+                    <i class="fa-solid fa-spinner fa-spin" style="font-size: 2rem; margin-bottom: 15px; display: block; color: var(--accent);"></i>
+                    <h3 style="margin: 0 0 10px; font-family: 'Playfair Display', serif;">Loading Your Cities</h3>
+                    <p style="font-size: 0.9rem; margin: 0;">Fetching hotels from your Google Sheets...</p>
+                </div>
+            </div>
+
+            <div class="footer">| Italy Iyers | Venice Vadamals | Paris Brhatcharanam | 2026 |</div>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════
          ITINERARY PAGE - Daily travel schedule
     ═══════════════════════════════════════ -->
     <div id="page-itinerary" class="page">
         <!-- Back navigation -->
         <div class="back-bar">
-            <button class="back-btn" onclick="navigate('dashboard')">
+            <button class="back-btn" onclick="navigateBack()">
                 <i class="fa-solid fa-arrow-left"></i> Back
             </button>
         </div>
@@ -1081,7 +1396,7 @@
     ═══════════════════════════════════════ -->
     <div id="page-hotels" class="page">
         <div class="back-bar">
-            <button class="back-btn" onclick="navigate('dashboard')">
+            <button class="back-btn" onclick="navigateBack()">
                 <i class="fa-solid fa-arrow-left"></i> Back
             </button>
         </div>
@@ -1275,89 +1590,32 @@
                             <i class="fa-solid fa-calendar-days"></i> June 12 – 14 (2 nights)
                         </div>
                         <div class="hotel-detail">
-                            <i class="fa-solid fa-door-open"></i> 4 Rooms — 4 Twin Sharing · 1 Single Sharing
+                            <i class="fa-solid fa-door-open"></i> 4 Rooms — 3 Twin Sharing · 1 Triple Sharing
                         </div>
-                        <div class="hotel-detail">
-                            <i class="fa-solid fa-clock"></i> Check-in: 3.00 pm · Check-out: 11.00 am
+                         <div class="hotel-detail">
+                            <i class="fa-solid fa-clock"></i> Check-in: 2.00 pm · Check-out: 11.00 am
                         </div>
                         <div class="hotel-detail">
                             <i class="fa-solid fa-location-dot"></i> 3 Boulevard de Grenelle, Paris, France - 75015
                         </div>
                         <div class="hotel-detail">
-                            <i class="fa-solid fa-map-pin"></i> 10-minute walk to Eiffel Tower · Opposite to Bir-Hakeim Metro Station
+                            <i class="fa-solid fa-map-pin"></i> 5-minute walk from Bir-Hakeim Metro Station
                         </div>
                         <div class="hotel-detail">
-                            <i class="fa-solid fa-phone"></i> +33 145 78 1481
+                            <i class="fa-solid fa-phone"></i> +33 1 45 78 14 81
                         </div>
                         <div class="hotel-links">
-                            <a href="https://maps.app.goo.gl/orou6EyHAbPkdiCz7" class="hotel-link">
+                            <a href="https://maps.app.goo.gl/YKCDJdaZN1AoHvbM8" class="hotel-link">
                                 <i class="fa-solid fa-map-location-dot"></i> Google Maps
                             </a>
-                            <a href="https://drive.google.com/file/d/1zLKi1-XwOhg0yETQxIbTUqicWiznk0Yi/view" class="hotel-link">
+                            <a href="https://drive.google.com/file/d/1ZBZM7cZ2FRJvU7fvQb6bXbYWxHN8EoTp/view" class="hotel-link">
                                 <i class="fa-brands fa-google-drive"></i> Reservation
                             </a>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="footer">| Italy Iyers | Venice Vadamals | Paris Brhatcharanam | 2026 |</div>
-        </div>
-    </div>
 
-    <!-- ═══════════════════════════════════════
-         DOCUMENTS PAGE - Central hub for all travel documents
-    ═══════════════════════════════════════ -->
-    <div id="page-documents" class="page">
-        <div class="back-bar">
-            <button class="back-btn" onclick="navigate('dashboard')">
-                <i class="fa-solid fa-arrow-left"></i> Back
-            </button>
-        </div>
-
-        <div class="container">
-            <div class="doc-grid">
-                <!-- Flight Details Card -->
-                <div class="doc-card" onclick="navigate('flights')">
-                    <i class="fa-solid fa-plane"></i>
-                    <div class="doc-title">Flight Details</div>
-                    <div class="doc-sub">BLR ↔ Europe</div>
-                </div>
-
-                <!-- Passports Card (External Link) -->
-                <a href="https://drive.google.com/drive/folders/1Ig3p84qLZSdYo6r3DSRxpFpxZtlEBchq" class="doc-card">
-                    <i class="fa-solid fa-passport"></i>
-                    <div class="doc-title">Passports</div>
-                    <div class="doc-sub">Google Drive →</div>
-                </a>
-
-                <!-- Travel Insurance Card (External Link) -->
-                <a href="https://drive.google.com/drive/folders/1oQuqBzfAlI99TT-qLu1TaX2aVcWRACUy" class="doc-card">
-                    <i class="fa-solid fa-shield-heart"></i>
-                    <div class="doc-title">Travel Insurance</div>
-                    <div class="doc-sub">Google Drive →</div>
-                </a>
-
-                <!-- Visa Card (External Link) -->
-                <a href="#" class="doc-card">
-                    <i class="fa-solid fa-stamp"></i>
-                    <div class="doc-title">Visa</div>
-                    <div class="doc-sub">Google Drive →</div>
-                </a>
-
-                <!-- Train Tickets Card -->
-                <div class="doc-card" onclick="navigate('trains')">
-                    <i class="fa-solid fa-train"></i>
-                    <div class="doc-title">Train Tickets</div>
-                    <div class="doc-sub">Eurail + Reservations</div>
-                </div>
-
-                <!-- Attraction Tickets Card -->
-                <div class="doc-card" onclick="navigate('attractions')">
-                    <i class="fa-solid fa-ticket"></i>
-                    <div class="doc-title">Attraction Tickets</div>
-                    <div class="doc-sub">Day-wise entry tickets</div>
-                </div>
-            </div>
             <div class="footer">| Italy Iyers | Venice Vadamals | Paris Brhatcharanam | 2026 |</div>
         </div>
     </div>
@@ -1367,7 +1625,7 @@
     ═══════════════════════════════════════ -->
     <div id="page-flights" class="page">
         <div class="back-bar">
-            <button class="back-btn" onclick="navigate('documents')">
+            <button class="back-btn" onclick="navigateBack()">
                 <i class="fa-solid fa-arrow-left"></i> Back
             </button>
         </div>
@@ -1429,7 +1687,7 @@
     ═══════════════════════════════════════ -->
     <div id="page-trains" class="page">
         <div class="back-bar">
-            <button class="back-btn" onclick="navigate('documents')">
+            <button class="back-btn" onclick="navigateBack()">
                 <i class="fa-solid fa-arrow-left"></i> Back
             </button>
         </div>
@@ -1451,14 +1709,14 @@
                 <div class="eurail-info">
                     <h3><i class="fa-solid fa-ticket"></i> 5-Day Eurail Global Flexi Pass</h3>
                     <ul style="list-style-type: disc;">
-                        <li> Eligible to travel 'First Class' for all 10 Members</li>
-                        <li> Use the Eurail Rail Planner app to activate travel days</li>
-                        <li> Show QR codes to conductors.</p>
-                        <li> Eurail pass also provides discount on many attraction tickets</li>
+                        <li>Eligible to travel 'First Class' for all 10 Members</li>
+                        <li>Use the Eurail Rail Planner app to activate travel days</li>
+                        <li>Show QR codes to conductors</li>
+                        <li>Eurail pass also provides discount on many attraction tickets</li>
                     </ul>
                     <div style="margin-top:12px">
                         <a href="https://drive.google.com/drive/folders/17Me5RL-gax5lQPlDgNrrV9eH95WVZ9z9?usp=sharing" class="hotel-link" style="background:var(--accent);color:var(--primary)">
-                            <i class="fa-brands fa-google-drive"></i> Eurail Pass Documents
+                            <i class="fa-brands fa-google-drive"></i> Train Details
                         </a>
                     </div>
                 </div>
@@ -1482,12 +1740,12 @@
                         <div class="train-leg">
                             <i class="fa-solid fa-train"></i>
                             <div>
-                                <div class="train-leg-route">Florence ↔ Pisa (Regional)</div>
+                                <div class="train-leg-route">Florence → Pisa (Regional)</div>
                                 <div class="train-leg-detail">Evening · Same Flexi Day</div>
                             </div>
                         </div>
                         <a href="https://drive.google.com/drive/folders/1UQDu_ibWunqp-6VWLSOMmTl8IeTL6FQz" class="train-link">
-                            <i class="fa-brands fa-google-drive"></i> Reservation Tickets
+                            <i class="fa-brands fa-google-drive"></i> Train Details
                         </a>
                     </div>
                 </div>
@@ -1510,7 +1768,7 @@
                             </div>
                         </div>
                         <a href="https://drive.google.com/drive/folders/1NIQTC0HPivYl2TsEyyfj4867IP2R24Xv" class="train-link">
-                            <i class="fa-brands fa-google-drive"></i> Italo Ticket
+                            <i class="fa-brands fa-google-drive"></i> Train Details
                         </a>
                     </div>
                 </div>
@@ -1539,7 +1797,7 @@
                             </div>
                         </div>
                         <a href="https://drive.google.com/drive/folders/1TN_uTuHAZnFYMuRBUM2ivlJD9wJ0r_mq" class="train-link">
-                            <i class="fa-brands fa-google-drive"></i> Reservation Tickets
+                            <i class="fa-brands fa-google-drive"></i> Train Details
                         </a>
                     </div>
                 </div>
@@ -1561,7 +1819,7 @@
                             </div>
                         </div>
                         <a href="#" class="train-link">
-                            <i class="fa-brands fa-google-drive"></i> Reservation Tickets
+                            <i class="fa-brands fa-google-drive"></i> Train Details
                         </a>
                     </div>
                 </div>
@@ -1590,7 +1848,7 @@
                             </div>
                         </div>
                         <a href="#" class="train-link">
-                            <i class="fa-brands fa-google-drive"></i> Reservation Tickets
+                            <i class="fa-brands fa-google-drive"></i> Train Details
                         </a>
                     </div>
                 </div>
@@ -1619,7 +1877,7 @@
                             </div>
                         </div>
                         <a href="https://drive.google.com/drive/folders/1RjRQ50Ba2kPhmt1Dm6n0tmObWIRIvJKt" class="train-link">
-                            <i class="fa-brands fa-google-drive"></i> Reservation Tickets
+                            <i class="fa-brands fa-google-drive"></i> Train Details
                         </a>
                     </div>
                 </div>
@@ -1629,279 +1887,502 @@
     </div>
 
     <!-- ═══════════════════════════════════════
-         ATTRACTIONS PAGE - Daily attraction tickets
+         ATTRACTIONS PAGE - Entry tickets and bookings
     ═══════════════════════════════════════ -->
     <div id="page-attractions" class="page">
         <div class="back-bar">
-            <button class="back-btn" onclick="navigate('documents')">
+            <button class="back-btn" onclick="navigateBack()">
                 <i class="fa-solid fa-arrow-left"></i> Back
             </button>
         </div>
 
-        <!-- Date navigation tabs -->
+        <!-- Day navigation tabs -->
         <nav class="nav-container">
-            <button class="nav-btn active" onclick="showAttr(1)">Jun 6</button>
-            <button class="nav-btn" onclick="showAttr(2)">Jun 7</button>
-            <button class="nav-btn" onclick="showAttr(3)">Jun 8</button>
-            <button class="nav-btn" onclick="showAttr(4)">Jun 10</button>
-            <button class="nav-btn" onclick="showAttr(5)">Jun 11</button>
-            <button class="nav-btn" onclick="showAttr(6)">Jun 12</button>
-            <button class="nav-btn" onclick="showAttr(7)">Jun 13</button>
+            <button class="nav-btn active" onclick="showAttractionDay(1)">Day 1</button>
+            <button class="nav-btn" onclick="showAttractionDay(2)">Day 2</button>
+            <button class="nav-btn" onclick="showAttractionDay(3)">Day 3</button>
+            <button class="nav-btn" onclick="showAttractionDay(4)">Day 4</button>
+            <button class="nav-btn" onclick="showAttractionDay(5)">Day 5</button>
+            <button class="nav-btn" onclick="showAttractionDay(6)">Day 6</button>
+            <button class="nav-btn" onclick="showAttractionDay(7)">Day 7</button>
+            <button class="nav-btn" onclick="showAttractionDay(8)">Day 8</button>
+            <button class="nav-btn" onclick="showAttractionDay(9)">Day 9</button>
+            <button class="nav-btn" onclick="showAttractionDay(10)">Day 10</button>
         </nav>
 
         <div class="container">
-            <!-- June 6 Attractions (Rome) -->
-            <div id="attr1" class="sub-card active">
+            <!-- Day 1 Attractions -->
+            <div id="attraction-day1" class="sub-card active">
                 <div class="section-box">
                     <div class="details">
-                        <h2>June 6 — Rome</h2>
-
+                        <h2>Day 1: Arrival Day</h2>
                         <div class="attraction-item">
-                            <div class="attraction-icon">
-                                <i class="fa-solid fa-church"></i>
-                            </div>
+                            <div class="attraction-icon"><i class="fa-solid fa-plane"></i></div>
                             <div class="attraction-info">
-                                <div class="attraction-name">Vatican Museums & Sistine Chapel</div>
-                                <div class="attraction-detail">Pre-booked timed entry</div>
-                            </div>
-                            <a href="#" class="hotel-link" style="font-size:.78rem">
-                                <i class="fa-brands fa-google-drive"></i>
-                            </a>
-                        </div>
-
-                        <div class="attraction-item">
-                            <div class="attraction-icon">
-                                <i class="fa-solid fa-landmark"></i>
-                            </div>
-                            <div class="attraction-info">
-                                <div class="attraction-name">Colosseum + Roman Forum + Palatine Hill</div>
-                                <div class="attraction-detail">Combined ticket</div>
-                            </div>
-                            <a href="#" class="hotel-link" style="font-size:.78rem">
-                                <i class="fa-brands fa-google-drive"></i>
-                            </a>
-                        </div>
-
-                        <div class="attraction-item">
-                            <div class="attraction-icon">
-                                <i class="fa-solid fa-building-columns"></i>
-                            </div>
-                            <div class="attraction-info">
-                                <div class="attraction-name">Pantheon</div>
-                                <div class="attraction-detail">Free entry</div>
+                                <div class="attraction-name">Airport Transfer</div>
+                                <div class="attraction-detail">Rome FCO → City Center</div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- June 7 Attractions (Rome & Pisa) -->
-            <div id="attr2" class="sub-card">
+            <!-- Day 2 Attractions -->
+            <div id="attraction-day2" class="sub-card">
                 <div class="section-box">
                     <div class="details">
-                        <h2>June 7 — Rome & Pisa</h2>
-
+                        <h2>Day 2: Rome</h2>
                         <div class="attraction-item">
-                            <div class="attraction-icon">
-                                <i class="fa-solid fa-car-side"></i>
-                            </div>
+                            <div class="attraction-icon"><i class="fa-solid fa-church"></i></div>
                             <div class="attraction-info">
-                                <div class="attraction-name">Golf Cart City Tour — Rome</div>
-                                <div class="attraction-detail">Morning tour</div>
+                                <div class="attraction-name">Vatican Museums</div>
+                                <div class="attraction-detail">Skip-the-line tickets · Sistine Chapel</div>
                             </div>
-                            <a href="#" class="hotel-link" style="font-size:.78rem">
-                                <i class="fa-brands fa-google-drive"></i>
+                            <a href="https://drive.google.com/drive/folders/1234567890" target="_blank" class="attraction-link">
+                                <i class="fa-brands fa-google-drive"></i> Tickets
                             </a>
                         </div>
-
                         <div class="attraction-item">
-                            <div class="attraction-icon">
-                                <i class="fa-solid fa-tower-observation"></i>
+                            <div class="attraction-icon"><i class="fa-solid fa-landmark"></i></div>
+                            <div class="attraction-info">
+                                <div class="attraction-name">Colosseum</div>
+                                <div class="attraction-detail">Priority entrance tickets</div>
                             </div>
+                            <a href="https://drive.google.com/drive/folders/1234567890" target="_blank" class="attraction-link">
+                                <i class="fa-brands fa-google-drive"></i> Tickets
+                            </a>
+                        </div>
+                        <div class="attraction-item">
+                            <div class="attraction-icon"><i class="fa-solid fa-building-columns"></i></div>
+                            <div class="attraction-info">
+                                <div class="attraction-name">Roman Pantheon</div>
+                                <div class="attraction-detail">Free entrance · Evening visit</div>
+                            </div>
+                            <a href="https://drive.google.com/drive/folders/1234567890" target="_blank" class="attraction-link">
+                                <i class="fa-brands fa-google-drive"></i> Tickets
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Day 3 Attractions -->
+            <div id="attraction-day3" class="sub-card">
+                <div class="section-box">
+                    <div class="details">
+                        <h2>Day 3: Rome → Florence & Pisa</h2>
+                        <div class="attraction-item">
+                            <div class="attraction-icon"><i class="fa-solid fa-golf-ball"></i></div>
+                            <div class="attraction-info">
+                                <div class="attraction-name">Rome Golf Cart Tour</div>
+                                <div class="attraction-detail">Historical sites city tour</div>
+                            </div>
+                            <a href="https://drive.google.com/drive/folders/1234567890" target="_blank" class="attraction-link">
+                                <i class="fa-brands fa-google-drive"></i> Tickets
+                            </a>
+                        </div>
+                        <div class="attraction-item">
+                            <div class="attraction-icon"><i class="fa-solid fa-tower-observation"></i></div>
                             <div class="attraction-info">
                                 <div class="attraction-name">Leaning Tower of Pisa</div>
-                                <div class="attraction-detail">Evening visit</div>
+                                <div class="attraction-detail">Entry tickets + Tower climb</div>
                             </div>
-                            <a href="#" class="hotel-link" style="font-size:.78rem">
-                                <i class="fa-brands fa-google-drive"></i>
+                            <a href="https://drive.google.com/drive/folders/1234567890" target="_blank" class="attraction-link">
+                                <i class="fa-brands fa-google-drive"></i> Tickets
                             </a>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- June 8 Attractions (Florence & Venice) -->
-            <div id="attr3" class="sub-card">
+            <!-- Day 4 Attractions -->
+            <div id="attraction-day4" class="sub-card">
                 <div class="section-box">
                     <div class="details">
-                        <h2>June 8 — Florence & Venice</h2>
-
+                        <h2>Day 4: Florence → Venice</h2>
                         <div class="attraction-item">
-                            <div class="attraction-icon">
-                                <i class="fa-solid fa-church"></i>
-                            </div>
+                            <div class="attraction-icon"><i class="fa-solid fa-church"></i></div>
                             <div class="attraction-info">
                                 <div class="attraction-name">Florence Cathedral (Duomo)</div>
-                                <div class="attraction-detail">Morning</div>
+                                <div class="attraction-detail">Cathedral visit · Brunelleschi's Dome</div>
                             </div>
-                            <a href="#" class="hotel-link" style="font-size:.78rem">
-                                <i class="fa-brands fa-google-drive"></i>
+                            <a href="https://drive.google.com/drive/folders/1234567890" target="_blank" class="attraction-link">
+                                <i class="fa-brands fa-google-drive"></i> Tickets
                             </a>
                         </div>
-
                         <div class="attraction-item">
-                            <div class="attraction-icon">
-                                <i class="fa-solid fa-tower-observation"></i>
-                            </div>
+                            <div class="attraction-icon"><i class="fa-solid fa-bridge"></i></div>
                             <div class="attraction-info">
-                                <div class="attraction-name">St. Mark's Campanile</div>
-                                <div class="attraction-detail">Lift accessible</div>
+                                <div class="attraction-name">Ponte Vecchio</div>
+                                <div class="attraction-detail">Historic bridge · Free visit</div>
                             </div>
-                            <a href="#" class="hotel-link" style="font-size:.78rem">
-                                <i class="fa-brands fa-google-drive"></i>
+                            <a href="https://drive.google.com/drive/folders/1234567890" target="_blank" class="attraction-link">
+                                <i class="fa-brands fa-google-drive"></i> Tickets
                             </a>
                         </div>
-
                         <div class="attraction-item">
-                            <div class="attraction-icon">
-                                <i class="fa-solid fa-sailboat"></i>
-                            </div>
+                            <div class="attraction-icon"><i class="fa-solid fa-bell"></i></div>
                             <div class="attraction-info">
-                                <div class="attraction-name">Gondola Ride</div>
-                                <div class="attraction-detail">Venice evening</div>
+                                <div class="attraction-name">St. Mark's Bell Tower</div>
+                                <div class="attraction-detail">Elevator to the top · Venice views</div>
                             </div>
-                            <a href="#" class="hotel-link" style="font-size:.78rem">
-                                <i class="fa-brands fa-google-drive"></i>
+                            <a href="https://drive.google.com/drive/folders/1234567890" target="_blank" class="attraction-link">
+                                <i class="fa-brands fa-google-drive"></i> Tickets
+                            </a>
+                        </div>
+                        <div class="attraction-item">
+                            <div class="attraction-icon"><i class="fa-solid fa-ship"></i></div>
+                            <div class="attraction-info">
+                                <div class="attraction-name">Gondola Boat Ride</div>
+                                <div class="attraction-detail">30-minute scenic canal tour</div>
+                            </div>
+                            <a href="https://drive.google.com/drive/folders/1234567890" target="_blank" class="attraction-link">
+                                <i class="fa-brands fa-google-drive"></i> Tickets
                             </a>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- June 10 Attractions (Swiss Alps) -->
-            <div id="attr4" class="sub-card">
+            <!-- Day 5 Attractions -->
+            <div id="attraction-day5" class="sub-card">
                 <div class="section-box">
                     <div class="details">
-                        <h2>June 10 — Swiss Alps</h2>
-
+                        <h2>Day 5: Venice → Lucerne</h2>
                         <div class="attraction-item">
-                            <div class="attraction-icon">
-                                <i class="fa-solid fa-mountain-sun"></i>
-                            </div>
+                            <div class="attraction-icon"><i class="fa-solid fa-train"></i></div>
                             <div class="attraction-info">
-                                <div class="attraction-name">Jungfraujoch — Top of Europe</div>
-                                <div class="attraction-detail">Eurail 25-50% discount</div>
+                                <div class="attraction-name">Swiss Travel Pass</div>
+                                <div class="attraction-detail">3-day unlimited train travel</div>
                             </div>
-                            <a href="#" class="hotel-link" style="font-size:.78rem">
-                                <i class="fa-brands fa-google-drive"></i>
+                            <a href="https://drive.google.com/drive/folders/1234567890" target="_blank" class="attraction-link">
+                                <i class="fa-brands fa-google-drive"></i> Tickets
                             </a>
                         </div>
-
                         <div class="attraction-item">
-                            <div class="attraction-icon">
-                                <i class="fa-solid fa-mountain"></i>
+                            <div class="attraction-icon"><i class="fa-solid fa-bridge"></i></div>
+                            <div class="attraction-info">
+                                <div class="attraction-name">Chapel Bridge</div>
+                                <div class="attraction-detail">Historic wooden covered bridge</div>
                             </div>
+                            <a href="https://drive.google.com/drive/folders/1234567890" target="_blank" class="attraction-link">
+                                <i class="fa-brands fa-google-drive"></i> Tickets
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Day 6 Attractions -->
+            <div id="attraction-day6" class="sub-card">
+                <div class="section-box">
+                    <div class="details">
+                        <h2>Day 6: Jungfraujoch</h2>
+                        <div class="attraction-item">
+                            <div class="attraction-icon"><i class="fa-solid fa-mountain"></i></div>
+                            <div class="attraction-info">
+                                <div class="attraction-name">Jungfraujoch "Top of Europe"</div>
+                                <div class="attraction-detail">Round-trip train tickets · Ice Palace · Observatory</div>
+                            </div>
+                            <a href="https://drive.google.com/drive/folders/1234567890" target="_blank" class="attraction-link">
+                                <i class="fa-brands fa-google-drive"></i> Tickets
+                            </a>
+                        </div>
+                        <div class="attraction-item">
+                            <div class="attraction-icon"><i class="fa-solid fa-mountain-city"></i></div>
                             <div class="attraction-info">
                                 <div class="attraction-name">Harder Kulm</div>
-                                <div class="attraction-detail">Panoramic funicular</div>
+                                <div class="attraction-detail">Interlaken viewpoint · Panoramic views</div>
                             </div>
-                            <a href="#" class="hotel-link" style="font-size:.78rem">
-                                <i class="fa-brands fa-google-drive"></i>
+                            <a href="https://drive.google.com/drive/folders/1234567890" target="_blank" class="attraction-link">
+                                <i class="fa-brands fa-google-drive"></i> Tickets
                             </a>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- June 11 Attractions (Pilatus) -->
-            <div id="attr5" class="sub-card">
+            <!-- Day 7 Attractions -->
+            <div id="attraction-day7" class="sub-card">
                 <div class="section-box">
                     <div class="details">
-                        <h2>June 11 — Pilatus</h2>
-
+                        <h2>Day 7: Mt. Pilatus & Zurich</h2>
                         <div class="attraction-item">
-                            <div class="attraction-icon">
-                                <i class="fa-solid fa-mountain-sun"></i>
-                            </div>
+                            <div class="attraction-icon"><i class="fa-solid fa-mountain"></i></div>
                             <div class="attraction-info">
                                 <div class="attraction-name">Mt. Pilatus Golden Round Trip</div>
-                                <div class="attraction-detail">Cogwheel + Cable car + Ferry · ~50% off with Eurail</div>
+                                <div class="attraction-detail">Ferry + Cogwheel train + Cable car</div>
                             </div>
-                            <a href="#" class="hotel-link" style="font-size:.78rem">
-                                <i class="fa-brands fa-google-drive"></i>
+                            <a href="https://drive.google.com/drive/folders/1234567890" target="_blank" class="attraction-link">
+                                <i class="fa-brands fa-google-drive"></i> Tickets
+                            </a>
+                        </div>
+                        <div class="attraction-item">
+                            <div class="attraction-icon"><i class="fa-solid fa-city"></i></div>
+                            <div class="attraction-info">
+                                <div class="attraction-name">Zurich City Tour</div>
+                                <div class="attraction-detail">Old Town · Lake Zurich · Bahnhofstrasse</div>
+                            </div>
+                            <a href="https://drive.google.com/drive/folders/1234567890" target="_blank" class="attraction-link">
+                                <i class="fa-brands fa-google-drive"></i> Tickets
                             </a>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- June 12 Attractions (Paris) -->
-            <div id="attr6" class="sub-card">
+            <!-- Day 8 Attractions -->
+            <div id="attraction-day8" class="sub-card">
                 <div class="section-box">
                     <div class="details">
-                        <h2>June 12 — Paris</h2>
-
+                        <h2>Day 8: Lucerne → Paris</h2>
                         <div class="attraction-item">
-                            <div class="attraction-icon">
-                                <i class="fa-solid fa-ship"></i>
-                            </div>
+                            <div class="attraction-icon"><i class="fa-solid fa-ship"></i></div>
                             <div class="attraction-info">
                                 <div class="attraction-name">Seine River Cruise</div>
-                                <div class="attraction-detail">Evening Bateaux-Mouches cruise</div>
+                                <div class="attraction-detail">Bateaux-mouches · Evening cruise with dinner</div>
                             </div>
-                            <a href="#" class="hotel-link" style="font-size:.78rem">
-                                <i class="fa-brands fa-google-drive"></i>
+                            <a href="https://drive.google.com/drive/folders/1234567890" target="_blank" class="attraction-link">
+                                <i class="fa-brands fa-google-drive"></i> Tickets
                             </a>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- June 13 Attractions (Paris) -->
-            <div id="attr7" class="sub-card">
+            <!-- Day 9 Attractions -->
+            <div id="attraction-day9" class="sub-card">
                 <div class="section-box">
                     <div class="details">
-                        <h2>June 13 — Paris</h2>
-
+                        <h2>Day 9: Paris</h2>
                         <div class="attraction-item">
-                            <div class="attraction-icon">
-                                <i class="fa-solid fa-tower-observation"></i>
-                            </div>
+                            <div class="attraction-icon"><i class="fa-solid fa-tower-observation"></i></div>
                             <div class="attraction-info">
                                 <div class="attraction-name">Eiffel Tower Summit</div>
-                                <div class="attraction-detail">Timed entry · Book in advance!</div>
+                                <div class="attraction-detail">Elevator to the very top · Priority access</div>
                             </div>
-                            <a href="#" class="hotel-link" style="font-size:.78rem">
-                                <i class="fa-brands fa-google-drive"></i>
+                            <a href="https://drive.google.com/drive/folders/1234567890" target="_blank" class="attraction-link">
+                                <i class="fa-brands fa-google-drive"></i> Tickets
                             </a>
                         </div>
-
                         <div class="attraction-item">
-                            <div class="attraction-icon">
-                                <i class="fa-solid fa-bus"></i>
-                            </div>
+                            <div class="attraction-icon"><i class="fa-solid fa-bus"></i></div>
                             <div class="attraction-info">
-                                <div class="attraction-name">Hop-On Hop-Off Bus</div>
-                                <div class="attraction-detail">Full day pass</div>
+                                <div class="attraction-name">Paris Hop-On Hop-Off Bus</div>
+                                <div class="attraction-detail">All-day pass · 4 routes · Audio guide</div>
                             </div>
-                            <a href="#" class="hotel-link" style="font-size:.78rem">
-                                <i class="fa-brands fa-google-drive"></i>
+                            <a href="https://drive.google.com/drive/folders/1234567890" target="_blank" class="attraction-link">
+                                <i class="fa-brands fa-google-drive"></i> Tickets
                             </a>
                         </div>
-
                         <div class="attraction-item">
-                            <div class="attraction-icon">
-                                <i class="fa-solid fa-church"></i>
-                            </div>
+                            <div class="attraction-icon"><i class="fa-solid fa-archway"></i></div>
                             <div class="attraction-info">
-                                <div class="attraction-name">Notre-Dame Cathedral</div>
-                                <div class="attraction-detail">Exterior visit</div>
+                                <div class="attraction-name">Arc de Triomphe</div>
+                                <div class="attraction-detail">Climb to the top · Champs-Élysées views</div>
+                            </div>
+                            <a href="https://drive.google.com/drive/folders/1234567890" target="_blank" class="attraction-link">
+                                <i class="fa-brands fa-google-drive"></i> Tickets
+                            </a>
+                        </div>
+                        <div class="attraction-item">
+                            <div class="attraction-icon"><i class="fa-solid fa-church"></i></div>
+                            <div class="attraction-info">
+                                <div class="attraction-name">Notre Dame Cathedral</div>
+                                <div class="attraction-detail">Exterior visit · Nearby Sainte-Chapelle</div>
+                            </div>
+                            <a href="https://drive.google.com/drive/folders/1234567890" target="_blank" class="attraction-link">
+                                <i class="fa-brands fa-google-drive"></i> Tickets
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Day 10 Attractions -->
+            <div id="attraction-day10" class="sub-card">
+                <div class="section-box">
+                    <div class="details">
+                        <h2>Day 10: Departure</h2>
+                        <div class="attraction-item">
+                            <div class="attraction-icon"><i class="fa-solid fa-plane-departure"></i></div>
+                            <div class="attraction-info">
+                                <div class="attraction-name">Airport Transfer</div>
+                                <div class="attraction-detail">Paris City → CDG Airport</div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+
             <div class="footer">| Italy Iyers | Venice Vadamals | Paris Brhatcharanam | 2026 |</div>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════
+         ALL DOCUMENTS PAGE - Travel documents and expense tracker
+    ═══════════════════════════════════════ -->
+    <div id="page-documents" class="page">
+        <div class="back-bar">
+            <button class="back-btn" onclick="navigateBack()">
+                <i class="fa-solid fa-arrow-left"></i> Back
+            </button>
+        </div>
+
+        <div class="container">
+            <div class="doc-grid">
+                <!-- Flight Details Card -->
+                <div class="doc-card" onclick="navigate('flights')">
+                    <i class="fa-solid fa-plane"></i>
+                    <div class="doc-title">Flight Details</div>
+                    <div class="doc-sub">BLR → Europe</div>
+                </div>
+
+                <!-- Passport Card -->
+                <a href="https://drive.google.com/drive/folders/1Ig3p84qLZSdYo6r3DSRxpFpxZtlEBchq" class="doc-card" target="_blank">
+                    <i class="fa-solid fa-passport"></i>
+                    <div class="doc-title">Passports</div>
+                    <div class="doc-sub">Google Drive →</div>
+                </a>
+
+                <!-- Visa Card -->
+                <a href="#" class="doc-card">
+                    <i class="fa-solid fa-stamp"></i>
+                    <div class="doc-title">Visa</div>
+                    <div class="doc-sub">Google Drive →</div>
+                </a>
+
+                <!-- Insurance Card -->
+                <a href="https://drive.google.com/drive/folders/1oQuqBzfAlI99TT-qLu1TaX2aVcWRACUy" target="_blank" class="doc-card">
+                    <i class="fa-solid fa-shield-heart"></i>
+                    <div class="doc-title">Travel Insurance</div>
+                    <div class="doc-sub">Coverage & claims</div>
+                </a>
+
+                <!-- Train Tickets Card -->
+                <div class="doc-card" onclick="navigate('trains')">
+                    <i class="fa-solid fa-train"></i>
+                    <div class="doc-title">Train Tickets</div>
+                    <div class="doc-sub">Eurail + Reservations</div>
+                </div>
+
+                <!-- Expense Tracker Card -->
+                <a href="https://www.kittysplit.com/k/h1XI73YqGzl8fHTv1rOiqqAfdx4qBuOV-2" target="_blank" class="doc-card">
+                    <i class="fa-solid fa-calculator"></i>
+                    <div class="doc-title">Expense Tracker</div>
+                    <div class="doc-sub">Split bills & track spending</div>
+                </a>
+            </div>
+
+            <div class="footer">| Italy Iyers | Venice Vadamals | Paris Brhatcharanam | 2026 |</div>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════
+         ADD RESTAURANT MODAL - Dynamic form for contributing restaurants
+    ═══════════════════════════════════════ -->
+    <div id="add-hotel-modal" class="modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeAddHotelModal()">&times;</button>
+            <h2 style="font-family: 'Playfair Display', serif; color: var(--primary); margin-bottom: 20px;">
+                Add Restaurant to <span id="modal-city-name">City</span>
+            </h2>
+
+            <form id="add-hotel-form" onsubmit="submitHotel(event)">
+                <div class="form-group">
+                    <label class="form-label">Restaurant Name *</label>
+                    <input type="text" class="form-input" name="hotelName" required>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Location/Address *</label>
+                    <input type="text" class="form-input" name="location" required>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Main Landmark *</label>
+                    <select class="form-select" name="mainLandmark" id="landmark-select" required>
+                        <!-- Options populated dynamically -->
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Distance from Landmark *</label>
+                    <input type="text" class="form-input" name="distance" placeholder="e.g., 500m, 0.8km" required>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Cuisine Tags *</label>
+                    <input type="text" class="form-input" name="cuisineTags" placeholder="e.g., Vegan, Vegetarian, Continental, Indian, Italian, Halal, Gluten-Free" required>
+                    <small style="color: var(--text-muted); font-size: 0.8rem;">
+                        Separate multiple tags with commas. Examples: Vegan, Vegetarian, Continental, Indian, Italian, Mediterranean, Halal, Gluten-Free, etc.
+                    </small>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Price Range *</label>
+                    <select class="form-select" name="priceRange" required>
+                        <option value="">Select price range</option>
+                        <option value="€20-50">€20-50 (Budget)</option>
+                        <option value="€50-100">€50-100 (Mid-range)</option>
+                        <option value="€100-200">€100-200 (Upscale)</option>
+                        <option value="€200+">€200+ (Luxury)</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Google Maps Link *</label>
+                    <input type="url" class="form-input" name="googleMaps" placeholder="https://maps.google.com/..." required>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Notes (Optional)</label>
+                    <textarea class="form-textarea" name="notes" placeholder="e.g., Try their signature pasta carbonara. Best breakfast buffet in the area. Peak hours: 7-9 AM and 7-9 PM. Free WiFi available."></textarea>
+                    <small style="color: var(--text-muted); font-size: 0.8rem;">
+                        Share helpful tips like recommended dishes, peak hours, special services, etc.
+                    </small>
+                </div>
+
+                <input type="hidden" name="city" id="form-city">
+                <input type="hidden" name="timestamp" id="form-timestamp">
+
+                <button type="submit" class="form-submit">
+                    <i class="fa-solid fa-plus"></i> Add Restaurant
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════
+         ADD LANDMARK MODAL - Add new landmarks to cities
+    ═══════════════════════════════════════ -->
+    <div id="add-landmark-modal" class="modal">
+        <div class="modal-content" style="max-width: 400px;">
+            <button class="modal-close" onclick="closeAddLandmarkModal()">&times;</button>
+            <h2 style="font-family: 'Playfair Display', serif; color: var(--primary); margin-bottom: 20px;">
+                Add Landmark to <span id="landmark-modal-city-name">City</span>
+            </h2>
+
+            <form id="add-landmark-form" onsubmit="submitLandmark(event)">
+                <div class="form-group">
+                    <label class="form-label">Landmark Name *</label>
+                    <input type="text" class="form-input" name="landmarkName" id="landmarkNameInput" placeholder="e.g., Castel Sant'Angelo" required onkeyup="autoGenerateLandmarkKey()">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Landmark Key *</label>
+                    <input type="text" class="form-input" name="landmarkKey" id="landmarkKeyInput" placeholder="e.g., castel-santangelo" required>
+                    <small style="color: var(--text-muted); font-size: 0.8rem;">
+                        Auto-generated from name. Edit if needed. Use lowercase letters and hyphens only.
+                    </small>
+                </div>
+
+                <input type="hidden" name="landmarkCity" id="landmark-form-city">
+
+                <button type="submit" class="form-submit">
+                    <i class="fa-solid fa-map-pin"></i> Add Landmark
+                </button>
+            </form>
         </div>
     </div>
 
@@ -1909,41 +2390,786 @@
          JAVASCRIPT - Navigation & Interactive Functions
     ═══════════════════════════════════════ -->
     <script>
+        /* ═══════════════════════════════════════
+           GOOGLE SHEETS CONFIGURATION
+        ═══════════════════════════════════════ */
+
+        // Your Google Sheets configuration - READY FOR TESTING
+        const GOOGLE_SHEETS_CONFIG = {
+            // Your Google Sheets API URL (for reading hotel data)
+            sheetsBaseUrl: 'https://docs.google.com/spreadsheets/d/1jHP_o58c99aOtHeeWt5wkDowTkBEj-WqkqNAYWNuF1s/gviz/tq?tqx=out:json&sheet=',
+
+            // Your Google Apps Script web app URL - REPLACE WITH YOUR ACTUAL DEPLOYMENT URL
+            appsScriptUrl: 'https://script.google.com/macros/s/AKfycbzAKo2bOthAB2jSbsKEcHtB9qAkMoJSn0nQpUEUeqnJtxJwiJRYkfBX0tT_6OYI6DMI0Q/exec',
+
+            // Your Sheet ID
+            sheetId: '1jHP_o58c99aOtHeeWt5wkDowTkBEj-WqkqNAYWNuF1s',
+
+            // Enable Google Sheets integration
+            enabled: true,
+
+            // Debug mode
+            debug: true
+        };
+
+        /* ═══════════════════════════════════════
+           UI HELPER FUNCTIONS
+        ═══════════════════════════════════════ */
+
+        /**
+         * Show loading state on button
+         */
+        function setButtonLoading(button, loadingText) {
+            button.disabled = true;
+            button.innerHTML = `<i class="fa-solid fa-spinner fa-spin" style="margin-right: 8px;"></i>${loadingText}`;
+            button.style.opacity = '0.8';
+        }
+
+        /**
+         * Reset button to normal state
+         */
+        function resetButton(button, originalText) {
+            button.disabled = false;
+            button.innerHTML = originalText;
+            button.style.opacity = '1';
+        }
+
+        /* ═══════════════════════════════════════
+           DYNAMIC CITY MANAGEMENT
+        ═══════════════════════════════════════ */
+
+        // Store all available cities
+        let availableCities = [];
+        let currentActiveCity = null;
+
+        /**
+         * Fetch all available cities from Google Sheets
+         */
+        async function fetchAvailableCities() {
+            console.log('🌍 Fetching all available cities...');
+
+            try {
+                const response = await fetch(GOOGLE_SHEETS_CONFIG.appsScriptUrl + '?action=getCities');
+                const result = await response.json();
+
+                if (result.success && result.cities) {
+                    availableCities = result.cities;
+                    console.log(`✅ Found ${result.totalCities} cities:`, availableCities.map(c => c.displayName).join(', '));
+
+                    // Generate dynamic navigation and content
+                    generateCityNavigation();
+                    generateCityContent();
+
+                    // Show first city by default
+                    if (availableCities.length > 0) {
+                        showNearbyCity(availableCities[0].key);
+                    }
+
+                    return availableCities;
+                } else {
+                    console.error('❌ Failed to fetch cities:', result.error);
+                    showCityError('Could not load cities from Google Sheets');
+                    return [];
+                }
+            } catch (error) {
+                console.error('❌ Error fetching cities:', error);
+                showCityError('Connection error - could not load cities');
+                return [];
+            }
+        }
+
+        /**
+         * Generate dynamic city navigation buttons
+         */
+        function generateCityNavigation() {
+            const navContainer = document.getElementById('city-navigation');
+
+            if (availableCities.length === 0) {
+                navContainer.innerHTML = '<div style="text-align: center; padding: 15px; color: var(--text-muted);">No cities found in your Google Sheets</div>';
+                return;
+            }
+
+            let navHTML = '';
+            availableCities.forEach((city, index) => {
+                const isActive = index === 0 ? 'active' : '';
+                const hotelCount = city.hotelCount || 0;
+                const hotelText = hotelCount === 1 ? 'restaurant' : 'restaurants';
+
+                navHTML += `<button class="nav-btn ${isActive}" onclick="showNearbyCity('${city.key}')" data-city="${city.key}">
+                    ${city.displayName}
+                    <small style="display: block; font-size: 0.7rem; opacity: 0.7;">${hotelCount} ${hotelText}</small>
+                </button>`;
+            });
+
+            navContainer.innerHTML = navHTML;
+            console.log(`🎯 Generated navigation for ${availableCities.length} cities`);
+        }
+
+        /**
+         * Generate dynamic city content sections
+         */
+        function generateCityContent() {
+            const container = document.getElementById('dynamic-cities-container');
+
+            if (availableCities.length === 0) {
+                container.innerHTML = `
+                    <div style="text-align: center; padding: 40px; color: var(--text-muted);">
+                        <i class="fa-solid fa-city" style="font-size: 3rem; margin-bottom: 15px; display: block; color: var(--accent);"></i>
+                        <h3 style="margin: 0 0 10px; font-family: 'Playfair Display', serif;">No Cities Found</h3>
+                        <p style="font-size: 0.9rem; margin: 0 0 15px;">Create city sheets in your Google Sheets to get started</p>
+                        <p style="font-size: 0.8rem; color: var(--text-muted); font-style: italic;">Example: Create sheets named "rome", "paris", "pisa", etc.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            let contentHTML = '';
+            availableCities.forEach((city, index) => {
+                const isActive = index === 0 ? 'active' : '';
+                contentHTML += `
+                    <div id="nearby-${city.key}" class="sub-card ${isActive}">
+                        <div class="nearby-controls">
+                            <div class="filter-controls">
+                                <select class="filter-select" id="landmark-filter-${city.key}" onchange="filterByLandmark('${city.key}', this.value)">
+                                    <option value="all">All Landmarks</option>
+                                </select>
+                                <input type="text" class="search-input" placeholder="Search restaurants in ${city.displayName}..." onkeyup="searchHotels('${city.key}', this.value)">
+                            </div>
+                            <div style="display: flex; gap: 10px;">
+                                <button class="add-hotel-btn" onclick="openAddHotelModal('${city.key}')">
+                                    <i class="fa-solid fa-plus"></i> Add Restaurant
+                                </button>
+                                <button class="add-hotel-btn" onclick="openAddLandmarkModal('${city.key}')">
+                                    <i class="fa-solid fa-map-pin"></i> Add Landmark
+                                </button>
+                            </div>
+                        </div>
+                        <div id="hotels-content-${city.key}">
+                            <div class="no-hotels">
+                                <p><i class="fa-solid fa-spinner fa-spin" style="margin-right: 8px;"></i>Loading restaurants for ${city.displayName}...</p>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+
+            container.innerHTML = contentHTML;
+            console.log(`🏗️ Generated content sections for ${availableCities.length} cities`);
+
+            // Initialize landmark options for all cities
+            availableCities.forEach(city => {
+                if (!landmarkOptions[city.key]) {
+                    landmarkOptions[city.key] = [];
+                }
+            });
+        }
+
+        /**
+         * Update restaurant count for a specific city in navigation
+         */
+        function updateCityHotelCount(cityKey, increment = 1) {
+            // Find the city in our availableCities array
+            const city = availableCities.find(c => c.key === cityKey);
+            if (!city) {
+                console.warn(`⚠️ City not found for count update: ${cityKey}`);
+                return;
+            }
+
+            // Update the count (ensure it doesn't go below 0)
+            city.hotelCount = Math.max(0, city.hotelCount + increment);
+            console.log(`🔄 Updated ${cityKey} restaurant count: ${city.hotelCount} (${increment > 0 ? '+' : ''}${increment})`);
+
+            // Update the navigation button display
+            updateNavigationButton(city);
+        }
+
+        /**
+         * Update a single navigation button with current city data
+         */
+        function updateNavigationButton(city) {
+            const navButton = document.querySelector(`#page-nearby-hotels .nav-btn[data-city="${city.key}"]`);
+            if (navButton) {
+                const hotelCount = city.hotelCount || 0;
+                const hotelText = hotelCount === 1 ? 'restaurant' : 'restaurants';
+
+                navButton.innerHTML = `
+                    ${city.displayName}
+                    <small style="display: block; font-size: 0.7rem; opacity: 0.7;">${hotelCount} ${hotelText}</small>
+                `;
+                console.log(`✅ Updated navigation button for ${city.displayName}: ${hotelCount} ${hotelText}`);
+            } else {
+                console.warn(`⚠️ Navigation button not found for: ${city.key}`);
+            }
+        }
+
+        /**
+         * Refresh restaurant counts from Google Sheets (for manual sync)
+         */
+        async function refreshHotelCounts() {
+            console.log('🔄 Refreshing restaurant counts from Google Sheets...');
+            try {
+                const cities = await fetchAvailableCities();
+                console.log(`✅ Restaurant counts refreshed for ${cities.length} cities`);
+                return cities;
+            } catch (error) {
+                console.error('❌ Failed to refresh restaurant counts:', error);
+                return null;
+            }
+        }
+
+        /**
+         * Show error state when cities can't be loaded
+         */
+        function showCityError(message) {
+            const navContainer = document.getElementById('city-navigation');
+            const contentContainer = document.getElementById('dynamic-cities-container');
+
+            navContainer.innerHTML = `
+                <div style="text-align: center; padding: 15px; color: #dc2626; background: #fef2f2; border-radius: 8px; margin: 10px;">
+                    <i class="fa-solid fa-triangle-exclamation" style="margin-right: 8px;"></i>
+                    ${message}
+                </div>
+            `;
+
+            contentContainer.innerHTML = `
+                <div style="text-align: center; padding: 40px; color: var(--text-muted);">
+                    <i class="fa-solid fa-triangle-exclamation" style="font-size: 2rem; margin-bottom: 15px; display: block; color: #dc2626;"></i>
+                    <h3 style="margin: 0 0 10px; font-family: 'Playfair Display', serif; color: #dc2626;">Connection Issue</h3>
+                    <p style="font-size: 0.9rem; margin: 0 0 15px;">${message}</p>
+                    <button onclick="window.location.reload()" style="background: var(--accent); color: var(--primary); border: none; padding: 10px 20px; border-radius: 8px; cursor: pointer;">
+                        <i class="fa-solid fa-refresh" style="margin-right: 8px;"></i>Retry
+                    </button>
+                </div>
+            `;
+        }
+
+        /* ═══════════════════════════════════════
+           GOOGLE SHEETS API FUNCTIONS
+        ═══════════════════════════════════════ */
+
+        /**
+         * Test Google Sheets connection on page load
+         */
+        async function testConnection() {
+            console.log('🔄 Testing Google Sheets connection...');
+            updateConnectionStatus('testing', 'Testing connection...');
+
+            try {
+                const response = await fetch(GOOGLE_SHEETS_CONFIG.appsScriptUrl);
+                const data = await response.json();
+
+                if (data.success) {
+                    console.log('✅ Connection successful:', data);
+                    updateConnectionStatus('success', `Connected v${data.version}`);
+                    return true;
+                } else {
+                    console.log('❌ Connection failed:', data);
+                    updateConnectionStatus('error', 'Connection failed');
+                    return false;
+                }
+            } catch (error) {
+                console.error('❌ Connection error:', error);
+                updateConnectionStatus('error', 'Connection error');
+                return false;
+            }
+        }
+
+        /**
+         * Update connection status indicator
+         */
+        function updateConnectionStatus(status, message) {
+            const indicator = document.getElementById('connection-status');
+            indicator.textContent = message;
+            indicator.className = 'connection-status ' + status;
+
+            if (status === 'success') {
+                setTimeout(() => {
+                    indicator.style.display = 'none';
+                }, 3000);
+            }
+        }
+
+        /**
+         * Submit hotel data to Google Sheets
+         */
+        async function submitHotel(event) {
+            event.preventDefault();
+
+            const formData = new FormData(event.target);
+            const hotelData = {};
+
+            // Convert form data to object
+            for (let [key, value] of formData.entries()) {
+                hotelData[key] = value;
+            }
+
+            // Parse cuisine tags from comma-separated string
+            if (hotelData.cuisineTags) {
+                hotelData.cuisineTagsArray = hotelData.cuisineTags
+                    .split(',')
+                    .map(tag => tag.trim())
+                    .filter(tag => tag.length > 0);
+            }
+
+            console.log('🏨 Submitting hotel data:', hotelData);
+
+            // Show loading state
+            const submitBtn = document.querySelector('#add-hotel-form .form-submit');
+            const originalText = submitBtn.innerHTML;
+            setButtonLoading(submitBtn, 'Adding Restaurant...');
+
+            try {
+                const response = await fetch(GOOGLE_SHEETS_CONFIG.appsScriptUrl, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        action: 'addHotel',
+                        data: hotelData
+                    })
+                });
+
+                const result = await response.json();
+                console.log('📝 Hotel submission result:', result);
+
+                // Reset button BEFORE showing alert (alert blocks UI thread)
+                resetButton(submitBtn, originalText);
+
+                if (result.success) {
+                    // Update hotel count in navigation (increment by 1)
+                    updateCityHotelCount(hotelData.city, 1);
+
+                    alert('🎉 SUCCESS!\n\n🍽️ Restaurant added to ' + hotelData.city.toUpperCase() + '\n✨ ' + hotelData.hotelName + ' is now available for travelers!');
+                    closeAddHotelModal();
+
+                    // Refresh restaurants for this city
+                    loadHotelsForCity(hotelData.city);
+                } else {
+                    alert('❌ OOPS!\n\n🚫 Could not add restaurant\n💡 ' + (result.error || 'Please try again or check your connection'));
+                }
+            } catch (error) {
+                console.error('❌ Hotel submission error:', error);
+
+                // Fallback: Try with no-cors mode
+                console.log('🔄 Trying no-cors fallback...');
+                try {
+                    const response = await fetch(GOOGLE_SHEETS_CONFIG.appsScriptUrl, {
+                        method: 'POST',
+                        mode: 'no-cors',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            action: 'addHotel',
+                            data: hotelData
+                        })
+                    });
+
+                    // Reset button BEFORE alert
+                    resetButton(submitBtn, originalText);
+
+                    // Update hotel count in navigation (assuming success since we're showing success message)
+                    updateCityHotelCount(hotelData.city, 1);
+
+                    alert('⚡ SENT!\n\n🍽️ ' + hotelData.hotelName + ' submitted successfully\n📊 Check your Google Sheets to confirm\n🔄 Page will refresh the restaurant list automatically');
+                    closeAddHotelModal();
+
+                    // Refresh restaurants for this city after a delay
+                    setTimeout(() => loadHotelsForCity(hotelData.city), 2000);
+
+                } catch (fallbackError) {
+                    // Reset button BEFORE alert
+                    resetButton(submitBtn, originalText);
+                    console.error('❌ Fallback also failed:', fallbackError);
+                    alert('🚨 CONNECTION ISSUE\n\n🌐 Unable to reach Google Sheets\n💡 Please check your internet connection and try again\n🔄 Or refresh the page and retry');
+                }
+            }
+        }
+
+        /**
+         * Submit landmark data to Google Sheets
+         */
+        async function submitLandmark(event) {
+            event.preventDefault();
+
+            const formData = new FormData(event.target);
+            const landmarkData = {
+                city: formData.get('landmarkCity'),
+                name: formData.get('landmarkName').trim(),
+                key: formData.get('landmarkKey').trim().toLowerCase().replace(/[^a-z0-9-]/g, '-')
+            };
+
+            // Validate landmark key format
+            if (!/^[a-z0-9-]+$/.test(landmarkData.key)) {
+                alert('⚠️ INVALID FORMAT\n\n📝 Landmark key requirements:\n• Only lowercase letters (a-z)\n• Numbers (0-9)\n• Hyphens (-)\n\n💡 Example: "new-landmark" or "statue-2024"');
+                return;
+            }
+
+            // Check if landmark already exists locally
+            const existingLandmarks = landmarkOptions[landmarkData.city] || [];
+            if (existingLandmarks.find(l => l.value === landmarkData.key)) {
+                alert(`🔄 DUPLICATE FOUND\n\n📍 "${landmarkData.key}" already exists in ${landmarkData.city.toUpperCase()}\n💡 Please choose a different name or key`);
+                return;
+            }
+
+            console.log('📍 Submitting landmark data:', landmarkData);
+
+            // Show loading state
+            const submitBtn = document.querySelector('#add-landmark-form .form-submit');
+            const originalText = submitBtn.innerHTML;
+            setButtonLoading(submitBtn, 'Adding Landmark...');
+
+            try {
+                const response = await fetch(GOOGLE_SHEETS_CONFIG.appsScriptUrl, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        action: 'addLandmark',
+                        data: landmarkData
+                    })
+                });
+
+                const result = await response.json();
+                console.log('📝 Landmark submission result:', result);
+
+                // Reset button BEFORE showing alert
+                resetButton(submitBtn, originalText);
+
+                if (result.success) {
+                    // Add landmark locally
+                    addLandmark(landmarkData.city, landmarkData.key, landmarkData.name);
+
+                    alert('🎯 LANDMARK ADDED!\n\n📍 ' + landmarkData.name + ' → ' + landmarkData.city.toUpperCase() + '\n✨ Now available in hotel filters\n🔄 Dropdown menus updated automatically');
+                    closeAddLandmarkModal();
+                } else {
+                    alert('❌ FAILED TO ADD\n\n📍 Could not add landmark\n💡 ' + (result.error || 'Please try again or check your connection'));
+                }
+            } catch (error) {
+                console.error('❌ Landmark submission error:', error);
+
+                // Fallback: Try with no-cors mode
+                console.log('🔄 Trying no-cors fallback for landmark...');
+                try {
+                    const response = await fetch(GOOGLE_SHEETS_CONFIG.appsScriptUrl, {
+                        method: 'POST',
+                        mode: 'no-cors',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            action: 'addLandmark',
+                            data: landmarkData
+                        })
+                    });
+
+                    // Add landmark locally since we can't read the response
+                    addLandmark(landmarkData.city, landmarkData.key, landmarkData.name);
+
+                    // Reset button BEFORE alert
+                    resetButton(submitBtn, originalText);
+                    alert('⚡ LANDMARK SENT!\n\n📍 ' + landmarkData.name + ' → ' + landmarkData.city.toUpperCase() + '\n📊 Check Google Sheets to confirm\n🎯 Already added to your filter options!');
+                    closeAddLandmarkModal();
+
+                } catch (fallbackError) {
+                    // Reset button BEFORE alert
+                    resetButton(submitBtn, originalText);
+                    console.error('❌ Landmark fallback also failed:', fallbackError);
+                    alert('🚨 CONNECTION ISSUE\n\n🌐 Unable to reach Google Sheets\n📍 Landmark: ' + landmarkData.name + '\n💡 Check internet connection and retry\n🔄 Or refresh the page');
+                }
+            }
+        }
+
+        /**
+         * Load hotels from Google Sheets
+         */
+        async function fetchHotelsFromSheets(cityName) {
+            console.log(`📊 Fetching restaurants for ${cityName} from Google Sheets...`);
+
+            try {
+                const response = await fetch(GOOGLE_SHEETS_CONFIG.sheetsBaseUrl + cityName.toLowerCase());
+                const text = await response.text();
+
+                // Google Sheets returns JSONP, extract JSON
+                const jsonString = text.substring(47).slice(0, -2);
+                const data = JSON.parse(jsonString);
+
+                if (data.table && data.table.rows) {
+                    const hotels = parseHotelsFromSheets(data.table.rows);
+                    console.log(`✅ Found ${hotels.length} restaurants for ${cityName}`);
+                    displayHotelsForCity(cityName, hotels);
+                } else {
+                    console.log(`📭 No restaurants found for ${cityName}`);
+                    displayHotelsForCity(cityName, []);
+                }
+            } catch (error) {
+                console.error(`❌ Error fetching restaurants for ${cityName}:`, error);
+                displayHotelsForCity(cityName, []);
+            }
+        }
+
+        /**
+         * Parse hotel data from Google Sheets (skip header row)
+         */
+        function parseHotelsFromSheets(rows) {
+            const hotels = [];
+
+            rows.forEach((row, index) => {
+                // Skip the first row (index 0) - it contains headers
+                if (index === 0) {
+                    console.log('📋 Skipping header row:', row.c?.map(cell => cell?.v || '').join(', '));
+                    return;
+                }
+
+                if (row.c && row.c.length >= 7) {
+                    const hotel = {
+                        name: row.c[0]?.v || '',
+                        location: row.c[1]?.v || '',
+                        landmark: convertToLandmarkKey(row.c[2]?.v || ''),
+                        landmarkName: row.c[2]?.v || '',
+                        distance: row.c[3]?.v || '',
+                        cuisineTags: (row.c[4]?.v || '').split(',').map(tag => tag.trim()).filter(tag => tag),
+                        priceRange: row.c[5]?.v || '',
+                        googleMaps: row.c[6]?.v || '',
+                        notes: row.c[7]?.v || ''
+                    };
+
+                    // Only add if it has valid name and location (not empty header remnants)
+                    if (hotel.name && hotel.location && hotel.name !== 'Hotel Name') {
+                        hotels.push(hotel);
+                        console.log(`✅ Parsed hotel ${index}: ${hotel.name}`);
+                    } else {
+                        console.log(`⏭️ Skipped row ${index}: insufficient data`);
+                    }
+                }
+            });
+
+            console.log(`📊 Total hotels parsed: ${hotels.length}`);
+            return hotels;
+        }
+
+        /**
+         * Convert landmark display name to key format
+         */
+        function convertToLandmarkKey(landmarkName) {
+            return landmarkName
+                .toLowerCase()
+                .replace(/[^a-z0-9\s-]/g, '')
+                .replace(/\s+/g, '-')
+                .replace(/-+/g, '-')
+                .replace(/^-|-$/g, '');
+        }
+
+        /**
+         * Display restaurants for a city
+         */
+        function displayHotelsForCity(cityName, hotels) {
+            const contentDiv = document.getElementById('hotels-content-' + cityName);
+
+            if (hotels.length === 0) {
+                contentDiv.innerHTML = '<div class="no-hotels"><p>No nearby restaurants added yet. Be the first to contribute!</p></div>';
+                return;
+            }
+
+            // Group hotels by landmark
+            const hotelsByLandmark = {};
+            hotels.forEach(hotel => {
+                if (!hotelsByLandmark[hotel.landmark]) {
+                    hotelsByLandmark[hotel.landmark] = [];
+                }
+                hotelsByLandmark[hotel.landmark].push(hotel);
+            });
+
+            let html = '';
+            Object.entries(hotelsByLandmark).forEach(([landmark, landmarkHotels]) => {
+                const landmarkName = landmarkHotels[0].landmarkName;
+                html += `
+                    <div class="landmark-group" data-landmark="${landmark}">
+                        <h3 class="landmark-title">
+                            <i class="fa-solid fa-map-pin"></i> Near ${landmarkName}
+                        </h3>
+                        ${landmarkHotels.map(hotel => createHotelCard(hotel)).join('')}
+                    </div>
+                `;
+            });
+
+            contentDiv.innerHTML = html;
+        }
+
+        /**
+         * Create HTML for a hotel card
+         */
+        function createHotelCard(hotel) {
+            const cuisineTagsHtml = hotel.cuisineTags.map(tag => {
+                const tagClass = getTagClass(tag.toLowerCase());
+                return `<span class="cuisine-tag ${tagClass}">${tag}</span>`;
+            }).join('');
+
+            const notesHtml = hotel.notes ? `
+                <div class="hotel-detail">
+                    <i class="fa-solid fa-sticky-note"></i> ${hotel.notes}
+                </div>
+            ` : '';
+
+            return `
+                <div class="hotel-card">
+                    <div class="hotel-header">
+                        <h3>
+                            <i class="fa-solid fa-hotel" style="margin-right:8px;color:var(--accent)"></i>
+                            ${hotel.name}
+                        </h3>
+                        <div class="hotel-city" style="color:var(--accent); font-weight:600;">${hotel.priceRange}</div>
+                    </div>
+                    <div class="hotel-body">
+                        <div class="hotel-detail">
+                            <i class="fa-solid fa-location-dot"></i> ${hotel.location}
+                        </div>
+                        <div class="hotel-detail">
+                            <i class="fa-solid fa-map-pin"></i> ${hotel.distance} from ${hotel.landmarkName}
+                        </div>
+                        <div class="hotel-detail">
+                            <i class="fa-solid fa-utensils"></i>
+                            <div class="cuisine-tags" style="display: inline-flex; gap: 4px; flex-wrap: wrap;">
+                                ${cuisineTagsHtml}
+                            </div>
+                        </div>
+                        ${notesHtml}
+                        <div class="hotel-links">
+                            <a href="${hotel.googleMaps}" target="_blank" class="hotel-link">
+                                <i class="fa-solid fa-map-location-dot"></i> Google Maps
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        /**
+         * Get CSS class for cuisine tag
+         */
+        function getTagClass(tagName) {
+            const tagMap = {
+                'vegan': 'vegan',
+                'vegetarian': 'vegetarian',
+                'continental': 'continental',
+                'indian': 'indian',
+                'italian': 'italian',
+                'mediterranean': 'mediterranean',
+                'halal': 'halal',
+                'gluten-free': 'gluten-free',
+                'gluten free': 'gluten-free'
+            };
+
+            return tagMap[tagName] || 'default';
+        }
+
+        /**
+         * Load and display restaurants for a city
+         */
+        function loadHotelsForCity(cityName) {
+            fetchHotelsFromSheets(cityName);
+        }
+
+        /**
+         * Fetch landmarks from Google Sheets and update local options
+         */
+        async function fetchLandmarksFromSheets() {
+            console.log('📍 Fetching landmarks from Google Sheets...');
+
+            try {
+                const response = await fetch(GOOGLE_SHEETS_CONFIG.sheetsBaseUrl + 'landmarks');
+                const text = await response.text();
+
+                // Google Sheets returns JSONP, extract JSON
+                const jsonString = text.substring(47).slice(0, -2);
+                const data = JSON.parse(jsonString);
+
+                if (data.table && data.table.rows) {
+                    const landmarks = parseLandmarksFromSheets(data.table.rows);
+                    console.log(`✅ Found ${landmarks.length} custom landmarks`);
+
+                    // Update local landmark options with fetched data
+                    landmarks.forEach(landmark => {
+                        addLandmark(landmark.city, landmark.key, landmark.name);
+                    });
+
+                    // Update all filter dropdowns with new landmarks
+                    updateAllLandmarkFilters();
+
+                    return landmarks;
+                } else {
+                    console.log('📭 No custom landmarks found');
+                    return [];
+                }
+            } catch (error) {
+                console.warn('⚠️ Could not fetch landmarks (sheet may not exist yet):', error.message);
+                return [];
+            }
+        }
+
+        /**
+         * Parse landmark data from Google Sheets (skip header row)
+         */
+        function parseLandmarksFromSheets(rows) {
+            const landmarks = [];
+
+            rows.forEach((row, index) => {
+                // Skip the first row (index 0) - it contains headers
+                if (index === 0) {
+                    console.log('📋 Skipping landmark header row');
+                    return;
+                }
+
+                if (row.c && row.c.length >= 3) {
+                    const landmark = {
+                        city: row.c[0]?.v || '',
+                        key: row.c[1]?.v || '',
+                        name: row.c[2]?.v || ''
+                    };
+
+                    // Only add if it has valid data (not empty or headers)
+                    if (landmark.city && landmark.key && landmark.name &&
+                        landmark.city !== 'City' && landmark.key !== 'Landmark Key') {
+                        landmarks.push(landmark);
+                        console.log(`✅ Parsed landmark: ${landmark.name} (${landmark.city})`);
+                    }
+                }
+            });
+
+            console.log(`📍 Total custom landmarks parsed: ${landmarks.length}`);
+            return landmarks;
+        }
+
         // Page titles for dynamic header updates
         const titles = {
             dashboard: 'The Grand Euro Travel',
             itinerary: 'Itinerary',
             hotels: 'Hotel Details',
+            'nearby-hotels': 'Nearby Restaurants',
+            attractions: 'Attractions',
             documents: 'All Documents',
             flights: 'Flight Details',
-            trains: 'Train Tickets',
-            attractions: 'Attraction Tickets'
+            trains: 'Train Tickets'
         };
 
-        /**
-         * Navigate between main pages
-         * Updates page visibility and hero title
-         */
-        function navigate(page) {
-            // Hide all pages
-            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+        // Dynamic landmark options - all loaded from Google Sheets
+        // Starting with empty object, will be populated on page load
+        let landmarkOptions = {
+            rome: [],
+            florence: [],
+            venice: [],
+            lucerne: [],
+            paris: []
+        };
 
-            // Show selected page
-            document.getElementById('page-' + page).classList.add('active');
-
-            // Update hero title
-            document.getElementById('heroTitle').textContent = titles[page] || 'The Grand Euro Travel';
-
-            // Smooth scroll to top
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-        }
+        /* ═══════════════════════════════════════
+           NAVIGATION FUNCTIONS
+        ═══════════════════════════════════════ */
 
         /**
          * Show specific day in itinerary
-         * Manages day card visibility and navigation active states
          */
         function showDay(dayNumber) {
             // Hide all day cards
@@ -1955,15 +3181,16 @@
             document.getElementById('day' + dayNumber).classList.add('active');
 
             // Update navigation button states
-            document.querySelectorAll('#page-itinerary .nav-btn').forEach(btn => {
+            document.querySelectorAll('#page-itinerary .nav-btn').forEach((btn, index) => {
                 btn.classList.remove('active');
+                if (index === dayNumber - 1) {
+                    btn.classList.add('active');
+                }
             });
-            document.querySelectorAll('#page-itinerary .nav-btn')[dayNumber - 1].classList.add('active');
         }
 
         /**
          * Show specific hotel details
-         * Manages hotel card visibility and navigation active states
          */
         function showHotel(hotelNumber) {
             // Hide all hotel cards
@@ -1975,15 +3202,16 @@
             document.getElementById('hotel' + hotelNumber).classList.add('active');
 
             // Update navigation button states
-            document.querySelectorAll('#page-hotels .nav-btn').forEach(btn => {
+            document.querySelectorAll('#page-hotels .nav-btn').forEach((btn, index) => {
                 btn.classList.remove('active');
+                if (index === hotelNumber - 1) {
+                    btn.classList.add('active');
+                }
             });
-            document.querySelectorAll('#page-hotels .nav-btn')[hotelNumber - 1].classList.add('active');
         }
 
         /**
          * Show specific train details
-         * Manages train card visibility and navigation active states
          */
         function showTrain(trainIndex) {
             // Hide all train cards
@@ -1995,31 +3223,513 @@
             document.getElementById('train' + trainIndex).classList.add('active');
 
             // Update navigation button states
-            document.querySelectorAll('#page-trains .nav-btn').forEach(btn => {
+            document.querySelectorAll('#page-trains .nav-btn').forEach((btn, index) => {
                 btn.classList.remove('active');
+                if (index === trainIndex) {
+                    btn.classList.add('active');
+                }
             });
-            document.querySelectorAll('#page-trains .nav-btn')[trainIndex].classList.add('active');
         }
 
         /**
-         * Show specific attraction details
-         * Manages attraction card visibility and navigation active states
+         * Show specific day in attractions
          */
-        function showAttr(attrNumber) {
-            // Hide all attraction cards
+        function showAttractionDay(dayNumber) {
+            // Hide all attraction day cards
             document.querySelectorAll('#page-attractions .sub-card').forEach(card => {
                 card.classList.remove('active');
             });
 
-            // Show selected attraction
-            document.getElementById('attr' + attrNumber).classList.add('active');
+            // Show selected day
+            document.getElementById('attraction-day' + dayNumber).classList.add('active');
 
             // Update navigation button states
-            document.querySelectorAll('#page-attractions .nav-btn').forEach(btn => {
+            document.querySelectorAll('#page-attractions .nav-btn').forEach((btn, index) => {
+                btn.classList.remove('active');
+                if (index === dayNumber - 1) {
+                    btn.classList.add('active');
+                }
+            });
+        }
+
+        // Navigation history stack for proper back button behavior
+        let navigationHistory = ['dashboard'];
+        let currentPage = 'dashboard';
+
+        /**
+         * Navigate between main pages with browser history support
+         */
+        function navigate(page, pushToHistory = true) {
+            console.log(`🧭 Navigating from ${currentPage} to ${page}`);
+
+            // Don't navigate if already on this page
+            if (currentPage === page) {
+                return;
+            }
+
+            // Store previous page for history
+            const previousPage = currentPage;
+
+            // Hide all pages
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+
+            // Show selected page
+            document.getElementById('page-' + page).classList.add('active');
+
+            // Update hero title
+            document.getElementById('heroTitle').textContent = titles[page] || 'The Grand Euro Travel';
+
+            // Update current page
+            currentPage = page;
+
+            // Push to browser history (unless we're handling a popstate event)
+            if (pushToHistory) {
+                // Add to navigation history stack
+                navigationHistory.push(page);
+
+                // Push state to browser history
+                history.pushState(
+                    { page: page, previousPage: previousPage },
+                    titles[page] || 'The Grand Euro Travel',
+                    `#${page}`
+                );
+
+                console.log(`📚 Navigation history:`, navigationHistory);
+            }
+
+            // Smooth scroll to top
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
+        /**
+         * Handle browser back button and navigation gestures
+         */
+        function handleBackNavigation() {
+            console.log(`⬅️ Back navigation triggered from ${currentPage}`);
+
+            // Remove current page from history
+            if (navigationHistory.length > 1) {
+                navigationHistory.pop();
+                const previousPage = navigationHistory[navigationHistory.length - 1];
+                console.log(`🔙 Going back to: ${previousPage}`);
+                navigate(previousPage, false); // Don't push to history again
+            } else {
+                // If no history, go to dashboard
+                console.log(`🏠 No history, going to dashboard`);
+                navigate('dashboard', false);
+            }
+        }
+
+        /**
+         * Smart back navigation - goes to the logical parent page
+         */
+        function navigateBack() {
+            console.log(`🧭 Smart back from ${currentPage}`);
+
+            // Define parent relationships
+            const parentPages = {
+                'itinerary': 'dashboard',
+                'hotels': 'dashboard',
+                'nearby-hotels': 'dashboard',
+                'attractions': 'documents',
+                'flights': 'documents',
+                'trains': 'documents',
+                'documents': 'dashboard'
+            };
+
+            const parentPage = parentPages[currentPage] || 'dashboard';
+            navigate(parentPage);
+        }
+
+        /**
+         * Show specific city's nearby restaurants (dynamic version)
+         */
+        function showNearbyCity(cityKey) {
+            console.log(`🏙️ Switching to city: ${cityKey}`);
+
+            // Hide all city cards
+            document.querySelectorAll('#page-nearby-hotels .sub-card').forEach(card => {
+                card.classList.remove('active');
+            });
+
+            // Show selected city
+            const cityElement = document.getElementById('nearby-' + cityKey);
+            if (cityElement) {
+                cityElement.classList.add('active');
+                currentActiveCity = cityKey;
+            } else {
+                console.error(`❌ City element not found: nearby-${cityKey}`);
+                return;
+            }
+
+            // Update navigation button states
+            document.querySelectorAll('#page-nearby-hotels .nav-btn').forEach(btn => {
                 btn.classList.remove('active');
             });
-            document.querySelectorAll('#page-attractions .nav-btn')[attrNumber - 1].classList.add('active');
+
+            // Find and activate the correct button using data attribute
+            const activeButton = document.querySelector(`#page-nearby-hotels .nav-btn[data-city="${cityKey}"]`);
+            if (activeButton) {
+                activeButton.classList.add('active');
+            }
+
+            // Load restaurants for this city
+            loadHotelsForCity(cityKey);
         }
+
+        /* ═══════════════════════════════════════
+           MODAL FUNCTIONS
+        ═══════════════════════════════════════ */
+
+        /**
+         * Open add hotel modal
+         */
+        function openAddHotelModal(cityKey) {
+            const modal = document.getElementById('add-hotel-modal');
+            const cityNameSpan = document.getElementById('modal-city-name');
+            const landmarkSelect = document.getElementById('landmark-select');
+            const formCity = document.getElementById('form-city');
+            const formTimestamp = document.getElementById('form-timestamp');
+
+            // Find the city display name
+            const city = availableCities.find(c => c.key === cityKey);
+            const displayName = city ? city.displayName : cityKey.charAt(0).toUpperCase() + cityKey.slice(1);
+
+            // Set city name and form data
+            cityNameSpan.textContent = displayName;
+            formCity.value = cityKey;
+            formTimestamp.value = new Date().toISOString();
+
+            // Populate landmark options
+            landmarkSelect.innerHTML = '<option value="">Select landmark</option>';
+            if (landmarkOptions[cityKey] && landmarkOptions[cityKey].length > 0) {
+                landmarkOptions[cityKey].forEach(option => {
+                    landmarkSelect.innerHTML += `<option value="${option.value}">${option.text}</option>`;
+                });
+            } else {
+                landmarkSelect.innerHTML += '<option value="" disabled>🔄 Loading landmarks...</option>';
+                // Try to refresh landmarks for this city
+                fetchLandmarksFromSheets();
+            }
+
+            // Show modal
+            modal.classList.add('active');
+        }
+
+        /**
+         * Close add hotel modal
+         */
+        function closeAddHotelModal() {
+            const modal = document.getElementById('add-hotel-modal');
+            const form = document.getElementById('add-hotel-form');
+            const submitBtn = form.querySelector('.form-submit');
+
+            // Reset button state if it was in loading
+            if (submitBtn.disabled) {
+                resetButton(submitBtn, '<i class="fa-solid fa-plus"></i> Add Hotel');
+            }
+
+            modal.classList.remove('active');
+            form.reset();
+        }
+
+        /**
+         * Open add landmark modal
+         */
+        function openAddLandmarkModal(cityKey) {
+            const modal = document.getElementById('add-landmark-modal');
+            const cityNameSpan = document.getElementById('landmark-modal-city-name');
+            const formCity = document.getElementById('landmark-form-city');
+
+            // Find the city display name
+            const city = availableCities.find(c => c.key === cityKey);
+            const displayName = city ? city.displayName : cityKey.charAt(0).toUpperCase() + cityKey.slice(1);
+
+            // Set city name and form data
+            cityNameSpan.textContent = displayName;
+            formCity.value = cityKey;
+
+            // Show modal
+            modal.classList.add('active');
+        }
+
+        /**
+         * Close add landmark modal
+         */
+        function closeAddLandmarkModal() {
+            const modal = document.getElementById('add-landmark-modal');
+            const form = document.getElementById('add-landmark-form');
+            const submitBtn = form.querySelector('.form-submit');
+
+            // Reset button state if it was in loading
+            if (submitBtn.disabled) {
+                resetButton(submitBtn, '<i class="fa-solid fa-map-pin"></i> Add Landmark');
+            }
+
+            modal.classList.remove('active');
+            form.reset();
+        }
+
+        /**
+         * Auto-generate landmark key from name
+         */
+        function autoGenerateLandmarkKey() {
+            const nameInput = document.getElementById('landmarkNameInput');
+            const keyInput = document.getElementById('landmarkKeyInput');
+
+            if (nameInput && keyInput) {
+                const key = nameInput.value
+                    .toLowerCase()
+                    .trim()
+                    .replace(/[^a-z0-9\s-]/g, '')
+                    .replace(/\s+/g, '-')
+                    .replace(/-+/g, '-')
+                    .replace(/^-|-$/g, '');
+
+                keyInput.value = key;
+            }
+        }
+
+        /**
+         * Add a new landmark to a city (avoid duplicates)
+         */
+        function addLandmark(cityName, landmarkValue, landmarkText) {
+            if (!landmarkOptions[cityName]) {
+                landmarkOptions[cityName] = [];
+            }
+
+            // Check if landmark already exists to avoid duplicates
+            const exists = landmarkOptions[cityName].find(l => l.value === landmarkValue);
+            if (exists) {
+                console.log(`⏭️ Landmark "${landmarkText}" already exists in ${cityName}`);
+                return;
+            }
+
+            landmarkOptions[cityName].push({
+                value: landmarkValue,
+                text: landmarkText
+            });
+
+            // Update filter dropdowns for this city
+            updateLandmarkFilters(cityName);
+
+            console.log(`✅ Added landmark "${landmarkText}" to ${cityName}`);
+        }
+
+        /**
+         * Update landmark filter dropdown for a city
+         */
+        function updateLandmarkFilters(cityName) {
+            const filterSelect = document.getElementById('landmark-filter-' + cityName);
+            if (!filterSelect) return;
+
+            // Sort landmarks alphabetically for better UX
+            const sortedLandmarks = [...landmarkOptions[cityName]].sort((a, b) =>
+                a.text.localeCompare(b.text)
+            );
+
+            // Keep "All Landmarks" option
+            let options = '<option value="all">All Landmarks</option>';
+
+            sortedLandmarks.forEach(landmark => {
+                options += `<option value="${landmark.value}">Near ${landmark.text}</option>`;
+            });
+
+            filterSelect.innerHTML = options;
+            console.log(`🔄 Updated landmark filters for ${cityName}: ${sortedLandmarks.length} options`);
+        }
+
+        /**
+         * Update all landmark filters (useful after loading from sheets)
+         */
+        function updateAllLandmarkFilters() {
+            availableCities.forEach(city => {
+                if (landmarkOptions[city.key]) {
+                    updateLandmarkFilters(city.key);
+                }
+            });
+            console.log('🔄 Updated all landmark filters');
+        }
+
+        /* ═══════════════════════════════════════
+           FILTER & SEARCH FUNCTIONS
+        ═══════════════════════════════════════ */
+
+        /**
+         * Filter hotels by landmark
+         */
+        function filterByLandmark(cityName, landmarkValue) {
+            const contentDiv = document.getElementById('hotels-content-' + cityName);
+            const landmarkGroups = contentDiv.querySelectorAll('.landmark-group');
+
+            if (landmarkValue === 'all') {
+                landmarkGroups.forEach(group => group.style.display = 'block');
+            } else {
+                landmarkGroups.forEach(group => {
+                    if (group.dataset.landmark === landmarkValue) {
+                        group.style.display = 'block';
+                    } else {
+                        group.style.display = 'none';
+                    }
+                });
+            }
+        }
+
+        /**
+         * Search restaurants by name or location
+         */
+        function searchHotels(cityName, searchTerm) {
+            const contentDiv = document.getElementById('hotels-content-' + cityName);
+            const hotelCards = contentDiv.querySelectorAll('.hotel-card');
+            const landmarkGroups = contentDiv.querySelectorAll('.landmark-group');
+
+            const term = searchTerm.toLowerCase();
+
+            hotelCards.forEach(card => {
+                const hotelName = card.querySelector('h3').textContent.toLowerCase();
+                const location = card.querySelector('.hotel-detail span')?.textContent.toLowerCase() || '';
+
+                if (hotelName.includes(term) || location.includes(term)) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+
+            // Hide landmark groups with no visible hotels
+            landmarkGroups.forEach(group => {
+                const visibleHotels = group.querySelectorAll('.hotel-card:not([style*="none"])');
+                group.style.display = visibleHotels.length > 0 ? 'block' : 'none';
+            });
+        }
+
+        /* ═══════════════════════════════════════
+           INITIALIZATION
+        ═══════════════════════════════════════ */
+
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', async function() {
+            console.log('🚀 Initializing Dynamic Euro Trip app...');
+
+            try {
+                // Test Google Sheets connection
+                await testConnection();
+
+                // Load all available cities from Google Sheets (this will auto-generate navigation and content)
+                const cities = await fetchAvailableCities();
+
+                if (cities.length > 0) {
+                    // Load custom landmarks from Google Sheets
+                    await fetchLandmarksFromSheets();
+
+                    console.log(`✅ Dynamic app initialization complete! Found ${cities.length} cities.`);
+                } else {
+                    console.warn('⚠️ No cities found in Google Sheets');
+                }
+
+            } catch (error) {
+                console.error('❌ Failed to initialize app:', error);
+                showCityError('Failed to initialize app: ' + error.message);
+            }
+        });
+
+        // Debug functions for console
+        window.debugGoogleSheets = {
+            testConnection,
+            config: GOOGLE_SHEETS_CONFIG,
+            landmarks: landmarkOptions,
+            cities: () => availableCities,
+            updateCount: updateCityHotelCount,
+            refreshCities: fetchAvailableCities,
+            refreshCounts: refreshHotelCounts,
+            navigationHistory: () => navigationHistory,
+            currentPage: () => currentPage
+        };
+
+        /* ═══════════════════════════════════════
+           BROWSER HISTORY & INITIALIZATION
+        ═══════════════════════════════════════ */
+
+        /**
+         * Handle browser back/forward button clicks
+         */
+        window.addEventListener('popstate', function(event) {
+            console.log('🔄 Popstate event:', event.state);
+
+            if (event.state && event.state.page) {
+                // User pressed browser back/forward button
+                handleBackNavigation();
+            } else {
+                // Handle initial page load or manual URL changes
+                const hash = window.location.hash.slice(1); // Remove # symbol
+                const targetPage = hash && titles[hash] ? hash : 'dashboard';
+                navigate(targetPage, false);
+            }
+        });
+
+        /**
+         * Initialize page state on load
+         */
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('🚀 Euro Trip 2026 app initializing...');
+
+            // Check if we have a page hash in the URL
+            const hash = window.location.hash.slice(1); // Remove # symbol
+            const initialPage = hash && titles[hash] ? hash : 'dashboard';
+
+            // Set up initial state
+            currentPage = initialPage;
+            navigationHistory = [initialPage];
+
+            // Push initial state to browser history
+            history.replaceState(
+                { page: initialPage },
+                titles[initialPage] || 'The Grand Euro Travel',
+                `#${initialPage}`
+            );
+
+            // Show the correct initial page
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            document.getElementById('page-' + initialPage).classList.add('active');
+            document.getElementById('heroTitle').textContent = titles[initialPage] || 'The Grand Euro Travel';
+
+            console.log(`✅ Initialized on page: ${initialPage}`);
+
+            // Load nearby restaurants cities if we're starting on that page
+            if (initialPage === 'nearby-hotels') {
+                fetchAvailableCities();
+            }
+        });
+
+        /**
+         * Handle Android/iOS gesture navigation and prevent default browser behavior when needed
+         */
+        let touchStartX = 0;
+        let touchStartY = 0;
+
+        document.addEventListener('touchstart', function(e) {
+            touchStartX = e.touches[0].clientX;
+            touchStartY = e.touches[0].clientY;
+        }, { passive: true });
+
+        document.addEventListener('touchmove', function(e) {
+            const touchEndX = e.touches[0].clientX;
+            const touchEndY = e.touches[0].clientY;
+            const deltaX = touchEndX - touchStartX;
+            const deltaY = touchEndY - touchStartY;
+
+            // Detect horizontal swipe gestures (like iOS back swipe)
+            if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > 50) {
+                // Right swipe (potential back gesture)
+                if (deltaX > 0 && touchStartX < 20) {
+                    console.log('👆 Edge swipe detected - potential back gesture');
+                    // Note: Actual back gesture is handled by the browser's popstate event
+                }
+            }
+        }, { passive: true });
     </script>
 
 </body>
