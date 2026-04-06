@@ -647,6 +647,204 @@
         }
 
         /* ═══════════════════════════════════════
+           NEARBY HOTELS COMPONENTS
+        ═══════════════════════════════════════ */
+        .nearby-controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 20px 0;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .add-hotel-btn {
+            background: linear-gradient(135deg, var(--accent), #e8c878);
+            color: var(--primary);
+            border: none;
+            padding: 10px 20px;
+            border-radius: 12px;
+            font-size: .9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: .3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .add-hotel-btn:hover {
+            background: linear-gradient(135deg, #e8c878, var(--accent));
+            transform: translateY(-1px);
+        }
+
+        .filter-controls {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .filter-select {
+            padding: 8px 12px;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: .85rem;
+            background: var(--card-bg);
+            color: var(--text-main);
+        }
+
+        .search-input {
+            padding: 8px 12px;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: .85rem;
+            background: var(--card-bg);
+            color: var(--text-main);
+            width: 200px;
+        }
+
+        .landmark-group {
+            margin-bottom: 30px;
+        }
+
+        .landmark-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid var(--accent);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+
+        .cuisine-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin: 12px 0;
+        }
+
+        .cuisine-tag {
+            background: #f1f5f9;
+            color: var(--text-main);
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: .75rem;
+            font-weight: 600;
+        }
+
+        .cuisine-tag.vegan { background: #dcfce7; color: #166534; }
+        .cuisine-tag.vegetarian { background: #fef3c7; color: #92400e; }
+        .cuisine-tag.continental { background: #ddd6fe; color: #5b21b6; }
+        .cuisine-tag.indian { background: #fed7d7; color: #c53030; }
+        .cuisine-tag.italian { background: #fef2f2; color: #dc2626; }
+        .cuisine-tag.mediterranean { background: #ecfdf5; color: #059669; }
+        .cuisine-tag.halal { background: #f0f9ff; color: #0369a1; }
+        .cuisine-tag.gluten-free { background: #fefce8; color: #ca8a04; }
+        .cuisine-tag.default { background: #f1f5f9; color: var(--text-main); }
+
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            animation: fadeIn .3s ease;
+        }
+
+        .modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 30px;
+            width: 90%;
+            max-width: 500px;
+            max-height: 80vh;
+            overflow-y: auto;
+            position: relative;
+            animation: slideIn .3s ease;
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(30px) scale(0.9); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-muted);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+            color: var(--text-main);
+        }
+
+        .form-input, .form-textarea, .form-select {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: .9rem;
+            background: var(--card-bg);
+            color: var(--text-main);
+        }
+
+        .form-textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        .form-submit {
+            background: linear-gradient(135deg, var(--accent), #e8c878);
+            color: var(--primary);
+            border: none;
+            padding: 12px 24px;
+            border-radius: 12px;
+            font-size: .9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: .3s;
+            width: 100%;
+        }
+
+        .form-submit:hover {
+            background: linear-gradient(135deg, #e8c878, var(--accent));
+        }
+
+        .no-hotels {
+            text-align: center;
+            color: var(--text-muted);
+            padding: 40px 20px;
+            font-style: italic;
+        }
+
+        /* ═══════════════════════════════════════
            FOOTER
         ═══════════════════════════════════════ */
         .footer {
@@ -690,11 +888,25 @@
                     <div class="dash-sub">5 hotels · 3 countries</div>
                 </div>
 
+                <!-- Nearby Hotels Card -->
+                <div class="dash-card" onclick="navigate('nearby-hotels')">
+                    <i class="fa-solid fa-map-location-dot dash-icon"></i>
+                    <div class="dash-title">Nearby Hotels</div>
+                    <div class="dash-sub">Local recommendations</div>
+                </div>
+
+                <!-- Attractions Card -->
+                <div class="dash-card" onclick="navigate('attractions')">
+                    <i class="fa-solid fa-ticket dash-icon"></i>
+                    <div class="dash-title">Attractions</div>
+                    <div class="dash-sub">Day-wise entry tickets</div>
+                </div>
+
                 <!-- Documents Card (Full Width) -->
                 <div class="dash-card full-width" onclick="navigate('documents')">
                     <i class="fa-solid fa-folder-open dash-icon"></i>
                     <div class="dash-title">All Documents</div>
-                    <div class="dash-sub">Flights · Passports · Visa · Insurance · Train Tickets · Attractions</div>
+                    <div class="dash-sub">Flights · Passports · Visa · Insurance · Train Tickets</div>
                 </div>
             </div>
             <div class="footer">10 Travellers · 3 Countries · 7 Cities</div>
@@ -1350,13 +1562,6 @@
                     <div class="doc-title">Train Tickets</div>
                     <div class="doc-sub">Eurail + Reservations</div>
                 </div>
-
-                <!-- Attraction Tickets Card -->
-                <div class="doc-card" onclick="navigate('attractions')">
-                    <i class="fa-solid fa-ticket"></i>
-                    <div class="doc-title">Attraction Tickets</div>
-                    <div class="doc-sub">Day-wise entry tickets</div>
-                </div>
             </div>
             <div class="footer">| Italy Iyers | Venice Vadamals | Paris Brhatcharanam | 2026 |</div>
         </div>
@@ -1633,7 +1838,7 @@
     ═══════════════════════════════════════ -->
     <div id="page-attractions" class="page">
         <div class="back-bar">
-            <button class="back-btn" onclick="navigate('documents')">
+            <button class="back-btn" onclick="navigate('dashboard')">
                 <i class="fa-solid fa-arrow-left"></i> Back
             </button>
         </div>
@@ -1906,18 +2111,515 @@
     </div>
 
     <!-- ═══════════════════════════════════════
+         NEARBY HOTELS PAGE - User-contributed local hotels
+    ═══════════════════════════════════════ -->
+    <div id="page-nearby-hotels" class="page">
+        <div class="back-bar">
+            <button class="back-btn" onclick="navigate('dashboard')">
+                <i class="fa-solid fa-arrow-left"></i> Back
+            </button>
+        </div>
+
+        <!-- City navigation tabs -->
+        <nav class="nav-container">
+            <button class="nav-btn active" onclick="showNearbyCity('rome')">Rome</button>
+            <button class="nav-btn" onclick="showNearbyCity('florence')">Florence</button>
+            <button class="nav-btn" onclick="showNearbyCity('venice')">Venice</button>
+            <button class="nav-btn" onclick="showNearbyCity('lucerne')">Lucerne</button>
+            <button class="nav-btn" onclick="showNearbyCity('paris')">Paris</button>
+        </nav>
+
+        <div class="container">
+            <!-- Rome Hotels -->
+            <div id="nearby-rome" class="sub-card active">
+                <div class="nearby-controls">
+                    <div class="filter-controls">
+                        <select class="filter-select" id="landmark-filter-rome" onchange="filterByLandmark('rome', this.value)">
+                            <option value="all">All Landmarks</option>
+                            <option value="colosseum">Near Colosseum</option>
+                            <option value="vatican">Near Vatican</option>
+                            <option value="trevi-fountain">Near Trevi Fountain</option>
+                            <option value="pantheon">Near Pantheon</option>
+                        </select>
+                        <input type="text" class="search-input" placeholder="Search hotels..." onkeyup="searchHotels('rome', this.value)">
+                    </div>
+                    <div style="display: flex; gap: 10px;">
+                        <button class="add-hotel-btn" onclick="openAddHotelModal('rome')">
+                            <i class="fa-solid fa-plus"></i> Add Hotel
+                        </button>
+                        <button class="add-hotel-btn" onclick="openAddLandmarkModal('rome')">
+                            <i class="fa-solid fa-map-pin"></i> Add Landmark
+                        </button>
+                    </div>
+                </div>
+                <div id="hotels-content-rome">
+                    <div class="no-hotels">
+                        <p>No nearby hotels added yet. Be the first to contribute!</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Florence Hotels -->
+            <div id="nearby-florence" class="sub-card">
+                <div class="nearby-controls">
+                    <div class="filter-controls">
+                        <select class="filter-select" id="landmark-filter-florence" onchange="filterByLandmark('florence', this.value)">
+                            <option value="all">All Landmarks</option>
+                            <option value="duomo">Near Duomo</option>
+                            <option value="ponte-vecchio">Near Ponte Vecchio</option>
+                            <option value="uffizi">Near Uffizi Gallery</option>
+                        </select>
+                        <input type="text" class="search-input" placeholder="Search hotels..." onkeyup="searchHotels('florence', this.value)">
+                    </div>
+                    <div style="display: flex; gap: 10px;">
+                        <button class="add-hotel-btn" onclick="openAddHotelModal('florence')">
+                            <i class="fa-solid fa-plus"></i> Add Hotel
+                        </button>
+                        <button class="add-hotel-btn" onclick="openAddLandmarkModal('florence')">
+                            <i class="fa-solid fa-map-pin"></i> Add Landmark
+                        </button>
+                    </div>
+                </div>
+                <div id="hotels-content-florence">
+                    <div class="no-hotels">
+                        <p>No nearby hotels added yet. Be the first to contribute!</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Venice Hotels -->
+            <div id="nearby-venice" class="sub-card">
+                <div class="nearby-controls">
+                    <div class="filter-controls">
+                        <select class="filter-select" id="landmark-filter-venice" onchange="filterByLandmark('venice', this.value)">
+                            <option value="all">All Landmarks</option>
+                            <option value="st-marks">Near St. Mark's Square</option>
+                            <option value="rialto-bridge">Near Rialto Bridge</option>
+                            <option value="grand-canal">Near Grand Canal</option>
+                        </select>
+                        <input type="text" class="search-input" placeholder="Search hotels..." onkeyup="searchHotels('venice', this.value)">
+                    </div>
+                    <div style="display: flex; gap: 10px;">
+                        <button class="add-hotel-btn" onclick="openAddHotelModal('venice')">
+                            <i class="fa-solid fa-plus"></i> Add Hotel
+                        </button>
+                        <button class="add-hotel-btn" onclick="openAddLandmarkModal('venice')">
+                            <i class="fa-solid fa-map-pin"></i> Add Landmark
+                        </button>
+                    </div>
+                </div>
+                <div id="hotels-content-venice">
+                    <div class="no-hotels">
+                        <p>No nearby hotels added yet. Be the first to contribute!</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Lucerne Hotels -->
+            <div id="nearby-lucerne" class="sub-card">
+                <div class="nearby-controls">
+                    <div class="filter-controls">
+                        <select class="filter-select" id="landmark-filter-lucerne" onchange="filterByLandmark('lucerne', this.value)">
+                            <option value="all">All Landmarks</option>
+                            <option value="chapel-bridge">Near Chapel Bridge</option>
+                            <option value="lake-lucerne">Near Lake Lucerne</option>
+                            <option value="mt-pilatus">Near Mt. Pilatus</option>
+                        </select>
+                        <input type="text" class="search-input" placeholder="Search hotels..." onkeyup="searchHotels('lucerne', this.value)">
+                    </div>
+                    <div style="display: flex; gap: 10px;">
+                        <button class="add-hotel-btn" onclick="openAddHotelModal('lucerne')">
+                            <i class="fa-solid fa-plus"></i> Add Hotel
+                        </button>
+                        <button class="add-hotel-btn" onclick="openAddLandmarkModal('lucerne')">
+                            <i class="fa-solid fa-map-pin"></i> Add Landmark
+                        </button>
+                    </div>
+                </div>
+                <div id="hotels-content-lucerne">
+                    <div class="no-hotels">
+                        <p>No nearby hotels added yet. Be the first to contribute!</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Paris Hotels -->
+            <div id="nearby-paris" class="sub-card">
+                <div class="nearby-controls">
+                    <div class="filter-controls">
+                        <select class="filter-select" id="landmark-filter-paris" onchange="filterByLandmark('paris', this.value)">
+                            <option value="all">All Landmarks</option>
+                            <option value="eiffel-tower">Near Eiffel Tower</option>
+                            <option value="louvre">Near Louvre</option>
+                            <option value="notre-dame">Near Notre Dame</option>
+                            <option value="arc-de-triomphe">Near Arc de Triomphe</option>
+                        </select>
+                        <input type="text" class="search-input" placeholder="Search hotels..." onkeyup="searchHotels('paris', this.value)">
+                    </div>
+                    <div style="display: flex; gap: 10px;">
+                        <button class="add-hotel-btn" onclick="openAddHotelModal('paris')">
+                            <i class="fa-solid fa-plus"></i> Add Hotel
+                        </button>
+                        <button class="add-hotel-btn" onclick="openAddLandmarkModal('paris')">
+                            <i class="fa-solid fa-map-pin"></i> Add Landmark
+                        </button>
+                    </div>
+                </div>
+                <div id="hotels-content-paris">
+                    <div class="no-hotels">
+                        <p>No nearby hotels added yet. Be the first to contribute!</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer">| Italy Iyers | Venice Vadamals | Paris Brhatcharanam | 2026 |</div>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════
+         ADD HOTEL MODAL - Dynamic form for contributing hotels
+    ═══════════════════════════════════════ -->
+    <div id="add-hotel-modal" class="modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeAddHotelModal()">&times;</button>
+            <h2 style="font-family: 'Playfair Display', serif; color: var(--primary); margin-bottom: 20px;">
+                Add Hotel to <span id="modal-city-name">City</span>
+            </h2>
+
+            <form id="add-hotel-form" onsubmit="submitHotel(event)">
+                <div class="form-group">
+                    <label class="form-label">Hotel Name *</label>
+                    <input type="text" class="form-input" name="hotelName" required>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Location/Address *</label>
+                    <input type="text" class="form-input" name="location" required>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Main Landmark *</label>
+                    <select class="form-select" name="mainLandmark" id="landmark-select" required>
+                        <!-- Options populated dynamically -->
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Distance from Landmark *</label>
+                    <input type="text" class="form-input" name="distance" placeholder="e.g., 500m, 0.8km" required>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Cuisine Tags *</label>
+                    <input type="text" class="form-input" name="cuisineTags" placeholder="e.g., Vegan, Vegetarian, Continental, Indian, Italian, Halal, Gluten-Free" required>
+                    <small style="color: var(--text-muted); font-size: 0.8rem;">
+                        Separate multiple tags with commas. Examples: Vegan, Vegetarian, Continental, Indian, Italian, Mediterranean, Halal, Gluten-Free, etc.
+                    </small>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Price Range *</label>
+                    <select class="form-select" name="priceRange" required>
+                        <option value="">Select price range</option>
+                        <option value="€20-50">€20-50 (Budget)</option>
+                        <option value="€50-100">€50-100 (Mid-range)</option>
+                        <option value="€100-200">€100-200 (Upscale)</option>
+                        <option value="€200+">€200+ (Luxury)</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Google Maps Link *</label>
+                    <input type="url" class="form-input" name="googleMaps" placeholder="https://maps.google.com/..." required>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Notes (Optional)</label>
+                    <textarea class="form-textarea" name="notes" placeholder="e.g., Try their signature pasta carbonara. Best breakfast buffet in the area. Peak hours: 7-9 AM and 7-9 PM. Free WiFi available."></textarea>
+                    <small style="color: var(--text-muted); font-size: 0.8rem;">
+                        Share helpful tips like recommended dishes, peak hours, special services, etc.
+                    </small>
+                </div>
+
+                <input type="hidden" name="city" id="form-city">
+                <input type="hidden" name="timestamp" id="form-timestamp">
+
+                <button type="submit" class="form-submit">
+                    <i class="fa-solid fa-plus"></i> Add Hotel
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════
+         ADD LANDMARK MODAL - Add new landmarks to cities
+    ═══════════════════════════════════════ -->
+    <div id="add-landmark-modal" class="modal">
+        <div class="modal-content" style="max-width: 400px;">
+            <button class="modal-close" onclick="closeAddLandmarkModal()">&times;</button>
+            <h2 style="font-family: 'Playfair Display', serif; color: var(--primary); margin-bottom: 20px;">
+                Add Landmark to <span id="landmark-modal-city-name">City</span>
+            </h2>
+
+            <form id="add-landmark-form" onsubmit="submitLandmark(event)">
+                <div class="form-group">
+                    <label class="form-label">Landmark Name *</label>
+                    <input type="text" class="form-input" name="landmarkName" id="landmarkNameInput" placeholder="e.g., Castel Sant'Angelo" required onkeyup="autoGenerateLandmarkKey()">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Landmark Key *</label>
+                    <input type="text" class="form-input" name="landmarkKey" id="landmarkKeyInput" placeholder="e.g., castel-santangelo" required>
+                    <small style="color: var(--text-muted); font-size: 0.8rem;">
+                        Auto-generated from name. Edit if needed. Use lowercase letters and hyphens only.
+                    </small>
+                </div>
+
+                <input type="hidden" name="landmarkCity" id="landmark-form-city">
+
+                <button type="submit" class="form-submit">
+                    <i class="fa-solid fa-map-pin"></i> Add Landmark
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════
          JAVASCRIPT - Navigation & Interactive Functions
     ═══════════════════════════════════════ -->
     <script>
+        /* ═══════════════════════════════════════
+           GOOGLE SHEETS CONFIGURATION
+
+           SETUP INSTRUCTIONS:
+           1. Create Google Sheet named "Euro Trip Nearby Hotels"
+           2. Add tabs: Rome, Florence, Venice, Lucerne, Paris, Landmarks
+           3. Add headers to each city tab: Hotel Name | Location | Main Landmark | Distance | Cuisine Tags | Price Range | Google Maps Link | Notes
+           4. Share sheet: Anyone with link → Viewer
+           5. Get Sheet ID from URL: docs.google.com/spreadsheets/d/[SHEET_ID_HERE]/edit
+           6. Create Apps Script web app for form submissions
+           7. Replace placeholders below with your actual URLs
+           8. Set enabled: true when ready
+        ═══════════════════════════════════════ */
+
+        // Your actual Google Sheets configuration - READY TO USE!
+        const GOOGLE_SHEETS_CONFIG = {
+            // Your Google Sheets API URL (for reading hotel data)
+            sheetsBaseUrl: 'https://docs.google.com/spreadsheets/d/1jHP_o58c99aOtHeeWt5wkDowTkBEj-WqkqNAYWNuF1s/gviz/tq?tqx=out:json&sheet=',
+
+            // Your Google Apps Script web app URL (for writing new hotels/landmarks)
+            appsScriptUrl: 'https://script.google.com/macros/s/AKfycbzntrl_zbQBXVzUlwcFKX7mHI1pTK80JAOxb8cjXBw-5RnOvyLS1p9rphZwn97esnUIvA/exec',
+
+            // Your Sheet ID (extracted from your URL)
+            sheetId: '1jHP_o58c99aOtHeeWt5wkDowTkBEj-WqkqNAYWNuF1s',
+
+            // Google Sheets integration is now ENABLED!
+            enabled: true,
+
+            // Original sharing URL for reference
+            sharingUrl: 'https://docs.google.com/spreadsheets/d/1jHP_o58c99aOtHeeWt5wkDowTkBEj-WqkqNAYWNuF1s/edit?usp=sharing'
+        };
+
+        /* ═══════════════════════════════════════
+           GOOGLE SHEETS API FUNCTIONS
+        ═══════════════════════════════════════ */
+
+        /**
+         * Fetch hotels from Google Sheets for a specific city
+         */
+        async function fetchHotelsFromSheets(cityName) {
+            if (!GOOGLE_SHEETS_CONFIG.enabled) {
+                console.log('Google Sheets integration disabled. Using sample data.');
+                return loadSampleHotelsForCity(cityName);
+            }
+
+            try {
+                const response = await fetch(GOOGLE_SHEETS_CONFIG.sheetsBaseUrl + cityName.toLowerCase(), {
+                    mode: 'cors'
+                });
+                const text = await response.text();
+
+                // Google Sheets returns JSONP, need to extract JSON
+                const jsonString = text.substring(47).slice(0, -2);
+                const data = JSON.parse(jsonString);
+
+                if (data.table && data.table.rows) {
+                    const hotels = parseHotelsFromSheets(data.table.rows);
+                    displayHotelsForCity(cityName, hotels);
+                } else {
+                    console.log('No hotel data found for', cityName);
+                    displayHotelsForCity(cityName, []);
+                }
+            } catch (error) {
+                console.error('Error fetching hotels from Google Sheets:', error);
+                // Fallback to sample data
+                loadSampleHotelsForCity(cityName);
+            }
+        }
+
+        /**
+         * Parse hotel data from Google Sheets response
+         */
+        function parseHotelsFromSheets(rows) {
+            const hotels = [];
+
+            rows.forEach(row => {
+                if (row.c && row.c.length >= 7) {
+                    const hotel = {
+                        name: row.c[0]?.v || '',
+                        location: row.c[1]?.v || '',
+                        landmark: convertToLandmarkKey(row.c[2]?.v || ''),
+                        landmarkName: row.c[2]?.v || '',
+                        distance: row.c[3]?.v || '',
+                        cuisineTags: (row.c[4]?.v || '').split(',').map(tag => tag.trim()).filter(tag => tag),
+                        priceRange: row.c[5]?.v || '',
+                        googleMaps: row.c[6]?.v || '',
+                        notes: row.c[7]?.v || ''
+                    };
+
+                    if (hotel.name && hotel.location) {
+                        hotels.push(hotel);
+                    }
+                }
+            });
+
+            return hotels;
+        }
+
+        /**
+         * Convert landmark display name to key format
+         */
+        function convertToLandmarkKey(landmarkName) {
+            return landmarkName
+                .toLowerCase()
+                .replace(/[^a-z0-9\s-]/g, '')
+                .replace(/\s+/g, '-')
+                .replace(/-+/g, '-')
+                .replace(/^-|-$/g, '');
+        }
+
+        /**
+         * Submit hotel data to Google Sheets via Apps Script
+         */
+        async function submitToGoogleSheets(hotelData) {
+            if (!GOOGLE_SHEETS_CONFIG.enabled) {
+                console.log('Google Sheets integration disabled. Data would be:', hotelData);
+                alert('Demo Mode: Hotel data logged to console. Enable Google Sheets integration to save data.');
+                return;
+            }
+
+            try {
+                const response = await fetch(GOOGLE_SHEETS_CONFIG.appsScriptUrl, {
+                    method: 'POST',
+                    mode: 'cors',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        action: 'addHotel',
+                        data: hotelData
+                    })
+                });
+
+                const result = await response.json();
+
+                if (result.success) {
+                    alert('✅ Hotel added successfully!');
+                    // Refresh the hotels display for this city
+                    fetchHotelsFromSheets(hotelData.city);
+                } else {
+                    alert('❌ Error adding hotel: ' + (result.error || 'Unknown error'));
+                }
+            } catch (error) {
+                console.error('Error submitting to Google Sheets:', error);
+                alert('❌ Error submitting hotel data. Please try again.');
+            }
+        }
+
+        /**
+         * Submit landmark data to Google Sheets via Apps Script
+         */
+        async function submitLandmarkToSheets(landmarkData) {
+            if (!GOOGLE_SHEETS_CONFIG.enabled) {
+                console.log('Google Sheets integration disabled. Landmark would be:', landmarkData);
+                return true;
+            }
+
+            try {
+                const response = await fetch(GOOGLE_SHEETS_CONFIG.appsScriptUrl, {
+                    method: 'POST',
+                    mode: 'cors',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        action: 'addLandmark',
+                        data: landmarkData
+                    })
+                });
+
+                const result = await response.json();
+                return result.success;
+            } catch (error) {
+                console.error('Error submitting landmark to Google Sheets:', error);
+                return false;
+            }
+        }
+
+        /**
+         * Display hotels for a city (updated from loadHotelsForCity)
+         */
+        function displayHotelsForCity(cityName, hotels) {
+            const contentDiv = document.getElementById('hotels-content-' + cityName);
+
+            if (hotels.length === 0) {
+                contentDiv.innerHTML = '<div class="no-hotels"><p>No nearby hotels added yet. Be the first to contribute!</p></div>';
+                return;
+            }
+
+            // Group hotels by landmark
+            const hotelsByLandmark = {};
+            hotels.forEach(hotel => {
+                if (!hotelsByLandmark[hotel.landmark]) {
+                    hotelsByLandmark[hotel.landmark] = [];
+                }
+                hotelsByLandmark[hotel.landmark].push(hotel);
+            });
+
+            let html = '';
+            Object.entries(hotelsByLandmark).forEach(([landmark, landmarkHotels]) => {
+                const landmarkName = landmarkHotels[0].landmarkName;
+                html += `
+                    <div class="landmark-group" data-landmark="${landmark}">
+                        <h3 class="landmark-title">
+                            <i class="fa-solid fa-map-pin"></i> Near ${landmarkName}
+                        </h3>
+                        ${landmarkHotels.map(hotel => createHotelCard(hotel)).join('')}
+                    </div>
+                `;
+            });
+
+            contentDiv.innerHTML = html;
+        }
+
+        /**
+         * Load sample hotels for testing (when Google Sheets is disabled)
+         */
+        function loadSampleHotelsForCity(cityName) {
+            const hotels = sampleHotels[cityName] || [];
+            displayHotelsForCity(cityName, hotels);
+        }
+
         // Page titles for dynamic header updates
         const titles = {
             dashboard: 'The Grand Euro Travel',
             itinerary: 'Itinerary',
             hotels: 'Hotel Details',
+            'nearby-hotels': 'Nearby Hotels',
+            attractions: 'Attractions',
             documents: 'All Documents',
             flights: 'Flight Details',
-            trains: 'Train Tickets',
-            attractions: 'Attraction Tickets'
+            trains: 'Train Tickets'
         };
 
         /**
@@ -2019,6 +2721,467 @@
                 btn.classList.remove('active');
             });
             document.querySelectorAll('#page-attractions .nav-btn')[attrNumber - 1].classList.add('active');
+        }
+
+        /* ═══════════════════════════════════════
+           NEARBY HOTELS FUNCTIONALITY
+        ═══════════════════════════════════════ */
+
+        // Dynamic landmark options - will be loaded from Google Sheets
+        let landmarkOptions = {
+            rome: [
+                { value: 'colosseum', text: 'Colosseum' },
+                { value: 'vatican', text: 'Vatican City' },
+                { value: 'trevi-fountain', text: 'Trevi Fountain' },
+                { value: 'pantheon', text: 'Pantheon' },
+                { value: 'spanish-steps', text: 'Spanish Steps' }
+            ],
+            florence: [
+                { value: 'duomo', text: 'Florence Cathedral (Duomo)' },
+                { value: 'ponte-vecchio', text: 'Ponte Vecchio' },
+                { value: 'uffizi', text: 'Uffizi Gallery' },
+                { value: 'palazzo-pitti', text: 'Palazzo Pitti' }
+            ],
+            venice: [
+                { value: 'st-marks', text: "St. Mark's Square" },
+                { value: 'rialto-bridge', text: 'Rialto Bridge' },
+                { value: 'grand-canal', text: 'Grand Canal' },
+                { value: 'doges-palace', text: "Doge's Palace" }
+            ],
+            lucerne: [
+                { value: 'chapel-bridge', text: 'Chapel Bridge' },
+                { value: 'lake-lucerne', text: 'Lake Lucerne' },
+                { value: 'mt-pilatus', text: 'Mt. Pilatus' },
+                { value: 'old-town', text: 'Old Town' }
+            ],
+            paris: [
+                { value: 'eiffel-tower', text: 'Eiffel Tower' },
+                { value: 'louvre', text: 'Louvre Museum' },
+                { value: 'notre-dame', text: 'Notre Dame' },
+                { value: 'arc-de-triomphe', text: 'Arc de Triomphe' },
+                { value: 'champs-elysees', text: 'Champs-Élysées' }
+            ]
+        };
+
+        /**
+         * Load landmarks dynamically from Google Sheets
+         * This function will be called to update landmarks from your sheets
+         */
+        function loadLandmarksFromSheets() {
+            // TODO: Replace with actual Google Sheets API call
+            // This will fetch landmarks from a "Landmarks" sheet with columns:
+            // City | Landmark Value | Landmark Display Name
+
+            console.log('Loading landmarks from Google Sheets...');
+            // Example of how landmarks would be loaded:
+            // fetch(GOOGLE_SHEETS_LANDMARKS_URL)
+            //   .then(response => response.json())
+            //   .then(data => {
+            //     landmarkOptions = parseLandmarksFromSheets(data);
+            //   });
+        }
+
+        /**
+         * Add a new landmark to a city (for easy manual addition)
+         */
+        function addLandmark(cityName, landmarkValue, landmarkText) {
+            if (!landmarkOptions[cityName]) {
+                landmarkOptions[cityName] = [];
+            }
+
+            landmarkOptions[cityName].push({
+                value: landmarkValue,
+                text: landmarkText
+            });
+
+            // Update filter dropdowns for this city
+            updateLandmarkFilters(cityName);
+
+            console.log(`Added landmark "${landmarkText}" to ${cityName}`);
+        }
+
+        /**
+         * Update landmark filter dropdown for a specific city
+         */
+        function updateLandmarkFilters(cityName) {
+            const filterSelect = document.getElementById('landmark-filter-' + cityName);
+            if (!filterSelect) return;
+
+            // Keep "All Landmarks" option
+            let options = '<option value="all">All Landmarks</option>';
+
+            landmarkOptions[cityName].forEach(landmark => {
+                options += `<option value="${landmark.value}">Near ${landmark.text}</option>`;
+            });
+
+            filterSelect.innerHTML = options;
+        }
+
+        // Sample hotel data (will be replaced with Google Sheets data)
+        const sampleHotels = {
+            rome: [
+                {
+                    name: "Hotel Roma Boutique",
+                    location: "Via del Corso 15",
+                    landmark: "trevi-fountain",
+                    landmarkName: "Trevi Fountain",
+                    distance: "200m",
+                    cuisineTags: ["Vegetarian", "Continental", "Italian", "Gluten-Free"],
+                    priceRange: "€80-120",
+                    googleMaps: "https://maps.google.com/example",
+                    notes: "Try their signature pasta carbonara. Best breakfast buffet in the area. Peak hours: 7-9 AM and 7-9 PM."
+                }
+            ]
+        };
+
+        /**
+         * Show specific city's nearby hotels
+         */
+        function showNearbyCity(cityName) {
+            // Hide all city cards
+            document.querySelectorAll('#page-nearby-hotels .sub-card').forEach(card => {
+                card.classList.remove('active');
+            });
+
+            // Show selected city
+            document.getElementById('nearby-' + cityName).classList.add('active');
+
+            // Update navigation button states
+            document.querySelectorAll('#page-nearby-hotels .nav-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+
+            // Find and activate the correct button
+            const buttons = document.querySelectorAll('#page-nearby-hotels .nav-btn');
+            const cityOrder = ['rome', 'florence', 'venice', 'lucerne', 'paris'];
+            const cityIndex = cityOrder.indexOf(cityName);
+            if (cityIndex !== -1 && buttons[cityIndex]) {
+                buttons[cityIndex].classList.add('active');
+            }
+
+            // Load hotels for this city
+            loadHotelsForCity(cityName);
+        }
+
+        /**
+         * Load and display hotels for a specific city
+         */
+        function loadHotelsForCity(cityName) {
+            // Now uses Google Sheets integration
+            fetchHotelsFromSheets(cityName);
+        }
+
+        /**
+         * Create HTML for a hotel card (using same style as main Hotels page)
+         */
+        function createHotelCard(hotel) {
+            const cuisineTagsHtml = hotel.cuisineTags.map(tag => {
+                const tagClass = getTagClass(tag.toLowerCase());
+                return `<span class="cuisine-tag ${tagClass}">${tag}</span>`;
+            }).join('');
+
+            const notesHtml = hotel.notes ? `
+                <div class="hotel-detail">
+                    <i class="fa-solid fa-sticky-note"></i> ${hotel.notes}
+                </div>
+            ` : '';
+
+            return `
+                <div class="hotel-card">
+                    <div class="hotel-header">
+                        <h3>
+                            <i class="fa-solid fa-hotel" style="margin-right:8px;color:var(--accent)"></i>
+                            ${hotel.name}
+                        </h3>
+                        <div class="hotel-city" style="color:var(--accent); font-weight:600;">${hotel.priceRange}</div>
+                    </div>
+                    <div class="hotel-body">
+                        <div class="hotel-detail">
+                            <i class="fa-solid fa-location-dot"></i> ${hotel.location}
+                        </div>
+                        <div class="hotel-detail">
+                            <i class="fa-solid fa-map-pin"></i> ${hotel.distance} from ${hotel.landmarkName}
+                        </div>
+                        <div class="hotel-detail">
+                            <i class="fa-solid fa-utensils"></i>
+                            <div class="cuisine-tags" style="display: inline-flex; gap: 4px; flex-wrap: wrap;">
+                                ${cuisineTagsHtml}
+                            </div>
+                        </div>
+                        ${notesHtml}
+                        <div class="hotel-links">
+                            <a href="${hotel.googleMaps}" target="_blank" class="hotel-link">
+                                <i class="fa-solid fa-map-location-dot"></i> Google Maps
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        /**
+         * Get CSS class for cuisine tag based on its name
+         */
+        function getTagClass(tagName) {
+            const tagMap = {
+                'vegan': 'vegan',
+                'vegetarian': 'vegetarian',
+                'continental': 'continental',
+                'indian': 'indian',
+                'italian': 'italian',
+                'mediterranean': 'mediterranean',
+                'gluten-free': 'gluten-free',
+                'gluten free': 'gluten-free'
+            };
+
+            return tagMap[tagName] || 'default';
+        }
+
+        /**
+         * Filter hotels by landmark
+         */
+        function filterByLandmark(cityName, landmarkValue) {
+            const contentDiv = document.getElementById('hotels-content-' + cityName);
+            const landmarkGroups = contentDiv.querySelectorAll('.landmark-group');
+
+            if (landmarkValue === 'all') {
+                landmarkGroups.forEach(group => group.style.display = 'block');
+            } else {
+                landmarkGroups.forEach(group => {
+                    if (group.dataset.landmark === landmarkValue) {
+                        group.style.display = 'block';
+                    } else {
+                        group.style.display = 'none';
+                    }
+                });
+            }
+        }
+
+        /**
+         * Search hotels by name or location
+         */
+        function searchHotels(cityName, searchTerm) {
+            const contentDiv = document.getElementById('hotels-content-' + cityName);
+            const hotelCards = contentDiv.querySelectorAll('.nearby-hotel-card');
+            const landmarkGroups = contentDiv.querySelectorAll('.landmark-group');
+
+            const term = searchTerm.toLowerCase();
+
+            hotelCards.forEach(card => {
+                const hotelName = card.querySelector('.hotel-name').textContent.toLowerCase();
+                const location = card.querySelector('.hotel-info-item span').textContent.toLowerCase();
+
+                if (hotelName.includes(term) || location.includes(term)) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+
+            // Hide landmark groups that have no visible hotels
+            landmarkGroups.forEach(group => {
+                const visibleHotels = group.querySelectorAll('.nearby-hotel-card[style*="block"], .nearby-hotel-card:not([style])');
+                if (visibleHotels.length === 0) {
+                    group.style.display = 'none';
+                } else {
+                    group.style.display = 'block';
+                }
+            });
+        }
+
+        /**
+         * Open the add hotel modal
+         */
+        function openAddHotelModal(cityName) {
+            const modal = document.getElementById('add-hotel-modal');
+            const cityNameSpan = document.getElementById('modal-city-name');
+            const landmarkSelect = document.getElementById('landmark-select');
+            const formCity = document.getElementById('form-city');
+            const formTimestamp = document.getElementById('form-timestamp');
+
+            // Set city name and form data
+            cityNameSpan.textContent = cityName.charAt(0).toUpperCase() + cityName.slice(1);
+            formCity.value = cityName;
+            formTimestamp.value = new Date().toISOString();
+
+            // Populate landmark options dynamically
+            landmarkSelect.innerHTML = '<option value="">Select landmark</option>';
+            if (landmarkOptions[cityName]) {
+                landmarkOptions[cityName].forEach(option => {
+                    landmarkSelect.innerHTML += `<option value="${option.value}">${option.text}</option>`;
+                });
+            }
+
+            // Show modal
+            modal.classList.add('active');
+        }
+
+        /**
+         * Close the add hotel modal
+         */
+        function closeAddHotelModal() {
+            const modal = document.getElementById('add-hotel-modal');
+            const form = document.getElementById('add-hotel-form');
+
+            modal.classList.remove('active');
+            form.reset();
+        }
+
+        /**
+         * Submit hotel form (to be connected to Google Sheets)
+         */
+        async function submitHotel(event) {
+            event.preventDefault();
+
+            const formData = new FormData(event.target);
+            const hotelData = {};
+
+            // Convert form data to object
+            for (let [key, value] of formData.entries()) {
+                hotelData[key] = value;
+            }
+
+            // Parse cuisine tags from comma-separated string
+            if (hotelData.cuisineTags) {
+                hotelData.cuisineTagsArray = hotelData.cuisineTags
+                    .split(',')
+                    .map(tag => tag.trim())
+                    .filter(tag => tag.length > 0);
+            }
+
+            console.log('Hotel data to submit:', hotelData);
+
+            // Submit to Google Sheets
+            await submitToGoogleSheets(hotelData);
+
+            closeAddHotelModal();
+        }
+
+        /**
+         * Open the add landmark modal
+         */
+        function openAddLandmarkModal(cityName) {
+            const modal = document.getElementById('add-landmark-modal');
+            const cityNameSpan = document.getElementById('landmark-modal-city-name');
+            const formCity = document.getElementById('landmark-form-city');
+
+            // Set city name and form data
+            cityNameSpan.textContent = cityName.charAt(0).toUpperCase() + cityName.slice(1);
+            formCity.value = cityName;
+
+            // Show modal
+            modal.classList.add('active');
+        }
+
+        /**
+         * Close the add landmark modal
+         */
+        function closeAddLandmarkModal() {
+            const modal = document.getElementById('add-landmark-modal');
+            const form = document.getElementById('add-landmark-form');
+
+            modal.classList.remove('active');
+            form.reset();
+        }
+
+        /**
+         * Submit landmark form
+         */
+        async function submitLandmark(event) {
+            event.preventDefault();
+
+            const formData = new FormData(event.target);
+            const landmarkData = {
+                city: formData.get('landmarkCity'),
+                name: formData.get('landmarkName').trim(),
+                key: formData.get('landmarkKey').trim().toLowerCase().replace(/[^a-z0-9-]/g, '-')
+            };
+
+            // Validate landmark key format
+            if (!/^[a-z0-9-]+$/.test(landmarkData.key)) {
+                alert('Landmark key must contain only lowercase letters, numbers, and hyphens');
+                return;
+            }
+
+            // Check if landmark already exists
+            const existingLandmarks = landmarkOptions[landmarkData.city] || [];
+            if (existingLandmarks.find(l => l.value === landmarkData.key)) {
+                alert(`Landmark with key "${landmarkData.key}" already exists in ${landmarkData.city}`);
+                return;
+            }
+
+            // Add landmark locally
+            addLandmark(landmarkData.city, landmarkData.key, landmarkData.name);
+
+            // Submit to Google Sheets
+            const success = await submitLandmarkToSheets(landmarkData);
+
+            if (success || !GOOGLE_SHEETS_CONFIG.enabled) {
+                // Show success message
+                alert(`✅ Added "${landmarkData.name}" to ${landmarkData.city.toUpperCase()}!\n\nIt will now appear in the landmark filter and hotel form.`);
+
+                // Close modal
+                closeAddLandmarkModal();
+
+                console.log('Landmark added:', landmarkData);
+            } else {
+                alert('❌ Error adding landmark to Google Sheets. Please try again.');
+            }
+        }
+
+        /**
+         * Auto-generate landmark key from landmark name
+         */
+        function autoGenerateLandmarkKey() {
+            const nameInput = document.getElementById('landmarkNameInput');
+            const keyInput = document.getElementById('landmarkKeyInput');
+
+            if (nameInput && keyInput) {
+                // Convert name to URL-friendly key
+                const key = nameInput.value
+                    .toLowerCase()
+                    .trim()
+                    .replace(/[^a-z0-9\s-]/g, '') // Remove special characters
+                    .replace(/\s+/g, '-') // Replace spaces with hyphens
+                    .replace(/-+/g, '-') // Replace multiple hyphens with single
+                    .replace(/^-|-$/g, ''); // Remove leading/trailing hyphens
+
+                keyInput.value = key;
+            }
+        }
+
+
+        // Initialize nearby hotels when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            // Load Rome hotels by default
+            loadHotelsForCity('rome');
+
+            // Load landmarks from Google Sheets (when ready)
+            loadLandmarksFromSheets();
+        });
+
+        /* ═══════════════════════════════════════
+           EASY LANDMARK MANAGEMENT FUNCTIONS
+           Call these from browser console to add landmarks
+        ═══════════════════════════════════════ */
+
+        /**
+         * Easy way to add landmarks via console
+         * Example: addNewLandmark('rome', 'castel-santangelo', 'Castel Sant\'Angelo')
+         */
+        function addNewLandmark(cityName, landmarkKey, landmarkName) {
+            addLandmark(cityName, landmarkKey, landmarkName);
+            alert(`Added "${landmarkName}" to ${cityName.toUpperCase()}!`);
+        }
+
+        /**
+         * Show current landmarks for a city (console helper)
+         * Example: showLandmarks('rome')
+         */
+        function showLandmarks(cityName) {
+            const landmarks = landmarkOptions[cityName] || [];
+            console.log(`📍 Landmarks for ${cityName}:`, landmarks);
+            return landmarks;
         }
     </script>
 
