@@ -1,0 +1,910 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotel Details | Euro Trip 2026</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* ═══════════════════════════════════════
+           CSS VARIABLES & RESET
+        ═══════════════════════════════════════ */
+        :root {
+            --primary: #0f172a;
+            --accent: #d4af37;
+            --bg: #f8fafc;
+            --card-bg: #ffffff;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+        }
+
+        * {
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg);
+            color: var(--text-main);
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        /* ═══════════════════════════════════════
+           HERO SECTION
+        ═══════════════════════════════════════ */
+        .hero {
+            background: linear-gradient(rgba(15,23,42,.7), rgba(15,23,42,.7)),
+                        url('https://images.unsplash.com/photo-1473951574080-01fe45ec8643?q=80&w=2070&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+            color: #fff;
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            margin: 0;
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+        }
+
+        .hero p {
+            margin: 10px 0;
+            opacity: .9;
+            font-weight: 300;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .badge {
+            background: var(--accent);
+            color: var(--primary);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: .8rem;
+            font-weight: 700;
+            margin-top: 15px;
+            display: inline-block;
+        }
+
+        /* ═══════════════════════════════════════
+           NAVIGATION COMPONENTS
+        ═══════════════════════════════════════ */
+        .nav-container {
+            position: sticky;
+            top: 0;
+            background: var(--primary);
+            overflow-x: auto;
+            white-space: nowrap;
+            padding: 12px 5px;
+            z-index: 1000;
+            display: flex;
+            scrollbar-width: none;
+        }
+
+        .nav-container::-webkit-scrollbar {
+            display: none;
+        }
+
+        .nav-btn {
+            background: transparent;
+            border: 1px solid rgba(255,255,255,.2);
+            color: #fff;
+            padding: 10px 18px;
+            margin: 0 5px;
+            border-radius: 12px;
+            cursor: pointer;
+            font-size: .9rem;
+            transition: .3s;
+            flex-shrink: 0;
+        }
+
+        .nav-btn.active {
+            background: var(--accent);
+            color: var(--primary);
+            font-weight: 600;
+            border-color: var(--accent);
+        }
+
+        .back-bar {
+            background: var(--primary);
+            padding: 10px 15px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .back-btn {
+            background: transparent;
+            border: 1px solid rgba(255,255,255,.3);
+            color: #fff;
+            padding: 8px 18px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: .85rem;
+            transition: .3s;
+        }
+
+        .back-btn:hover {
+            background: var(--accent);
+            color: var(--primary);
+            border-color: var(--accent);
+        }
+
+        /* ═══════════════════════════════════════
+           PAGE LAYOUT & ANIMATIONS
+        ═══════════════════════════════════════ */
+        .container {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 0 15px 100px;
+        }
+
+        .page {
+            display: none;
+            animation: fadeIn .5s ease;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        /* Day cards for itinerary navigation */
+        .day-card {
+            display: none;
+            animation: fadeIn .5s ease;
+        }
+
+        .day-card.active {
+            display: block;
+        }
+
+        /* Sub-cards for hotels, trains, attractions navigation */
+        .sub-card {
+            display: none;
+            animation: fadeIn .5s ease;
+        }
+
+        .sub-card.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ═══════════════════════════════════════
+           DASHBOARD CARDS
+        ═══════════════════════════════════════ */
+        .dash-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 18px;
+            margin-top: 10px;
+        }
+
+        .dash-card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 30px 20px;
+            text-align: center;
+            cursor: pointer;
+            box-shadow: 0 10px 25px rgba(0,0,0,.05);
+            transition: transform .3s, box-shadow .3s;
+            border: 2px solid transparent;
+        }
+
+        .dash-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,.1);
+            border-color: var(--accent);
+        }
+
+        .dash-card i.dash-icon {
+            font-size: 2.8rem;
+            color: var(--accent);
+            display: block;
+            margin-bottom: 12px;
+        }
+
+        .dash-card .dash-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+            color: var(--primary);
+            margin-bottom: 4px;
+        }
+
+        .dash-card .dash-sub {
+            font-size: .78rem;
+            color: var(--text-muted);
+        }
+
+        .dash-card.full-width {
+            grid-column: 1/-1;
+        }
+
+        /* ═══════════════════════════════════════
+           CONTENT SECTIONS & CARDS
+        ═══════════════════════════════════════ */
+        .section-box {
+            background: var(--card-bg);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0,0,0,.05);
+            margin-bottom: 25px;
+        }
+
+        .img-container {
+            width: 100%;
+            height: 280px;
+            position: relative;
+            overflow: hidden;
+            background: #e2e8f0;
+        }
+
+        .img-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .img-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,.8));
+            color: #fff;
+            padding: 15px;
+            font-size: .9rem;
+            font-weight: 600;
+        }
+
+        .details {
+            padding: 25px;
+        }
+
+        .details h2 {
+            margin: 0 0 15px;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: var(--primary);
+            border-bottom: 2px solid var(--accent);
+            display: inline-block;
+        }
+
+        /* ═══════════════════════════════════════
+           TIMELINE COMPONENTS
+        ═══════════════════════════════════════ */
+        .timeline {
+            list-style: none;
+            padding: 0;
+            margin: 20px 0;
+        }
+
+        .timeline-item {
+            padding-left: 30px;
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 8px;
+            width: 12px;
+            height: 12px;
+            background: var(--accent);
+            border-radius: 50%;
+        }
+
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            left: 5px;
+            top: 25px;
+            width: 2px;
+            height: calc(100% + 5px);
+            background: #e2e8f0;
+        }
+
+        .timeline-item:last-child::after {
+            display: none;
+        }
+
+        .item-time {
+            font-weight: 700;
+            display: block;
+            color: var(--accent);
+            font-size: .85rem;
+            text-transform: uppercase;
+        }
+
+        .item-text {
+            display: block;
+            font-weight: 600;
+            font-size: 1.05rem;
+            margin: 2px 0;
+        }
+
+        .item-sub {
+            color: var(--text-muted);
+            font-size: .9rem;
+            display: block;
+        }
+
+        /* ═══════════════════════════════════════
+           LOGISTICS & INFO CARDS
+        ═══════════════════════════════════════ */
+        .logistics-card {
+            background: #f1f5f9;
+            padding: 15px;
+            border-radius: 12px;
+            margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .logistics-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: .9rem;
+        }
+
+        .logistics-item i {
+            color: var(--accent);
+            width: 20px;
+            text-align: center;
+        }
+
+        /* ═══════════════════════════════════════
+           HOTEL CARDS
+        ═══════════════════════════════════════ */
+        .hotel-card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0,0,0,.05);
+            margin-bottom: 20px;
+        }
+
+        .hotel-header {
+            background: var(--primary);
+            color: #fff;
+            padding: 18px 20px;
+        }
+
+        .hotel-header h3 {
+            margin: 0;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+        }
+
+        .hotel-header .hotel-city {
+            color: var(--accent);
+            font-size: .85rem;
+            margin-top: 2px;
+        }
+
+        .hotel-body {
+            padding: 20px;
+        }
+
+        .hotel-detail {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            padding: 8px 0;
+            font-size: .9rem;
+            border-bottom: 1px solid #f1f5f9;
+        }
+
+        .hotel-detail:last-child {
+            border-bottom: none;
+        }
+
+        .hotel-detail i {
+            color: var(--accent);
+            width: 22px;
+            text-align: center;
+            flex-shrink: 0;
+            margin-top: 3px;
+        }
+
+        .hotel-links {
+            display: flex;
+            gap: 10px;
+            margin-top: 12px;
+            flex-wrap: wrap;
+        }
+
+        .hotel-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: linear-gradient(135deg, var(--accent), #e8c878);
+            color: var(--primary);
+            padding: 8px 14px;
+            border-radius: 10px;
+            font-size: .82rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: .3s;
+        }
+
+        .hotel-link:hover {
+            background: linear-gradient(135deg, #e8c878, var(--accent));
+            color: var(--primary);
+        }
+
+        /* ═══════════════════════════════════════
+           DOCUMENT CARDS
+        ═══════════════════════════════════════ */
+        .doc-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 10px;
+        }
+
+        .doc-card {
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 24px 18px;
+            text-align: center;
+            box-shadow: 0 8px 20px rgba(0,0,0,.05);
+            cursor: pointer;
+            transition: transform .3s, box-shadow .3s;
+            border: 2px solid transparent;
+            text-decoration: none;
+            color: var(--text-main);
+        }
+
+        .doc-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 30px rgba(0,0,0,.1);
+            border-color: var(--accent);
+        }
+
+        .doc-card i {
+            font-size: 2.2rem;
+            color: var(--accent);
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .doc-card .doc-title {
+            font-weight: 600;
+            font-size: .95rem;
+        }
+
+        .doc-card .doc-sub {
+            font-size: .75rem;
+            color: var(--text-muted);
+            margin-top: 3px;
+        }
+
+        /* ═══════════════════════════════════════
+           TRAIN TICKET CARDS
+        ═══════════════════════════════════════ */
+        .train-date-card {
+            background: var(--card-bg);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0,0,0,.05);
+            margin-bottom: 18px;
+        }
+
+        .train-date-header {
+            background: var(--primary);
+            color: #fff;
+            padding: 14px 18px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .train-date-header h3 {
+            margin: 0;
+            font-size: 1rem;
+        }
+
+        .flexi-badge {
+            background: #ffffff;
+            color: var(--primary);
+            padding: 3px 10px;
+            border-radius: 8px;
+            font-size: .72rem;
+            font-weight: 700;
+        }
+
+        .train-body {
+            padding: 16px 18px;
+        }
+
+        .train-leg {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 10px 0;
+            border-bottom: 1px solid #f1f5f9;
+        }
+
+        .train-leg:last-child {
+            border-bottom: none;
+        }
+
+        .train-leg i {
+            color: var(--accent);
+            margin-top: 3px;
+            flex-shrink: 0;
+        }
+
+        .train-leg-route {
+            font-weight: 600;
+            font-size: .95rem;
+        }
+
+        .train-leg-detail {
+            font-size: .82rem;
+            color: var(--text-muted);
+        }
+
+        .train-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: linear-gradient(135deg, var(--accent), #e8c878);
+            color: var(--primary);
+            padding: 8px 14px;
+            border-radius: 10px;
+            font-size: .82rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: .3s;
+            margin-top: 8px;
+        }
+
+        .train-link:hover {
+            background: linear-gradient(135deg, #e8c878, var(--accent));
+            color: var(--primary);
+        }
+
+        /* ═══════════════════════════════════════
+           ATTRACTION COMPONENTS
+        ═══════════════════════════════════════ */
+        .attraction-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 0;
+            border-bottom: 1px solid #f1f5f9;
+        }
+
+        .attraction-item:last-child {
+            border-bottom: none;
+        }
+
+        .attraction-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--accent), #e8c878);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            flex-shrink: 0;
+        }
+
+        .attraction-info {
+            flex: 1;
+        }
+
+        .attraction-name {
+            font-weight: 600;
+            font-size: .95rem;
+        }
+
+        .attraction-detail {
+            font-size: .8rem;
+            color: var(--text-muted);
+        }
+
+        /* ═══════════════════════════════════════
+           SPECIAL CARDS & COMPONENTS
+        ═══════════════════════════════════════ */
+        .eurail-info {
+            background: linear-gradient(135deg, #0f172a, #1e3a5f);
+            border-radius: 16px;
+            padding: 20px;
+            color: #fff;
+            margin-bottom: 20px;
+        }
+
+        .eurail-info h3 {
+            font-family: 'Playfair Display', serif;
+            margin: 0 0 8px;
+            color: var(--accent);
+        }
+
+        .eurail-info p {
+            font-size: .88rem;
+            margin: 4px 0;
+            opacity: .85;
+        }
+
+        /* ═══════════════════════════════════════
+           FOOTER
+        ═══════════════════════════════════════ */
+        .footer {
+            text-align: center;
+            color: var(--text-muted);
+            font-size: .8rem;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <section class="hero">
+        <p></p>
+        <h1>Hotel Details</h1>
+        <span class="badge">
+            <i class="fa-solid fa-calendar"></i> June 5 - June 14, 2026
+        </span>
+    </section>
+
+    <!-- PAGE CONTENT -->
+    <div class="page active">
+
+        <div class="back-bar">
+            <button class="back-btn" onclick="location.href='index.html'">
+                <i class="fa-solid fa-arrow-left"></i> Back
+            </button>
+        </div>
+
+        <!-- City navigation tabs -->
+        <nav class="nav-container">
+            <button class="nav-btn active" onclick="showHotel(1)">Rome</button>
+            <button class="nav-btn" onclick="showHotel(2)">Florence</button>
+            <button class="nav-btn" onclick="showHotel(3)">Venice</button>
+            <button class="nav-btn" onclick="showHotel(4)">Lucerne</button>
+            <button class="nav-btn" onclick="showHotel(5)">Paris</button>
+        </nav>
+
+        <div class="container">
+            <!-- Rome Hotel -->
+            <div id="hotel1" class="sub-card active">
+                <div class="hotel-card">
+                    <div class="hotel-header">
+                        <h3>
+                            <i class="fa-solid fa-hotel" style="margin-right:8px;color:var(--accent)"></i>
+                            Gioberti Art Hotel
+                        </h3>
+                        <div class="hotel-city">Rome, Italy</div>
+                    </div>
+                    <div class="hotel-body">
+                        <div class="hotel-detail">
+                            <i class="fa-solid fa-calendar-days"></i> June 5 – 7 (2 nights)
+                        </div>
+                        <div class="hotel-detail">
+                            <i class="fa-solid fa-door-open"></i> 4 Rooms — 3 Twin Sharing · 1 Triple Sharing
+                        </div>
+                        <div class="hotel-detail">
+                            <i class="fa-solid fa-clock"></i> Check-in: 2.00 pm · Check-out: 12.00 pm
+                        </div>
+                        <div class="hotel-detail">
+                            <i class="fa-solid fa-location-dot"></i> Via Gioberti, 23, Rome, Italy - 00185
+                        </div>
+                        <div class="hotel-detail">
+                            <i class="fa-solid fa-map-pin"></i> 110 meters from Roma Termini Railway Station
+                        </div>
+                        <div class="hotel-detail">
+                            <i class="fa-solid fa-phone"></i> +39 06 4521 0474
+                        </div>
+                        <div class="hotel-links">
+                            <a href="https://maps.app.goo.gl/m1b7nui8qqaBtaGL9" class="hotel-link">
+                                <i class="fa-solid fa-map-location-dot"></i> Google Maps
+                            </a>
+                            <a href="https://drive.google.com/file/d/1a6WfInyoM5aA1M9EMPP57036OHk8J9Wx/view" class="hotel-link">
+                                <i class="fa-brands fa-google-drive"></i> Reservation
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Florence Hotel -->
+            <div id="hotel2" class="sub-card">
+                <div class="hotel-card">
+                    <div class="hotel-header">
+                        <h3>
+                            <i class="fa-solid fa-hotel" style="margin-right:8px;color:var(--accent)"></i>
+                            c-Hotel Diplomat
+                        </h3>
+                        <div class="hotel-city">Florence, Italy</div>
+                    </div>
+                    <div class="hotel-body">
+                        <div class="hotel-detail">
+                            <i class="fa-solid fa-calendar-days"></i> June 7 – 8 (1 night)
+                        </div>
+                        <div class="hotel-detail">
+                            <i class="fa-solid fa-door-open"></i> 5 Rooms — All Twin Sharing
+                        </div>
+                        <div class="hotel-detail">
+                            <i class="fa-solid fa-clock"></i> Check-in: 3.00 pm · Check-out: 11.00 am
+                        </div>
+                        <div class="hotel-detail">
+                            <i class="fa-solid fa-location-dot"></i> Via Luigi Alamanni, 9, Florence, Italy - 50123
+                        </div>
+                        <div class="hotel-detail">
+                            <i class="fa-solid fa-map-pin"></i> 130 meters from Florence Santa Maria Railway Station
+                        </div>
+                        <div class="hotel-detail">
+                            <i class="fa-solid fa-phone"></i> +39 055 260 8400
+                        </div>
+                        <div class="hotel-links">
+                            <a href="https://maps.app.goo.gl/9X8BwoHtt5gQ9LjK7" class="hotel-link">
+                                <i class="fa-solid fa-map-location-dot"></i> Google Maps
+                            </a>
+                            <a href="https://drive.google.com/file/d/1mWhcz-LeE7QRLX0cnUHrpz_d1Jw_cs2R/view" class="hotel-link">
+                                <i class="fa-brands fa-google-drive"></i> Reservation
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Venice Hotel -->
+            <div id="hotel3" class="sub-card">
+                <div class="hotel-card">
+                    <div class="hotel-header">
+                        <h3>
+                            <i class="fa-solid fa-hotel" style="margin-right:8px;color:var(--accent)"></i>
+                            Hotel Il Moro di Venezia
+                        </h3>
+                        <div class="hotel-city">Venice, Italy</div>
+                    </div>
+                    <div class="hotel-body">
+                        <div class="hotel-detail">
+                            <i class="fa-solid fa-calendar-days"></i> June 8 – 9 (1 night)
+                        </div>
+                        <div class="hotel-detail">
+                            <i class="fa-solid fa-door-open"></i> 4 Rooms — 3 Twin Sharing · 1 Triple Sharing
+                        </div>
+                         <div class="hotel-detail">
+                            <i class="fa-solid fa-clock"></i> Check-in: 2.00 pm · Check-out: 11.00 am
+                        </div>
+                        <div class="hotel-detail">
+                            <i class="fa-solid fa-location-dot"></i> Rio Terà Lista di Spagna, 152, Venice, Italy - 30121
+                        </div>
+                        <div class="hotel-detail">
+                            <i class="fa-solid fa-map-pin"></i> 210 meters from Venezia Santa Lucia Railway Station
+                        </div>
+                        <div class="hotel-detail">
+                            <i class="fa-solid fa-phone"></i> +39 041 098 5730
+                        </div>
+                        <div class="hotel-links">
+                            <a href="https://maps.app.goo.gl/B5ZqrZCCMujQ4SCZ9" class="hotel-link">
+                                <i class="fa-solid fa-map-location-dot"></i> Google Maps
+                            </a>
+                            <a href="https://drive.google.com/file/d/1KyWbP2X7Edki0XAJKlcj5V2VewIyGwML/view" class="hotel-link">
+                                <i class="fa-brands fa-google-drive"></i> Reservation
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Lucerne Hotel -->
+            <div id="hotel4" class="sub-card">
+                <div class="hotel-card">
+                    <div class="hotel-header">
+                        <h3>
+                            <i class="fa-solid fa-hotel" style="margin-right:8px;color:var(--accent)"></i>
+                            Hotel Alpha Garni
+                        </h3>
+                        <div class="hotel-city">Lucerne, Switzerland</div>
+                    </div>
+                    <div class="hotel-body">
+                        <div class="hotel-detail">
+                            <i class="fa-solid fa-calendar-days"></i> June 9 – 12 (3 nights)
+                        </div>
+                        <div class="hotel-detail">
+                            <i class="fa-solid fa-door-open"></i> 5 Rooms — 4 Twin Sharing · 1 Single Sharing
+                        </div>
+                         <div class="hotel-detail">
+                            <i class="fa-solid fa-clock"></i> Check-in: 1.30 pm · Check-out: 11.00 am
+                        </div>
+                        <div class="hotel-detail">
+                            <i class="fa-solid fa-location-dot"></i> Zähringerstrasse 24, Lucerne, Switzerland - 6003
+                        </div>
+                        <div class="hotel-detail">
+                            <i class="fa-solid fa-map-pin"></i> 10-minute walk from Lucerne Railway Station
+                        </div>
+                        <div class="hotel-detail">
+                            <i class="fa-solid fa-phone"></i> +41 41 240 42 80
+                        </div>
+                        <div class="hotel-links">
+                            <a href="https://maps.app.goo.gl/zpm1BjCJnVzAp4eY9" class="hotel-link">
+                                <i class="fa-solid fa-map-location-dot"></i> Google Maps
+                            </a>
+                            <a href="https://drive.google.com/file/d/1zLKi1-XwOhg0yETQxIbTUqicWiznk0Yi/view" class="hotel-link">
+                                <i class="fa-brands fa-google-drive"></i> Reservation
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Paris Hotel -->
+            <div id="hotel5" class="sub-card">
+                <div class="hotel-card">
+                    <div class="hotel-header">
+                        <h3>
+                            <i class="fa-solid fa-hotel" style="margin-right:8px;color:var(--accent)"></i>
+                            Hotel Eiffel Seine
+                        </h3>
+                        <div class="hotel-city">Paris, France</div>
+                    </div>
+                    <div class="hotel-body">
+                        <div class="hotel-detail">
+                            <i class="fa-solid fa-calendar-days"></i> June 12 – 14 (2 nights)
+                        </div>
+                        <div class="hotel-detail">
+                            <i class="fa-solid fa-door-open"></i> 4 Rooms — 4 Twin Sharing · 1 Single Sharing
+                        </div>
+                        <div class="hotel-detail">
+                            <i class="fa-solid fa-clock"></i> Check-in: 3.00 pm · Check-out: 11.00 am
+                        </div>
+                        <div class="hotel-detail">
+                            <i class="fa-solid fa-location-dot"></i> 3 Boulevard de Grenelle, Paris, France - 75015
+                        </div>
+                        <div class="hotel-detail">
+                            <i class="fa-solid fa-map-pin"></i> 10-minute walk to Eiffel Tower · Opposite to Bir-Hakeim Metro Station
+                        </div>
+                        <div class="hotel-detail">
+                            <i class="fa-solid fa-phone"></i> +33 145 78 1481
+                        </div>
+                        <div class="hotel-links">
+                            <a href="https://maps.app.goo.gl/orou6EyHAbPkdiCz7" class="hotel-link">
+                                <i class="fa-solid fa-map-location-dot"></i> Google Maps
+                            </a>
+                            <a href="https://drive.google.com/file/d/1zLKi1-XwOhg0yETQxIbTUqicWiznk0Yi/view" class="hotel-link">
+                                <i class="fa-brands fa-google-drive"></i> Reservation
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer">| Italy Iyers | Venice Vadamals | Paris Brhatcharanam | 2026 |</div>
+        </div>
+    
+    </div>
+
+    <script>
+function showHotel(hotelNumber) {
+            document.querySelectorAll('.sub-card').forEach(card => card.classList.remove('active'));
+            const target = document.getElementById('hotel' + hotelNumber);
+            if (target) target.classList.add('active');
+            const buttons = document.querySelectorAll('.nav-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            if (buttons[hotelNumber - 1]) buttons[hotelNumber - 1].classList.add('active');
+        }
+    </script>
+
+</body>
+</html>

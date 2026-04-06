@@ -1,0 +1,886 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Train Tickets | Euro Trip 2026</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* ═══════════════════════════════════════
+           CSS VARIABLES & RESET
+        ═══════════════════════════════════════ */
+        :root {
+            --primary: #0f172a;
+            --accent: #d4af37;
+            --bg: #f8fafc;
+            --card-bg: #ffffff;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+        }
+
+        * {
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg);
+            color: var(--text-main);
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        /* ═══════════════════════════════════════
+           HERO SECTION
+        ═══════════════════════════════════════ */
+        .hero {
+            background: linear-gradient(rgba(15,23,42,.7), rgba(15,23,42,.7)),
+                        url('https://images.unsplash.com/photo-1473951574080-01fe45ec8643?q=80&w=2070&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+            color: #fff;
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            margin: 0;
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+        }
+
+        .hero p {
+            margin: 10px 0;
+            opacity: .9;
+            font-weight: 300;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .badge {
+            background: var(--accent);
+            color: var(--primary);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: .8rem;
+            font-weight: 700;
+            margin-top: 15px;
+            display: inline-block;
+        }
+
+        /* ═══════════════════════════════════════
+           NAVIGATION COMPONENTS
+        ═══════════════════════════════════════ */
+        .nav-container {
+            position: sticky;
+            top: 0;
+            background: var(--primary);
+            overflow-x: auto;
+            white-space: nowrap;
+            padding: 12px 5px;
+            z-index: 1000;
+            display: flex;
+            scrollbar-width: none;
+        }
+
+        .nav-container::-webkit-scrollbar {
+            display: none;
+        }
+
+        .nav-btn {
+            background: transparent;
+            border: 1px solid rgba(255,255,255,.2);
+            color: #fff;
+            padding: 10px 18px;
+            margin: 0 5px;
+            border-radius: 12px;
+            cursor: pointer;
+            font-size: .9rem;
+            transition: .3s;
+            flex-shrink: 0;
+        }
+
+        .nav-btn.active {
+            background: var(--accent);
+            color: var(--primary);
+            font-weight: 600;
+            border-color: var(--accent);
+        }
+
+        .back-bar {
+            background: var(--primary);
+            padding: 10px 15px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .back-btn {
+            background: transparent;
+            border: 1px solid rgba(255,255,255,.3);
+            color: #fff;
+            padding: 8px 18px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: .85rem;
+            transition: .3s;
+        }
+
+        .back-btn:hover {
+            background: var(--accent);
+            color: var(--primary);
+            border-color: var(--accent);
+        }
+
+        /* ═══════════════════════════════════════
+           PAGE LAYOUT & ANIMATIONS
+        ═══════════════════════════════════════ */
+        .container {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 0 15px 100px;
+        }
+
+        .page {
+            display: none;
+            animation: fadeIn .5s ease;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        /* Day cards for itinerary navigation */
+        .day-card {
+            display: none;
+            animation: fadeIn .5s ease;
+        }
+
+        .day-card.active {
+            display: block;
+        }
+
+        /* Sub-cards for hotels, trains, attractions navigation */
+        .sub-card {
+            display: none;
+            animation: fadeIn .5s ease;
+        }
+
+        .sub-card.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ═══════════════════════════════════════
+           DASHBOARD CARDS
+        ═══════════════════════════════════════ */
+        .dash-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 18px;
+            margin-top: 10px;
+        }
+
+        .dash-card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 30px 20px;
+            text-align: center;
+            cursor: pointer;
+            box-shadow: 0 10px 25px rgba(0,0,0,.05);
+            transition: transform .3s, box-shadow .3s;
+            border: 2px solid transparent;
+        }
+
+        .dash-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,.1);
+            border-color: var(--accent);
+        }
+
+        .dash-card i.dash-icon {
+            font-size: 2.8rem;
+            color: var(--accent);
+            display: block;
+            margin-bottom: 12px;
+        }
+
+        .dash-card .dash-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+            color: var(--primary);
+            margin-bottom: 4px;
+        }
+
+        .dash-card .dash-sub {
+            font-size: .78rem;
+            color: var(--text-muted);
+        }
+
+        .dash-card.full-width {
+            grid-column: 1/-1;
+        }
+
+        /* ═══════════════════════════════════════
+           CONTENT SECTIONS & CARDS
+        ═══════════════════════════════════════ */
+        .section-box {
+            background: var(--card-bg);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0,0,0,.05);
+            margin-bottom: 25px;
+        }
+
+        .img-container {
+            width: 100%;
+            height: 280px;
+            position: relative;
+            overflow: hidden;
+            background: #e2e8f0;
+        }
+
+        .img-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .img-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,.8));
+            color: #fff;
+            padding: 15px;
+            font-size: .9rem;
+            font-weight: 600;
+        }
+
+        .details {
+            padding: 25px;
+        }
+
+        .details h2 {
+            margin: 0 0 15px;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: var(--primary);
+            border-bottom: 2px solid var(--accent);
+            display: inline-block;
+        }
+
+        /* ═══════════════════════════════════════
+           TIMELINE COMPONENTS
+        ═══════════════════════════════════════ */
+        .timeline {
+            list-style: none;
+            padding: 0;
+            margin: 20px 0;
+        }
+
+        .timeline-item {
+            padding-left: 30px;
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 8px;
+            width: 12px;
+            height: 12px;
+            background: var(--accent);
+            border-radius: 50%;
+        }
+
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            left: 5px;
+            top: 25px;
+            width: 2px;
+            height: calc(100% + 5px);
+            background: #e2e8f0;
+        }
+
+        .timeline-item:last-child::after {
+            display: none;
+        }
+
+        .item-time {
+            font-weight: 700;
+            display: block;
+            color: var(--accent);
+            font-size: .85rem;
+            text-transform: uppercase;
+        }
+
+        .item-text {
+            display: block;
+            font-weight: 600;
+            font-size: 1.05rem;
+            margin: 2px 0;
+        }
+
+        .item-sub {
+            color: var(--text-muted);
+            font-size: .9rem;
+            display: block;
+        }
+
+        /* ═══════════════════════════════════════
+           LOGISTICS & INFO CARDS
+        ═══════════════════════════════════════ */
+        .logistics-card {
+            background: #f1f5f9;
+            padding: 15px;
+            border-radius: 12px;
+            margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .logistics-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: .9rem;
+        }
+
+        .logistics-item i {
+            color: var(--accent);
+            width: 20px;
+            text-align: center;
+        }
+
+        /* ═══════════════════════════════════════
+           HOTEL CARDS
+        ═══════════════════════════════════════ */
+        .hotel-card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0,0,0,.05);
+            margin-bottom: 20px;
+        }
+
+        .hotel-header {
+            background: var(--primary);
+            color: #fff;
+            padding: 18px 20px;
+        }
+
+        .hotel-header h3 {
+            margin: 0;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+        }
+
+        .hotel-header .hotel-city {
+            color: var(--accent);
+            font-size: .85rem;
+            margin-top: 2px;
+        }
+
+        .hotel-body {
+            padding: 20px;
+        }
+
+        .hotel-detail {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            padding: 8px 0;
+            font-size: .9rem;
+            border-bottom: 1px solid #f1f5f9;
+        }
+
+        .hotel-detail:last-child {
+            border-bottom: none;
+        }
+
+        .hotel-detail i {
+            color: var(--accent);
+            width: 22px;
+            text-align: center;
+            flex-shrink: 0;
+            margin-top: 3px;
+        }
+
+        .hotel-links {
+            display: flex;
+            gap: 10px;
+            margin-top: 12px;
+            flex-wrap: wrap;
+        }
+
+        .hotel-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: linear-gradient(135deg, var(--accent), #e8c878);
+            color: var(--primary);
+            padding: 8px 14px;
+            border-radius: 10px;
+            font-size: .82rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: .3s;
+        }
+
+        .hotel-link:hover {
+            background: linear-gradient(135deg, #e8c878, var(--accent));
+            color: var(--primary);
+        }
+
+        /* ═══════════════════════════════════════
+           DOCUMENT CARDS
+        ═══════════════════════════════════════ */
+        .doc-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 10px;
+        }
+
+        .doc-card {
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 24px 18px;
+            text-align: center;
+            box-shadow: 0 8px 20px rgba(0,0,0,.05);
+            cursor: pointer;
+            transition: transform .3s, box-shadow .3s;
+            border: 2px solid transparent;
+            text-decoration: none;
+            color: var(--text-main);
+        }
+
+        .doc-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 30px rgba(0,0,0,.1);
+            border-color: var(--accent);
+        }
+
+        .doc-card i {
+            font-size: 2.2rem;
+            color: var(--accent);
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .doc-card .doc-title {
+            font-weight: 600;
+            font-size: .95rem;
+        }
+
+        .doc-card .doc-sub {
+            font-size: .75rem;
+            color: var(--text-muted);
+            margin-top: 3px;
+        }
+
+        /* ═══════════════════════════════════════
+           TRAIN TICKET CARDS
+        ═══════════════════════════════════════ */
+        .train-date-card {
+            background: var(--card-bg);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0,0,0,.05);
+            margin-bottom: 18px;
+        }
+
+        .train-date-header {
+            background: var(--primary);
+            color: #fff;
+            padding: 14px 18px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .train-date-header h3 {
+            margin: 0;
+            font-size: 1rem;
+        }
+
+        .flexi-badge {
+            background: #ffffff;
+            color: var(--primary);
+            padding: 3px 10px;
+            border-radius: 8px;
+            font-size: .72rem;
+            font-weight: 700;
+        }
+
+        .train-body {
+            padding: 16px 18px;
+        }
+
+        .train-leg {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 10px 0;
+            border-bottom: 1px solid #f1f5f9;
+        }
+
+        .train-leg:last-child {
+            border-bottom: none;
+        }
+
+        .train-leg i {
+            color: var(--accent);
+            margin-top: 3px;
+            flex-shrink: 0;
+        }
+
+        .train-leg-route {
+            font-weight: 600;
+            font-size: .95rem;
+        }
+
+        .train-leg-detail {
+            font-size: .82rem;
+            color: var(--text-muted);
+        }
+
+        .train-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: linear-gradient(135deg, var(--accent), #e8c878);
+            color: var(--primary);
+            padding: 8px 14px;
+            border-radius: 10px;
+            font-size: .82rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: .3s;
+            margin-top: 8px;
+        }
+
+        .train-link:hover {
+            background: linear-gradient(135deg, #e8c878, var(--accent));
+            color: var(--primary);
+        }
+
+        /* ═══════════════════════════════════════
+           ATTRACTION COMPONENTS
+        ═══════════════════════════════════════ */
+        .attraction-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 0;
+            border-bottom: 1px solid #f1f5f9;
+        }
+
+        .attraction-item:last-child {
+            border-bottom: none;
+        }
+
+        .attraction-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--accent), #e8c878);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            flex-shrink: 0;
+        }
+
+        .attraction-info {
+            flex: 1;
+        }
+
+        .attraction-name {
+            font-weight: 600;
+            font-size: .95rem;
+        }
+
+        .attraction-detail {
+            font-size: .8rem;
+            color: var(--text-muted);
+        }
+
+        /* ═══════════════════════════════════════
+           SPECIAL CARDS & COMPONENTS
+        ═══════════════════════════════════════ */
+        .eurail-info {
+            background: linear-gradient(135deg, #0f172a, #1e3a5f);
+            border-radius: 16px;
+            padding: 20px;
+            color: #fff;
+            margin-bottom: 20px;
+        }
+
+        .eurail-info h3 {
+            font-family: 'Playfair Display', serif;
+            margin: 0 0 8px;
+            color: var(--accent);
+        }
+
+        .eurail-info p {
+            font-size: .88rem;
+            margin: 4px 0;
+            opacity: .85;
+        }
+
+        /* ═══════════════════════════════════════
+           FOOTER
+        ═══════════════════════════════════════ */
+        .footer {
+            text-align: center;
+            color: var(--text-muted);
+            font-size: .8rem;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <section class="hero">
+        <p></p>
+        <h1>Train Tickets</h1>
+        <span class="badge">
+            <i class="fa-solid fa-calendar"></i> June 5 - June 14, 2026
+        </span>
+    </section>
+
+    <!-- PAGE CONTENT -->
+    <div class="page active">
+
+        <div class="back-bar">
+            <button class="back-btn" onclick="location.href='documents.html'">
+                <i class="fa-solid fa-arrow-left"></i> Back
+            </button>
+        </div>
+
+        <!-- Date navigation tabs -->
+        <nav class="nav-container">
+            <button class="nav-btn active" onclick="showTrain(0)">Eurail Pass</button>
+            <button class="nav-btn" onclick="showTrain(1)">Jun 7</button>
+            <button class="nav-btn" onclick="showTrain(2)">Jun 8</button>
+            <button class="nav-btn" onclick="showTrain(3)">Jun 9</button>
+            <button class="nav-btn" onclick="showTrain(4)">Jun 10</button>
+            <button class="nav-btn" onclick="showTrain(5)">Jun 11</button>
+            <button class="nav-btn" onclick="showTrain(6)">Jun 12</button>
+        </nav>
+
+        <div class="container">
+            <!-- Eurail Pass Information -->
+            <div id="train0" class="sub-card active">
+                <div class="eurail-info">
+                    <h3><i class="fa-solid fa-ticket"></i> 5-Day Eurail Global Flexi Pass</h3>
+                    <ul style="list-style-type: disc;">
+                        <li> Eligible to travel 'First Class' for all 10 Members</li>
+                        <li> Use the Eurail Rail Planner app to activate travel days</li>
+                        <li> Show QR codes to conductors.</p>
+                        <li> Eurail pass also provides discount on many attraction tickets</li>
+                    </ul>
+                    <div style="margin-top:12px">
+                        <a href="https://drive.google.com/drive/folders/17Me5RL-gax5lQPlDgNrrV9eH95WVZ9z9?usp=sharing" class="hotel-link" style="background:var(--accent);color:var(--primary)">
+                            <i class="fa-brands fa-google-drive"></i> Eurail Pass Documents
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- June 7 Trains -->
+            <div id="train1" class="sub-card">
+                <div class="train-date-card">
+                    <div class="train-date-header">
+                        <h3><i class="fa-solid fa-calendar-day" style="margin-right:6px"></i> June 7, Sat</h3>
+                        <span class="flexi-badge">FLEXI DAY 1</span>
+                    </div>
+                    <div class="train-body">
+                        <div class="train-leg">
+                            <i class="fa-solid fa-train"></i>
+                            <div>
+                                <div class="train-leg-route">Roma Termini → Firenze S.M.N.</div>
+                                <div class="train-leg-detail">1:30 PM → 3:15 PM · Trenitalia Frecciarossa · 1st Class</div>
+                            </div>
+                        </div>
+                        <div class="train-leg">
+                            <i class="fa-solid fa-train"></i>
+                            <div>
+                                <div class="train-leg-route">Florence ↔ Pisa (Regional)</div>
+                                <div class="train-leg-detail">Evening · Same Flexi Day</div>
+                            </div>
+                        </div>
+                        <a href="https://drive.google.com/drive/folders/1UQDu_ibWunqp-6VWLSOMmTl8IeTL6FQz" class="train-link">
+                            <i class="fa-brands fa-google-drive"></i> Reservation Tickets
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- June 8 Trains (Special case - Italo) -->
+            <div id="train2" class="sub-card">
+                <div class="train-date-card">
+                    <div class="train-date-header">
+                        <h3><i class="fa-solid fa-calendar-day" style="margin-right:6px"></i> June 8, Sun</h3>
+                        <span class="flexi-badge">SEPARATE TICKET</span>
+                    </div>
+                    <div class="train-body">
+                        <div class="train-leg">
+                            <i class="fa-solid fa-train"></i>
+                            <div>
+                                <div class="train-leg-route">Firenze S.M.N. → Venezia Santa Lucia</div>
+                                <div class="train-leg-detail">11:30 AM → 2:00 PM · Italo · 1st Class</div>
+                                <div class="train-leg-detail" style="color:#e74c3c;font-weight:600">Italo does not accept Eurail</div>
+                            </div>
+                        </div>
+                        <a href="https://drive.google.com/drive/folders/1NIQTC0HPivYl2TsEyyfj4867IP2R24Xv" class="train-link">
+                            <i class="fa-brands fa-google-drive"></i> Italo Ticket
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- June 9 Trains -->
+            <div id="train3" class="sub-card">
+                <div class="train-date-card">
+                    <div class="train-date-header">
+                        <h3><i class="fa-solid fa-calendar-day" style="margin-right:6px"></i> June 9, Mon</h3>
+                        <span class="flexi-badge">FLEXI DAY 2</span>
+                    </div>
+                    <div class="train-body">
+                        <div class="train-leg">
+                            <i class="fa-solid fa-train"></i>
+                            <div>
+                                <div class="train-leg-route">Venezia S.L. → Milano Centrale</div>
+                                <div class="train-leg-detail">7:15 AM → 9:15 AM · Frecciarossa · 1st Class</div>
+                            </div>
+                        </div>
+                        <div class="train-leg">
+                            <i class="fa-solid fa-train"></i>
+                            <div>
+                                <div class="train-leg-route">Milano Centrale → Lucerne</div>
+                                <div class="train-leg-detail">9:45 AM → 1:45 PM · SSB · 1st Class</div>
+                            </div>
+                        </div>
+                        <a href="https://drive.google.com/drive/folders/1TN_uTuHAZnFYMuRBUM2ivlJD9wJ0r_mq" class="train-link">
+                            <i class="fa-brands fa-google-drive"></i> Reservation Tickets
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- June 10 Trains -->
+            <div id="train4" class="sub-card">
+                <div class="train-date-card">
+                    <div class="train-date-header">
+                        <h3><i class="fa-solid fa-calendar-day" style="margin-right:6px"></i> June 10, Tue</h3>
+                        <span class="flexi-badge">FLEXI DAY 3</span>
+                    </div>
+                    <div class="train-body">
+                        <div class="train-leg">
+                            <i class="fa-solid fa-train"></i>
+                            <div>
+                                <div class="train-leg-route">Lucerne → Interlaken → Jungfraujoch → Harder Kulm → Lucerne</div>
+                                <div class="train-leg-detail">Full Day · Regional + Mountain railways · Eurail discounted</div>
+                            </div>
+                        </div>
+                        <a href="#" class="train-link">
+                            <i class="fa-brands fa-google-drive"></i> Reservation Tickets
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- June 11 Trains -->
+            <div id="train5" class="sub-card">
+                <div class="train-date-card">
+                    <div class="train-date-header">
+                        <h3><i class="fa-solid fa-calendar-day" style="margin-right:6px"></i> June 11, Wed</h3>
+                        <span class="flexi-badge">FLEXI DAY 4</span>
+                    </div>
+                    <div class="train-body">
+                        <div class="train-leg">
+                            <i class="fa-solid fa-train"></i>
+                            <div>
+                                <div class="train-leg-route">Mt. Pilatus Golden Round Trip</div>
+                                <div class="train-leg-detail">Cogwheel + Cable car + Ferry</div>
+                            </div>
+                        </div>
+                        <div class="train-leg">
+                            <i class="fa-solid fa-train"></i>
+                            <div>
+                                <div class="train-leg-route">Lucerne → Zurich → Lucerne</div>
+                                <div class="train-leg-detail">Afternoon · ~45 min each way</div>
+                            </div>
+                        </div>
+                        <a href="#" class="train-link">
+                            <i class="fa-brands fa-google-drive"></i> Reservation Tickets
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- June 12 Trains -->
+            <div id="train6" class="sub-card">
+                <div class="train-date-card">
+                    <div class="train-date-header">
+                        <h3><i class="fa-solid fa-calendar-day" style="margin-right:6px"></i> June 12, Thu</h3>
+                        <span class="flexi-badge">FLEXI DAY 5</span>
+                    </div>
+                    <div class="train-body">
+                        <div class="train-leg">
+                            <i class="fa-solid fa-train"></i>
+                            <div>
+                                <div class="train-leg-route">Lucerne → Basel SBB</div>
+                                <div class="train-leg-detail">10:30 AM → 12:00 PM · Regional SSB</div>
+                            </div>
+                        </div>
+                        <div class="train-leg">
+                            <i class="fa-solid fa-train"></i>
+                            <div>
+                                <div class="train-leg-route">Basel SBB → Paris Gare de Lyon</div>
+                                <div class="train-leg-detail">12:30 PM → 3:30 PM · TGV Lyria · 1st Class</div>
+                            </div>
+                        </div>
+                        <a href="https://drive.google.com/drive/folders/1RjRQ50Ba2kPhmt1Dm6n0tmObWIRIvJKt" class="train-link">
+                            <i class="fa-brands fa-google-drive"></i> Reservation Tickets
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer">| Italy Iyers | Venice Vadamals | Paris Brhatcharanam | 2026 |</div>
+        </div>
+    
+    </div>
+
+    <script>
+function showTrain(trainIndex) {
+            document.querySelectorAll('.sub-card').forEach(card => card.classList.remove('active'));
+            const target = document.getElementById('train' + trainIndex);
+            if (target) target.classList.add('active');
+            const buttons = document.querySelectorAll('.nav-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            if (buttons[trainIndex]) buttons[trainIndex].classList.add('active');
+        }
+    </script>
+
+</body>
+</html>
