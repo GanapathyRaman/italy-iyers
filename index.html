@@ -132,6 +132,71 @@
             transform: translateY(-1px);
         }
 
+        /* Fix mobile touch and focus states - Override all browser defaults */
+        .nav-btn:focus,
+        .nav-btn:focus-visible,
+        .nav-btn:focus-within {
+            outline: none !important;
+            background: rgba(212, 175, 55, 0.1) !important;
+            border-color: var(--accent) !important;
+            color: #fff !important;
+        }
+
+        .nav-btn:not(.active):focus,
+        .nav-btn:not(.active):focus-visible,
+        .nav-btn:not(.active):focus-within {
+            background: rgba(212, 175, 55, 0.15) !important;
+            color: #fff !important;
+        }
+
+        /* Immediate visual feedback - match date badge & tickets style */
+        .nav-btn:active,
+        .nav-btn:focus:active {
+            background: var(--accent) !important; /* Same as date badge & tickets */
+            color: var(--primary) !important; /* Black text like date badge */
+            transform: scale(0.98) !important;
+            transition: none !important; /* Immediate feedback */
+        }
+
+        .nav-btn:not(.active):active,
+        .nav-btn:not(.active):focus:active {
+            background: var(--accent) !important; /* Consistent orange */
+            color: var(--primary) !important; /* Black text on orange */
+            transform: scale(0.98) !important;
+        }
+
+        /* Force white text on non-active button states only */
+        button.nav-btn,
+        button.nav-btn:hover,
+        button.nav-btn:focus {
+            color: #fff !important;
+        }
+
+        /* Active buttons get black text to match date badge/tickets */
+        button.nav-btn.active,
+        button.nav-btn.active:hover,
+        button.nav-btn.active:focus {
+            color: var(--primary) !important; /* Black text on orange */
+        }
+
+        /* Active buttons - match date badge & ticket style completely */
+        .nav-btn.active {
+            background: var(--accent) !important;
+            color: var(--primary) !important; /* Black text like date badge */
+            border-color: var(--accent) !important;
+            font-weight: 600;
+        }
+
+        /* Active buttons maintain black text in all states */
+        .nav-btn.active:focus,
+        .nav-btn.active:focus-visible,
+        .nav-btn.active:active {
+            background: var(--accent) !important;
+            color: var(--primary) !important; /* Keep black text */
+            border-color: var(--accent) !important;
+            transform: scale(0.98) !important;
+        }
+
         .back-bar {
             background: var(--primary);
             padding: 10px 15px;
@@ -2984,7 +3049,21 @@
 
             let html = '';
             Object.entries(hotelsByLandmark).forEach(([landmark, landmarkHotels]) => {
-                const landmarkName = landmarkHotels[0].landmarkName;
+                // Get landmark name with proper fallback handling
+                let landmarkName = landmarkHotels[0].landmarkName;
+
+                // Check if landmarkName is empty, undefined, or looks like a key (contains hyphens and is lowercase)
+                const isKeyFormat = landmarkName && landmarkName.includes('-') && landmarkName === landmarkName.toLowerCase();
+
+                if (!landmarkName || landmarkName.trim() === '' || isKeyFormat) {
+                    // Convert the key to proper Title Case format
+                    landmarkName = landmark
+                        .split('-')
+                        .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+                        .join(' ');
+                    console.log(`🔄 Converting landmark "${landmarkHotels[0].landmarkName || landmark}" → "${landmarkName}"`);
+                }
+
                 html += `
                     <div class="landmark-group" data-landmark="${landmark}">
                         <h3 class="landmark-title">
@@ -3172,6 +3251,9 @@
          * Show specific day in itinerary
          */
         function showDay(dayNumber) {
+            // Remove focus from clicked button to prevent sticky focus on mobile
+            if (document.activeElement) document.activeElement.blur();
+
             // Hide all day cards
             document.querySelectorAll('#page-itinerary .day-card').forEach(card => {
                 card.classList.remove('active');
@@ -3193,6 +3275,9 @@
          * Show specific hotel details
          */
         function showHotel(hotelNumber) {
+            // Remove focus from clicked button to prevent sticky focus on mobile
+            if (document.activeElement) document.activeElement.blur();
+
             // Hide all hotel cards
             document.querySelectorAll('#page-hotels .sub-card').forEach(card => {
                 card.classList.remove('active');
@@ -3214,6 +3299,9 @@
          * Show specific train details
          */
         function showTrain(trainIndex) {
+            // Remove focus from clicked button to prevent sticky focus on mobile
+            if (document.activeElement) document.activeElement.blur();
+
             // Hide all train cards
             document.querySelectorAll('#page-trains .sub-card').forEach(card => {
                 card.classList.remove('active');
@@ -3235,6 +3323,9 @@
          * Show specific day in attractions
          */
         function showAttractionDay(dayNumber) {
+            // Remove focus from clicked button to prevent sticky focus on mobile
+            if (document.activeElement) document.activeElement.blur();
+
             // Hide all attraction day cards
             document.querySelectorAll('#page-attractions .sub-card').forEach(card => {
                 card.classList.remove('active');
@@ -3349,6 +3440,9 @@
          */
         function showNearbyCity(cityKey) {
             console.log(`🏙️ Switching to city: ${cityKey}`);
+
+            // Remove focus from clicked button to prevent sticky focus on mobile
+            if (document.activeElement) document.activeElement.blur();
 
             // Hide all city cards
             document.querySelectorAll('#page-nearby-hotels .sub-card').forEach(card => {
@@ -3668,6 +3762,73 @@
                 const targetPage = hash && titles[hash] ? hash : 'dashboard';
                 navigate(targetPage, false);
             }
+        });
+
+        /**
+         * Fix mobile touch focus issues - Comprehensive solution
+         */
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add touch event listeners to all navigation buttons
+            function addFocusFixToButtons() {
+                const navButtons = document.querySelectorAll('.nav-btn');
+
+                navButtons.forEach(button => {
+                    // Remove focus immediately after touch ends
+                    button.addEventListener('touchend', function(e) {
+                        setTimeout(() => {
+                            if (document.activeElement === button) {
+                                button.blur();
+                            }
+                        }, 50);
+                    });
+
+                    // Remove focus after click/tap
+                    button.addEventListener('click', function(e) {
+                        setTimeout(() => {
+                            if (document.activeElement === button) {
+                                button.blur();
+                            }
+                        }, 100);
+                    });
+
+                    // Prevent context menu on long press
+                    button.addEventListener('contextmenu', function(e) {
+                        e.preventDefault();
+                    });
+                });
+            }
+
+            // Apply fix initially
+            addFocusFixToButtons();
+
+            // Reapply fix when new content is loaded (for dynamic buttons)
+            const observer = new MutationObserver(function(mutations) {
+                mutations.forEach(function(mutation) {
+                    if (mutation.addedNodes.length > 0) {
+                        addFocusFixToButtons();
+                    }
+                });
+            });
+
+            observer.observe(document.body, { childList: true, subtree: true });
+
+            // Global click handler to remove focus when clicking outside buttons
+            document.addEventListener('click', function(e) {
+                if (!e.target.closest('.nav-btn')) {
+                    if (document.activeElement && document.activeElement.classList.contains('nav-btn')) {
+                        document.activeElement.blur();
+                    }
+                }
+            });
+
+            // Global touch handler for mobile
+            document.addEventListener('touchstart', function(e) {
+                if (!e.target.closest('.nav-btn')) {
+                    if (document.activeElement && document.activeElement.classList.contains('nav-btn')) {
+                        document.activeElement.blur();
+                    }
+                }
+            });
         });
 
         /**
