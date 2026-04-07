@@ -1,0 +1,18 @@
+{
+  "name": "Eiffel Tower",
+  "overview": "The Eiffel Tower is a wrought-iron lattice tower and global cultural icon of France. Standing 330 meters tall, it was the world's tallest man-made structure until 1930 and remains one of the most visited monuments in the world.",
+  "history": "Designed by Gustave Eiffel for the 1889 Exposition Universelle (World's Fair) to celebrate the centenary of the French Revolution. Initially criticized by Paris intellectuals, it has become beloved and synonymous with Paris.",
+  "highlights": [
+    "Three observation levels with different perspectives",
+    "Summit access via elevator to 276 meters",
+    "Trocadéro viewing area for classic tower photos",
+    "Hourly light show after sunset (5 minutes)"
+  ],
+  "tips": "Book timed entry tickets online to avoid long queues. Visit at sunset for day and night views. The hourly sparkle show happens for 5 minutes every hour after dark. Restaurants on first and second floors require separate reservations.",
+  "facts": {
+    "Built": "1887-1889",
+    "Height": "330 meters",
+    "Weight": "10,100 tonnes",
+    "Annual Visitors": "7+ million"
+  }
+}

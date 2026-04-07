@@ -704,6 +704,33 @@
             color: var(--text-muted);
         }
 
+        .attraction-actions {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .info-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--accent), #e8c878);
+            color: var(--primary);
+            border: none;
+            padding: 6px 12px;
+            border-radius: 8px;
+            font-size: .75rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: .3s;
+            text-decoration: none;
+            margin-top: 8px;
+        }
+
+        .info-btn:hover {
+            background: linear-gradient(135deg, #e8c878, var(--accent));
+        }
+
         .attraction-link {
             display: inline-flex;
             align-items: center;
@@ -870,11 +897,85 @@
             position: absolute;
             top: 15px;
             right: 20px;
-            background: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--accent), #e8c878);
+            color: var(--primary);
             border: none;
-            font-size: 1.5rem;
+            padding: 8px;
+            border-radius: 8px;
+            font-size: .9rem;
+            font-weight: 600;
             cursor: pointer;
+            transition: all .3s ease;
+            width: 32px;
+            height: 32px;
+        }
+
+        .modal-close:hover {
+            background: linear-gradient(135deg, #e8c878, var(--accent));
+            transform: translateY(-1px);
+            box-shadow: 0 2px 8px rgba(255, 183, 77, 0.3);
+        }
+
+        /* Attraction Info Modal Styles */
+        .attraction-info h1 {
+            font-family: 'Playfair Display', serif;
+            color: var(--primary);
+            margin-bottom: 15px;
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+
+        .attraction-info h2 {
+            color: var(--primary);
+            margin-top: 25px;
+            margin-bottom: 12px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            border-bottom: 2px solid var(--accent);
+            padding-bottom: 5px;
+        }
+
+        .attraction-info p {
+            margin-bottom: 15px;
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        .attraction-info .highlight-box {
+            background: linear-gradient(135deg, rgba(255, 183, 77, 0.1), rgba(255, 206, 84, 0.1));
+            border-left: 4px solid var(--accent);
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+
+        .attraction-info .quick-facts {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .attraction-info .fact-item {
+            background: var(--secondary);
+            padding: 12px;
+            border-radius: 8px;
+            border-left: 3px solid var(--accent);
+        }
+
+        .attraction-info .fact-label {
+            font-weight: 600;
+            color: var(--primary);
+            font-size: 0.85rem;
+            margin-bottom: 5px;
+        }
+
+        .attraction-info .fact-value {
             color: var(--text-muted);
+            font-size: 0.9rem;
         }
 
         .form-group {
@@ -1035,7 +1136,7 @@
                 <div class="dash-card" onclick="navigate('attractions')">
                     <i class="fa-solid fa-ticket dash-icon"></i>
                     <div class="dash-title">Attractions</div>
-                    <div class="dash-sub">Day-wise entry tickets</div>
+                    <div class="dash-sub">Day-wise entry tickets & Wiki</div>
                 </div>
 
                 <!-- Documents Card (Full Width) -->
@@ -1963,8 +2064,7 @@
 
         <!-- Day navigation tabs -->
         <nav class="nav-container">
-            <button class="nav-btn active" onclick="showAttractionDay(1)">Day 1</button>
-            <button class="nav-btn" onclick="showAttractionDay(2)">Day 2</button>
+            <button class="nav-btn active" onclick="showAttractionDay(2)">Day 2</button>
             <button class="nav-btn" onclick="showAttractionDay(3)">Day 3</button>
             <button class="nav-btn" onclick="showAttractionDay(4)">Day 4</button>
             <button class="nav-btn" onclick="showAttractionDay(5)">Day 5</button>
@@ -1972,40 +2072,29 @@
             <button class="nav-btn" onclick="showAttractionDay(7)">Day 7</button>
             <button class="nav-btn" onclick="showAttractionDay(8)">Day 8</button>
             <button class="nav-btn" onclick="showAttractionDay(9)">Day 9</button>
-            <button class="nav-btn" onclick="showAttractionDay(10)">Day 10</button>
         </nav>
 
         <div class="container">
-            <!-- Day 1 Attractions -->
-            <div id="attraction-day1" class="sub-card active">
-                <div class="section-box">
-                    <div class="details">
-                        <h2>Day 1: Arrival Day</h2>
-                        <div class="attraction-item">
-                            <div class="attraction-icon"><i class="fa-solid fa-plane"></i></div>
-                            <div class="attraction-info">
-                                <div class="attraction-name">Airport Transfer</div>
-                                <div class="attraction-detail">Rome FCO → City Center</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
 
             <!-- Day 2 Attractions -->
-            <div id="attraction-day2" class="sub-card">
+            <div id="attraction-day2" class="sub-card active">
                 <div class="section-box">
                     <div class="details">
-                        <h2>Day 2: Rome</h2>
+                        <h2>Rome</h2>
                         <div class="attraction-item">
                             <div class="attraction-icon"><i class="fa-solid fa-church"></i></div>
                             <div class="attraction-info">
-                                <div class="attraction-name">Vatican Museums</div>
-                                <div class="attraction-detail">Skip-the-line tickets · Sistine Chapel</div>
+                                <div class="attraction-name">Vatican St. Peter's Basilica</div>
+                                <div class="attraction-detail">Free entry · Dome climb optional</div>
                             </div>
-                            <a href="https://drive.google.com/drive/folders/1234567890" target="_blank" class="attraction-link">
-                                <i class="fa-brands fa-google-drive"></i> Tickets
-                            </a>
+                            <div class="attraction-actions">
+                                <button class="info-btn" onclick="openAttractionInfo('st-peters-basilica')" title="Learn more about St. Peter's Basilica">
+                                    <i class="fa-solid fa-circle-info"></i>
+                                </button>
+                                <a href="https://drive.google.com/drive/folders/1234567890" target="_blank" class="attraction-link">
+                                    <i class="fa-brands fa-google-drive"></i> Tickets
+                                </a>
+                            </div>
                         </div>
                         <div class="attraction-item">
                             <div class="attraction-icon"><i class="fa-solid fa-landmark"></i></div>
@@ -2013,9 +2102,14 @@
                                 <div class="attraction-name">Colosseum</div>
                                 <div class="attraction-detail">Priority entrance tickets</div>
                             </div>
-                            <a href="https://drive.google.com/drive/folders/1234567890" target="_blank" class="attraction-link">
-                                <i class="fa-brands fa-google-drive"></i> Tickets
-                            </a>
+                            <div class="attraction-actions">
+                                <button class="info-btn" onclick="openAttractionInfo('colosseum')" title="Learn more about Colosseum">
+                                    <i class="fa-solid fa-circle-info"></i>
+                                </button>
+                                <a href="https://drive.google.com/drive/folders/1234567890" target="_blank" class="attraction-link">
+                                    <i class="fa-brands fa-google-drive"></i> Tickets
+                                </a>
+                            </div>
                         </div>
                         <div class="attraction-item">
                             <div class="attraction-icon"><i class="fa-solid fa-building-columns"></i></div>
@@ -2023,9 +2117,14 @@
                                 <div class="attraction-name">Roman Pantheon</div>
                                 <div class="attraction-detail">Free entrance · Evening visit</div>
                             </div>
-                            <a href="https://drive.google.com/drive/folders/1234567890" target="_blank" class="attraction-link">
-                                <i class="fa-brands fa-google-drive"></i> Tickets
-                            </a>
+                            <div class="attraction-actions">
+                                <button class="info-btn" onclick="openAttractionInfo('roman-pantheon')" title="Learn more about Roman Pantheon">
+                                    <i class="fa-solid fa-circle-info"></i>
+                                </button>
+                                <a href="https://drive.google.com/drive/folders/1234567890" target="_blank" class="attraction-link">
+                                    <i class="fa-brands fa-google-drive"></i> Tickets
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -2033,9 +2132,10 @@
 
             <!-- Day 3 Attractions -->
             <div id="attraction-day3" class="sub-card">
+                <!-- Rome Card -->
                 <div class="section-box">
                     <div class="details">
-                        <h2>Day 3: Rome → Florence & Pisa</h2>
+                        <h2>Rome</h2>
                         <div class="attraction-item">
                             <div class="attraction-icon"><i class="fa-solid fa-golf-ball"></i></div>
                             <div class="attraction-info">
@@ -2046,15 +2146,27 @@
                                 <i class="fa-brands fa-google-drive"></i> Tickets
                             </a>
                         </div>
+                    </div>
+                </div>
+
+                <!-- Pisa Card -->
+                <div class="section-box">
+                    <div class="details">
+                        <h2>Pisa</h2>
                         <div class="attraction-item">
                             <div class="attraction-icon"><i class="fa-solid fa-tower-observation"></i></div>
                             <div class="attraction-info">
                                 <div class="attraction-name">Leaning Tower of Pisa</div>
                                 <div class="attraction-detail">Entry tickets + Tower climb</div>
                             </div>
-                            <a href="https://drive.google.com/drive/folders/1234567890" target="_blank" class="attraction-link">
-                                <i class="fa-brands fa-google-drive"></i> Tickets
-                            </a>
+                            <div class="attraction-actions">
+                                <button class="info-btn" onclick="openAttractionInfo('leaning-tower-pisa')" title="Learn more about Leaning Tower of Pisa">
+                                    <i class="fa-solid fa-circle-info"></i>
+                                </button>
+                                <a href="https://drive.google.com/drive/folders/1234567890" target="_blank" class="attraction-link">
+                                    <i class="fa-brands fa-google-drive"></i> Tickets
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -2062,38 +2174,53 @@
 
             <!-- Day 4 Attractions -->
             <div id="attraction-day4" class="sub-card">
+                <!-- Florence Card -->
                 <div class="section-box">
                     <div class="details">
-                        <h2>Day 4: Florence → Venice</h2>
+                        <h2>Florence</h2>
                         <div class="attraction-item">
                             <div class="attraction-icon"><i class="fa-solid fa-church"></i></div>
                             <div class="attraction-info">
                                 <div class="attraction-name">Florence Cathedral (Duomo)</div>
                                 <div class="attraction-detail">Cathedral visit · Brunelleschi's Dome</div>
                             </div>
-                            <a href="https://drive.google.com/drive/folders/1234567890" target="_blank" class="attraction-link">
-                                <i class="fa-brands fa-google-drive"></i> Tickets
-                            </a>
+                            <div class="attraction-actions">
+                                <button class="info-btn" onclick="openAttractionInfo('florence-cathedral')" title="Learn more about Florence Cathedral">
+                                    <i class="fa-solid fa-circle-info"></i>
+                                </button>
+                            </div>
                         </div>
                         <div class="attraction-item">
                             <div class="attraction-icon"><i class="fa-solid fa-bridge"></i></div>
                             <div class="attraction-info">
-                                <div class="attraction-name">Ponte Vecchio</div>
+                                <div class="attraction-name">Florence Ponte Vecchio</div>
                                 <div class="attraction-detail">Historic bridge · Free visit</div>
                             </div>
                             <a href="https://drive.google.com/drive/folders/1234567890" target="_blank" class="attraction-link">
                                 <i class="fa-brands fa-google-drive"></i> Tickets
                             </a>
                         </div>
+                    </div>
+                </div>
+
+                <!-- Venice Card -->
+                <div class="section-box">
+                    <div class="details">
+                        <h2>Venice</h2>
                         <div class="attraction-item">
                             <div class="attraction-icon"><i class="fa-solid fa-bell"></i></div>
                             <div class="attraction-info">
                                 <div class="attraction-name">St. Mark's Bell Tower</div>
                                 <div class="attraction-detail">Elevator to the top · Venice views</div>
                             </div>
-                            <a href="https://drive.google.com/drive/folders/1234567890" target="_blank" class="attraction-link">
-                                <i class="fa-brands fa-google-drive"></i> Tickets
-                            </a>
+                            <div class="attraction-actions">
+                                <button class="info-btn" onclick="openAttractionInfo('st-marks-bell-tower')" title="Learn more about St. Mark's Bell Tower">
+                                    <i class="fa-solid fa-circle-info"></i>
+                                </button>
+                                <a href="https://drive.google.com/drive/folders/1234567890" target="_blank" class="attraction-link">
+                                    <i class="fa-brands fa-google-drive"></i> Tickets
+                                </a>
+                            </div>
                         </div>
                         <div class="attraction-item">
                             <div class="attraction-icon"><i class="fa-solid fa-ship"></i></div>
@@ -2113,7 +2240,7 @@
             <div id="attraction-day5" class="sub-card">
                 <div class="section-box">
                     <div class="details">
-                        <h2>Day 5: Venice → Lucerne</h2>
+                        <h2>Lucerne</h2>
                         <div class="attraction-item">
                             <div class="attraction-icon"><i class="fa-solid fa-train"></i></div>
                             <div class="attraction-info">
@@ -2142,22 +2269,37 @@
             <div id="attraction-day6" class="sub-card">
                 <div class="section-box">
                     <div class="details">
-                        <h2>Day 6: Jungfraujoch</h2>
+                        <h2>Bernese Oberland</h2>
                         <div class="attraction-item">
                             <div class="attraction-icon"><i class="fa-solid fa-mountain"></i></div>
                             <div class="attraction-info">
                                 <div class="attraction-name">Jungfraujoch "Top of Europe"</div>
                                 <div class="attraction-detail">Round-trip train tickets · Ice Palace · Observatory</div>
                             </div>
+                            <div class="attraction-actions">
+                                <button class="info-btn" onclick="openAttractionInfo('jungfraujoch')" title="Learn more about Jungfraujoch">
+                                    <i class="fa-solid fa-circle-info"></i>
+                                </button>
+                                <a href="https://drive.google.com/drive/folders/1234567890" target="_blank" class="attraction-link">
+                                    <i class="fa-brands fa-google-drive"></i> Tickets
+                                </a>
+                            </div>
+                        </div>
+                        <div class="attraction-item">
+                            <div class="attraction-icon"><i class="fa-solid fa-mountain-city"></i></div>
+                            <div class="attraction-info">
+                                <div class="attraction-name">Harder Kulm Viewpoint</div>
+                                <div class="attraction-detail">Funicular railway · Panoramic views of Interlaken</div>
+                            </div>
                             <a href="https://drive.google.com/drive/folders/1234567890" target="_blank" class="attraction-link">
                                 <i class="fa-brands fa-google-drive"></i> Tickets
                             </a>
                         </div>
                         <div class="attraction-item">
-                            <div class="attraction-icon"><i class="fa-solid fa-mountain-city"></i></div>
+                            <div class="attraction-icon"><i class="fa-solid fa-water"></i></div>
                             <div class="attraction-info">
-                                <div class="attraction-name">Harder Kulm</div>
-                                <div class="attraction-detail">Interlaken viewpoint · Panoramic views</div>
+                                <div class="attraction-name">Lake Thun & Lake Brienz</div>
+                                <div class="attraction-detail">Scenic lakes · Boat cruises · Alpine views</div>
                             </div>
                             <a href="https://drive.google.com/drive/folders/1234567890" target="_blank" class="attraction-link">
                                 <i class="fa-brands fa-google-drive"></i> Tickets
@@ -2169,9 +2311,10 @@
 
             <!-- Day 7 Attractions -->
             <div id="attraction-day7" class="sub-card">
+                <!-- Mt. Pilatus Card -->
                 <div class="section-box">
                     <div class="details">
-                        <h2>Day 7: Mt. Pilatus & Zurich</h2>
+                        <h2>Mt. Pilatus</h2>
                         <div class="attraction-item">
                             <div class="attraction-icon"><i class="fa-solid fa-mountain"></i></div>
                             <div class="attraction-info">
@@ -2182,6 +2325,13 @@
                                 <i class="fa-brands fa-google-drive"></i> Tickets
                             </a>
                         </div>
+                    </div>
+                </div>
+
+                <!-- Zurich Card -->
+                <div class="section-box">
+                    <div class="details">
+                        <h2>Zurich</h2>
                         <div class="attraction-item">
                             <div class="attraction-icon"><i class="fa-solid fa-city"></i></div>
                             <div class="attraction-info">
@@ -2200,7 +2350,7 @@
             <div id="attraction-day8" class="sub-card">
                 <div class="section-box">
                     <div class="details">
-                        <h2>Day 8: Lucerne → Paris</h2>
+                        <h2>Paris</h2>
                         <div class="attraction-item">
                             <div class="attraction-icon"><i class="fa-solid fa-ship"></i></div>
                             <div class="attraction-info">
@@ -2219,16 +2369,21 @@
             <div id="attraction-day9" class="sub-card">
                 <div class="section-box">
                     <div class="details">
-                        <h2>Day 9: Paris</h2>
+                        <h2>Paris</h2>
                         <div class="attraction-item">
                             <div class="attraction-icon"><i class="fa-solid fa-tower-observation"></i></div>
                             <div class="attraction-info">
                                 <div class="attraction-name">Eiffel Tower Summit</div>
                                 <div class="attraction-detail">Elevator to the very top · Priority access</div>
                             </div>
-                            <a href="https://drive.google.com/drive/folders/1234567890" target="_blank" class="attraction-link">
-                                <i class="fa-brands fa-google-drive"></i> Tickets
-                            </a>
+                            <div class="attraction-actions">
+                                <button class="info-btn" onclick="openAttractionInfo('eiffel-tower')" title="Learn more about Eiffel Tower">
+                                    <i class="fa-solid fa-circle-info"></i>
+                                </button>
+                                <a href="https://drive.google.com/drive/folders/1234567890" target="_blank" class="attraction-link">
+                                    <i class="fa-brands fa-google-drive"></i> Tickets
+                                </a>
+                            </div>
                         </div>
                         <div class="attraction-item">
                             <div class="attraction-icon"><i class="fa-solid fa-bus"></i></div>
@@ -2259,22 +2414,6 @@
                             <a href="https://drive.google.com/drive/folders/1234567890" target="_blank" class="attraction-link">
                                 <i class="fa-brands fa-google-drive"></i> Tickets
                             </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Day 10 Attractions -->
-            <div id="attraction-day10" class="sub-card">
-                <div class="section-box">
-                    <div class="details">
-                        <h2>Day 10: Departure</h2>
-                        <div class="attraction-item">
-                            <div class="attraction-icon"><i class="fa-solid fa-plane-departure"></i></div>
-                            <div class="attraction-info">
-                                <div class="attraction-name">Airport Transfer</div>
-                                <div class="attraction-detail">Paris City → CDG Airport</div>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -2348,7 +2487,7 @@
     ═══════════════════════════════════════ -->
     <div id="add-hotel-modal" class="modal">
         <div class="modal-content">
-            <button class="modal-close" onclick="closeAddHotelModal()">&times;</button>
+            <button class="modal-close" onclick="closeAddHotelModal()"><i class="fa-solid fa-xmark"></i></button>
             <h2 style="font-family: 'Playfair Display', serif; color: var(--primary); margin-bottom: 20px;">
                 Add Restaurant to <span id="modal-city-name">City</span>
             </h2>
@@ -2423,7 +2562,7 @@
     ═══════════════════════════════════════ -->
     <div id="add-landmark-modal" class="modal">
         <div class="modal-content" style="max-width: 400px;">
-            <button class="modal-close" onclick="closeAddLandmarkModal()">&times;</button>
+            <button class="modal-close" onclick="closeAddLandmarkModal()"><i class="fa-solid fa-xmark"></i></button>
             <h2 style="font-family: 'Playfair Display', serif; color: var(--primary); margin-bottom: 20px;">
                 Add Landmark to <span id="landmark-modal-city-name">City</span>
             </h2>
@@ -2448,6 +2587,18 @@
                     <i class="fa-solid fa-map-pin"></i> Add Landmark
                 </button>
             </form>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════
+         ATTRACTION INFO MODAL - Wiki-like information for attractions
+    ═══════════════════════════════════════ -->
+    <div id="attraction-info-modal" class="modal">
+        <div class="modal-content" style="max-width: 600px; max-height: 80vh; overflow-y: auto;">
+            <button class="modal-close" onclick="closeAttractionInfoModal()"><i class="fa-solid fa-xmark"></i></button>
+            <div id="attraction-info-content">
+                <!-- Dynamic content will be loaded here -->
+            </div>
         </div>
     </div>
 
@@ -3335,9 +3486,10 @@
             document.getElementById('attraction-day' + dayNumber).classList.add('active');
 
             // Update navigation button states
+            // Day numbers now: 2, 3, 4, 5, 6, 7, 8, 9 (mapping to indices 0, 1, 2, 3, 4, 5, 6, 7)
             document.querySelectorAll('#page-attractions .nav-btn').forEach((btn, index) => {
                 btn.classList.remove('active');
-                if (index === dayNumber - 1) {
+                if (index === dayNumber - 2) {
                     btn.classList.add('active');
                 }
             });
@@ -3565,6 +3717,134 @@
 
             modal.classList.remove('active');
             form.reset();
+        }
+
+        /* ═══════════════════════════════════════
+           ATTRACTION INFO MODAL FUNCTIONS
+        ═══════════════════════════════════════ */
+
+        // Cache for loaded attraction data to avoid repeated fetches
+        const attractionCache = {};
+
+        /**
+         * Load attraction information from wiki files
+         */
+        async function loadAttractionInfo(attractionKey) {
+            // Check cache first
+            if (attractionCache[attractionKey]) {
+                return attractionCache[attractionKey];
+            }
+
+            try {
+                const response = await fetch(`wiki/attractions/${attractionKey}.json`);
+                if (!response.ok) {
+                    throw new Error(`Attraction file not found: ${attractionKey}`);
+                }
+
+                const attractionData = await response.json();
+
+                // Cache the data
+                attractionCache[attractionKey] = attractionData;
+
+                return attractionData;
+            } catch (error) {
+                console.warn(`Could not load attraction info for ${attractionKey}:`, error);
+                return null;
+            }
+        }
+
+        /**
+         * Render attraction content HTML
+         */
+        function renderAttractionContent(attraction) {
+            return `
+                <div class="attraction-info">
+                    <h1>${attraction.name}</h1>
+
+                    <div class="highlight-box">
+                        <strong>Overview:</strong> ${attraction.overview}
+                    </div>
+
+                    <h2>🏛️ History & Significance</h2>
+                    <p>${attraction.history}</p>
+
+                    <h2>✨ Must-See Highlights</h2>
+                    <ul>
+                        ${attraction.highlights.map(highlight => `<li>${highlight}</li>`).join('')}
+                    </ul>
+
+                    <h2>💡 Visitor Tips</h2>
+                    <p>${attraction.tips}</p>
+
+                    <h2>📊 Quick Facts</h2>
+                    <div class="quick-facts">
+                        ${Object.entries(attraction.facts).map(([label, value]) => `
+                            <div class="fact-item">
+                                <div class="fact-label">${label}</div>
+                                <div class="fact-value">${value}</div>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+            `;
+        }
+
+        /**
+         * Open attraction info modal with dynamic loading
+         */
+        async function openAttractionInfo(attractionKey) {
+            const modal = document.getElementById('attraction-info-modal');
+            const content = document.getElementById('attraction-info-content');
+
+            // Show loading state
+            content.innerHTML = `
+                <div class="attraction-info">
+                    <h1><i class="fa-solid fa-spinner fa-spin"></i> Loading...</h1>
+                    <p>Fetching attraction information...</p>
+                </div>
+            `;
+
+            // Show modal immediately with loading state
+            modal.classList.add('active');
+
+            try {
+                // Load attraction data
+                const attraction = await loadAttractionInfo(attractionKey);
+
+                if (attraction) {
+                    // Render the full content
+                    content.innerHTML = renderAttractionContent(attraction);
+                } else {
+                    // Show fallback content
+                    content.innerHTML = `
+                        <div class="attraction-info">
+                            <h1>Information Coming Soon</h1>
+                            <p>Detailed information for this attraction is being prepared. Check back soon!</p>
+                            <div class="highlight-box">
+                                <strong>Tip:</strong> You can contribute attraction information by creating a file at
+                                <code>wiki/attractions/${attractionKey}.json</code>
+                            </div>
+                        </div>
+                    `;
+                }
+            } catch (error) {
+                // Show error state
+                content.innerHTML = `
+                    <div class="attraction-info">
+                        <h1>⚠️ Loading Error</h1>
+                        <p>Could not load attraction information. Please check your connection and try again.</p>
+                    </div>
+                `;
+                console.error('Error loading attraction info:', error);
+            }
+        }
+
+        /**
+         * Close attraction info modal
+         */
+        function closeAttractionInfoModal() {
+            const modal = document.getElementById('attraction-info-modal');
+            modal.classList.remove('active');
         }
 
         /**
