@@ -6,7 +6,7 @@
     <title>Euro Trip 2026 | Ultimate Travel Guide</title>
 
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -52,7 +52,7 @@
 
         .hero h1 {
             margin: 0;
-            font-family: 'Playfair Display', serif;
+            font-family: 'Inter', sans-serif;
             font-size: 2.5rem;
         }
 
@@ -300,8 +300,9 @@
         }
 
         .dash-card .dash-title {
-            font-family: 'Playfair Display', serif;
+            font-family: 'Inter', sans-serif;
             font-size: 1.1rem;
+            font-weight: 600;
             color: var(--primary);
             margin-bottom: 4px;
         }
@@ -358,8 +359,9 @@
 
         .details h2 {
             margin: 0 0 15px;
-            font-family: 'Playfair Display', serif;
+            font-family: 'Inter', sans-serif;
             font-size: 1.8rem;
+            font-weight: 700;
             color: var(--primary);
             border-bottom: 2px solid var(--accent);
             display: inline-block;
@@ -471,7 +473,7 @@
 
         .hotel-header h3 {
             margin: 0;
-            font-family: 'Playfair Display', serif;
+            font-family: 'Inter', sans-serif;
             font-size: 1.3rem;
         }
 
@@ -761,6 +763,10 @@
             margin: 20px 0;
             gap: 15px;
             flex-wrap: wrap;
+            background: rgba(212, 175, 55, 0.05);
+            padding: 15px;
+            border-radius: 12px;
+            border: 1px solid rgba(212, 175, 55, 0.15);
         }
 
         .add-hotel-btn {
@@ -785,27 +791,60 @@
 
         .filter-controls {
             display: flex;
-            gap: 10px;
+            gap: 15px;
             align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .filter-controls label {
+            font-size: .85rem;
+            font-weight: 600;
+            color: var(--primary);
+            margin-right: 5px;
         }
 
         .filter-select {
-            padding: 8px 12px;
-            border: 1px solid #e2e8f0;
+            padding: 10px 14px;
+            border: 2px solid var(--accent);
             border-radius: 8px;
-            font-size: .85rem;
+            font-size: .9rem;
+            font-weight: 500;
             background: var(--card-bg);
-            color: var(--text-main);
+            color: var(--primary);
+            cursor: pointer;
+            transition: all .3s ease;
+            min-width: 140px;
+        }
+
+        .filter-select:hover,
+        .filter-select:focus {
+            border-color: #e8c878;
+            box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1);
+            outline: none;
         }
 
         .search-input {
-            padding: 8px 12px;
-            border: 1px solid #e2e8f0;
+            padding: 10px 14px;
+            border: 2px solid var(--accent);
             border-radius: 8px;
-            font-size: .85rem;
+            font-size: .9rem;
+            font-weight: 400;
             background: var(--card-bg);
-            color: var(--text-main);
-            width: 200px;
+            color: var(--primary);
+            width: 240px;
+            transition: all .3s ease;
+        }
+
+        .search-input:hover,
+        .search-input:focus {
+            border-color: #e8c878;
+            box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1);
+            outline: none;
+        }
+
+        .search-input::placeholder {
+            color: var(--text-muted);
+            font-weight: 400;
         }
 
         .landmark-group {
@@ -813,7 +852,7 @@
         }
 
         .landmark-title {
-            font-family: 'Playfair Display', serif;
+            font-family: 'Inter', sans-serif;
             font-size: 1.3rem;
             color: var(--primary);
             margin-bottom: 15px;
@@ -921,7 +960,7 @@
 
         /* Attraction Info Modal Styles */
         .attraction-info h1 {
-            font-family: 'Playfair Display', serif;
+            font-family: 'Inter', sans-serif;
             color: var(--primary);
             margin-bottom: 15px;
             font-size: 1.8rem;
@@ -1044,7 +1083,7 @@
         }
 
         .eurail-info h3 {
-            font-family: 'Playfair Display', serif;
+            font-family: 'Inter', sans-serif;
             margin: 0 0 8px;
             color: var(--accent);
         }
@@ -2450,7 +2489,7 @@
                 </a>
 
                 <!-- Visa Card -->
-                <a href="#" class="doc-card">
+                <a href="https://drive.google.com/drive/folders/1qKoeeWnTbJCChws12qKdPlanm4ZWfuHg" target="_blank" class="doc-card">
                     <i class="fa-solid fa-stamp"></i>
                     <div class="doc-title">Visa</div>
                     <div class="doc-sub">Google Drive →</div>
@@ -2746,10 +2785,16 @@
                     <div id="nearby-${city.key}" class="sub-card ${isActive}">
                         <div class="nearby-controls">
                             <div class="filter-controls">
-                                <select class="filter-select" id="landmark-filter-${city.key}" onchange="filterByLandmark('${city.key}', this.value)">
-                                    <option value="all">All Landmarks</option>
-                                </select>
-                                <input type="text" class="search-input" placeholder="Search restaurants in ${city.displayName}..." onkeyup="searchHotels('${city.key}', this.value)">
+                                <div style="display: flex; align-items: center; gap: 8px;">
+                                    <i class="fa-solid fa-map-marker-alt" style="color: var(--accent); font-size: .9rem;"></i>
+                                    <select class="filter-select" id="landmark-filter-${city.key}" onchange="filterByLandmark('${city.key}', this.value)">
+                                        <option value="all">All Landmarks</option>
+                                    </select>
+                                </div>
+                                <div style="display: flex; align-items: center; gap: 8px;">
+                                    <i class="fa-solid fa-search" style="color: var(--accent); font-size: .9rem;"></i>
+                                    <input type="text" class="search-input" placeholder="Search restaurants in ${city.displayName}..." onkeyup="searchHotels('${city.key}', this.value)">
+                                </div>
                             </div>
                             <div style="display: flex; gap: 10px;">
                                 <button class="add-hotel-btn" onclick="openAddHotelModal('${city.key}')">
