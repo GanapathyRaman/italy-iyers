@@ -1017,6 +1017,172 @@
             font-size: 0.9rem;
         }
 
+        /* Auto-fetch Restaurant Interface Styles */
+        .auto-fetch-container {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .auto-fetch-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: linear-gradient(135deg, var(--accent), #e8c878);
+            color: var(--primary);
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: .9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all .3s ease;
+            text-decoration: none;
+        }
+
+        .auto-fetch-btn:hover {
+            background: linear-gradient(135deg, #e8c878, var(--accent));
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3);
+        }
+
+        .auto-fetch-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .manual-entry-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: transparent;
+            color: var(--primary);
+            border: 2px solid var(--accent);
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-size: .9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all .3s ease;
+            text-decoration: none;
+        }
+
+        .manual-entry-btn:hover {
+            background: var(--accent);
+            color: var(--primary);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(212, 175, 55, 0.2);
+        }
+
+        /* Search Results Dropdown Styles */
+        .search-results {
+            position: relative;
+            background: var(--card-bg);
+            border: 2px solid var(--accent);
+            border-radius: 12px;
+            margin-top: 10px;
+            box-shadow: 0 8px 25px rgba(0,0,0,.1);
+            z-index: 1000;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .search-loading {
+            padding: 20px;
+            text-align: center;
+            color: var(--text-muted);
+        }
+
+        .search-result-item {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            border-bottom: 1px solid #f1f5f9;
+            cursor: pointer;
+            transition: all .3s ease;
+        }
+
+        .search-result-item:last-child {
+            border-bottom: none;
+        }
+
+        .search-result-item:hover {
+            background: rgba(212, 175, 55, 0.05);
+            transform: translateX(5px);
+        }
+
+        .search-result-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--accent), #e8c878);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            margin-right: 12px;
+            flex-shrink: 0;
+        }
+
+        .search-result-info {
+            flex: 1;
+        }
+
+        .search-result-name {
+            font-weight: 600;
+            font-size: .95rem;
+            margin-bottom: 4px;
+            color: var(--primary);
+        }
+
+        .search-result-address {
+            font-size: .8rem;
+            color: var(--text-muted);
+            margin-bottom: 2px;
+        }
+
+        .search-result-details {
+            font-size: .75rem;
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .search-result-rating {
+            display: inline-flex;
+            align-items: center;
+            gap: 2px;
+            color: #f59e0b;
+        }
+
+        .search-no-results {
+            padding: 30px 20px;
+            text-align: center;
+            color: var(--text-muted);
+            font-style: italic;
+        }
+
+        .error-notification {
+            background: linear-gradient(135deg, #dc2626, #ef4444);
+            color: white;
+            padding: 15px 20px;
+            border-radius: 8px;
+            margin: 15px 0;
+            text-align: center;
+            font-weight: 500;
+        }
+
+        .success-notification {
+            background: linear-gradient(135deg, #059669, #10b981);
+            color: white;
+            padding: 15px 20px;
+            border-radius: 8px;
+            margin: 15px 0;
+            text-align: center;
+            font-weight: 500;
+        }
+
         .form-group {
             margin-bottom: 20px;
         }
@@ -2419,7 +2585,7 @@
                                 <button class="info-btn" onclick="openAttractionInfo('eiffel-tower')" title="Learn more about Eiffel Tower">
                                     <i class="fa-solid fa-circle-info"></i>
                                 </button>
-                                <a href="https://drive.google.com/drive/folders/1234567890" target="_blank" class="attraction-link">
+                                <a href="https://drive.google.com/drive/folders/1ruE1KiTDlzUuBQFrfj44X1ks0WNMMfZL" target="_blank" class="attraction-link">
                                     <i class="fa-brands fa-google-drive"></i> Tickets
                                 </a>
                             </div>
@@ -2527,11 +2693,53 @@
     <div id="add-hotel-modal" class="modal">
         <div class="modal-content">
             <button class="modal-close" onclick="closeAddHotelModal()"><i class="fa-solid fa-xmark"></i></button>
-            <h2 style="font-family: 'Playfair Display', serif; color: var(--primary); margin-bottom: 20px;">
+            <h2 style="font-family: 'Inter', sans-serif; color: var(--primary); margin-bottom: 20px;">
                 Add Restaurant to <span id="modal-city-name">City</span>
             </h2>
 
-            <form id="add-hotel-form" onsubmit="submitHotel(event)">
+            <!-- Search & Select interface (shown initially) -->
+            <div id="search-interface" class="auto-fetch-container">
+                <div class="form-group">
+                    <label class="form-label">🔍 Search Restaurant</label>
+                    <div style="display: flex; align-items: center; gap: 8px;">
+                        <i class="fa-solid fa-search" style="color: var(--accent); font-size: .9rem;"></i>
+                        <input type="text" class="search-input" id="restaurant-search"
+                               placeholder="Type restaurant name and location (e.g., Love Juice Bar Paris)..."
+                               oninput="searchRestaurants(this.value)"
+                               onfocus="showSearchResults()"
+                               autocomplete="off">
+                    </div>
+                    <small style="color: var(--text-muted); font-size: 0.8rem;">
+                        Search for restaurants and select from suggestions
+                    </small>
+                </div>
+
+                <!-- Search Results Dropdown -->
+                <div id="search-results" class="search-results" style="display: none;">
+                    <div class="search-loading" id="search-loading" style="display: none;">
+                        <i class="fa-solid fa-spinner fa-spin"></i> Searching...
+                    </div>
+                    <div id="search-results-list"></div>
+                </div>
+
+                <div style="display: flex; gap: 10px; align-items: center; margin-top: 20px;">
+                    <button type="button" class="manual-entry-btn" onclick="showManualEntry()">
+                        <i class="fa-solid fa-edit"></i> Enter Manually
+                    </button>
+                </div>
+            </div>
+
+            <!-- Loading state -->
+            <div id="loading-interface" class="auto-fetch-container" style="display: none;">
+                <div style="text-align: center; padding: 40px;">
+                    <i class="fa-solid fa-spinner fa-spin" style="font-size: 2rem; color: var(--accent); margin-bottom: 15px;"></i>
+                    <h3 style="margin: 0 0 10px; font-family: 'Inter', sans-serif;">Fetching Restaurant Details...</h3>
+                    <p style="color: var(--text-muted); margin: 0;">Getting information from Google Maps</p>
+                </div>
+            </div>
+
+            <!-- Original form (shown after auto-fetch or manual entry) -->
+            <form id="add-hotel-form" onsubmit="submitHotel(event)" style="display: none;">
                 <div class="form-group">
                     <label class="form-label">Restaurant Name *</label>
                     <input type="text" class="form-input" name="hotelName" required>
@@ -2704,7 +2912,13 @@
             console.log('🌍 Fetching all available cities...');
 
             try {
-                const response = await fetch(GOOGLE_SHEETS_CONFIG.appsScriptUrl + '?action=getCities');
+                // Try CORS first
+                const response = await fetch(GOOGLE_SHEETS_CONFIG.appsScriptUrl + '?action=getCities', {
+                    method: 'GET',
+                    headers: {
+                        'Accept': 'application/json',
+                    }
+                });
                 const result = await response.json();
 
                 if (result.success && result.cities) {
@@ -2727,8 +2941,16 @@
                     return [];
                 }
             } catch (error) {
-                console.error('❌ Error fetching cities:', error);
-                showCityError('Connection error - could not load cities');
+                console.error('❌ Error fetching cities with CORS:', error);
+
+                // Show fallback error message but continue to try other methods
+                showCityError('CORS blocked - trying alternative method...');
+
+                // For now, just show the error - JSONP would require backend changes
+                setTimeout(() => {
+                    showCityError('Failed to load cities. Please check Google Apps Script deployment and CORS settings.');
+                }, 2000);
+
                 return [];
             }
         }
@@ -3706,6 +3928,9 @@
                 fetchLandmarksFromSheets();
             }
 
+            // Initialize auto-fetch interface
+            resetToAutoFetchInterface();
+
             // Show modal
             modal.classList.add('active');
         }
@@ -3725,6 +3950,419 @@
 
             modal.classList.remove('active');
             form.reset();
+
+            // Reset to auto-fetch interface
+            resetToAutoFetchInterface();
+        }
+
+        /* ═══════════════════════════════════════
+           GOOGLE MAPS AUTO-FETCH FUNCTIONS
+        ═══════════════════════════════════════ */
+
+        /**
+         * Reset modal to search interface
+         */
+        function resetToAutoFetchInterface() {
+            document.getElementById('search-interface').style.display = 'block';
+            document.getElementById('loading-interface').style.display = 'none';
+            document.getElementById('add-hotel-form').style.display = 'none';
+
+            // Clear search input and results
+            const searchInput = document.getElementById('restaurant-search');
+            const searchResults = document.getElementById('search-results');
+            if (searchInput) searchInput.value = '';
+            if (searchResults) searchResults.style.display = 'none';
+
+            // Clear any previous notifications
+            const notifications = document.querySelectorAll('.error-notification, .success-notification');
+            notifications.forEach(notification => notification.remove());
+        }
+
+        /**
+         * Show manual entry form
+         */
+        function showManualEntry() {
+            document.getElementById('search-interface').style.display = 'none';
+            document.getElementById('loading-interface').style.display = 'none';
+            document.getElementById('add-hotel-form').style.display = 'block';
+
+            // Clear form fields
+            document.getElementById('add-hotel-form').reset();
+        }
+
+        /**
+         * Show loading state
+         */
+        function showLoadingState() {
+            document.getElementById('search-interface').style.display = 'none';
+            document.getElementById('loading-interface').style.display = 'block';
+            document.getElementById('add-hotel-form').style.display = 'none';
+        }
+
+        /**
+         * Extract place ID from Google Maps URL
+         */
+        function extractPlaceId(mapsUrl) {
+            try {
+                // Handle different Google Maps URL formats
+                const url = new URL(mapsUrl);
+
+                // Format 1: place_id in URL parameters
+                const placeId = url.searchParams.get('place_id');
+                if (placeId) return placeId;
+
+                // Format 2: /place/ in pathname
+                const placeMatch = url.pathname.match(/\/place\/([^\/]+)/);
+                if (placeMatch) return placeMatch[1];
+
+                // Format 3: Extract from ftid parameter
+                const ftid = url.searchParams.get('ftid');
+                if (ftid) return ftid;
+
+                // Format 4: Extract from maps URL hash
+                const hash = url.hash;
+                const hashPlaceMatch = hash.match(/place_id:([A-Za-z0-9_-]+)/);
+                if (hashPlaceMatch) return hashPlaceMatch[1];
+
+                return null;
+            } catch (error) {
+                console.error('Error parsing Maps URL:', error);
+                return null;
+            }
+        }
+
+        // ═══════════════════════════════════════
+        // SEARCH & SELECT FUNCTIONALITY
+        // ═══════════════════════════════════════
+
+        let searchTimeout;
+        let searchCache = {};
+
+        /**
+         * Search restaurants as user types
+         */
+        async function searchRestaurants(query) {
+            clearTimeout(searchTimeout);
+
+            const searchResults = document.getElementById('search-results');
+            const resultsList = document.getElementById('search-results-list');
+            const loadingDiv = document.getElementById('search-loading');
+
+            if (!query || query.length < 3) {
+                searchResults.style.display = 'none';
+                return;
+            }
+
+            // Show loading and search results container
+            searchResults.style.display = 'block';
+            loadingDiv.style.display = 'block';
+            resultsList.innerHTML = '';
+
+            // Debounce search requests
+            searchTimeout = setTimeout(async () => {
+                try {
+                    // Check cache first
+                    const cacheKey = query.toLowerCase().trim();
+                    if (searchCache[cacheKey]) {
+                        displaySearchResults(searchCache[cacheKey]);
+                        loadingDiv.style.display = 'none';
+                        return;
+                    }
+
+                    console.log('🔍 Searching for:', query);
+
+                    const response = await fetch(GOOGLE_SHEETS_CONFIG.appsScriptUrl, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'text/plain',
+                        },
+                        body: JSON.stringify({
+                            action: 'searchRestaurants',
+                            query: query
+                        })
+                    });
+
+                    const result = await response.json();
+                    console.log('📊 Search result:', result);
+
+                    if (result.success && result.data) {
+                        // Cache results
+                        searchCache[cacheKey] = result.data;
+                        displaySearchResults(result.data);
+                    } else {
+                        throw new Error(result.error || 'Search failed');
+                    }
+
+                } catch (error) {
+                    console.error('❌ Search error:', error);
+                    resultsList.innerHTML = `
+                        <div class="search-no-results">
+                            <i class="fa-solid fa-exclamation-triangle"></i>
+                            Search failed: ${error.message}
+                        </div>
+                    `;
+                } finally {
+                    loadingDiv.style.display = 'none';
+                }
+            }, 500); // 500ms debounce
+        }
+
+        /**
+         * Display search results in dropdown
+         */
+        function displaySearchResults(results) {
+            const resultsList = document.getElementById('search-results-list');
+
+            if (!results || results.length === 0) {
+                resultsList.innerHTML = `
+                    <div class="search-no-results">
+                        <i class="fa-solid fa-search"></i>
+                        No restaurants found. Try a different search term.
+                    </div>
+                `;
+                return;
+            }
+
+            resultsList.innerHTML = results.map((place, index) => {
+                const rating = place.rating ? `
+                    <span class="search-result-rating">
+                        <i class="fa-solid fa-star"></i> ${place.rating}
+                    </span>
+                ` : '';
+
+                const cuisineTypes = place.cuisineTypes && place.cuisineTypes.length > 0
+                    ? place.cuisineTypes.join(', ')
+                    : 'Restaurant';
+
+                return `
+                    <div class="search-result-item" onclick="selectRestaurant(${index})">
+                        <div class="search-result-icon">
+                            <i class="fa-solid fa-utensils"></i>
+                        </div>
+                        <div class="search-result-info">
+                            <div class="search-result-name">${place.name}</div>
+                            <div class="search-result-address">${place.address}</div>
+                            <div class="search-result-details">
+                                <span>${cuisineTypes}</span>
+                                ${rating}
+                                ${place.priceLevel ? `<span>€${'€'.repeat(place.priceLevel)}</span>` : ''}
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+
+            // Store results for selection
+            window.currentSearchResults = results;
+        }
+
+        /**
+         * Handle restaurant selection
+         */
+        function selectRestaurant(index) {
+            const selected = window.currentSearchResults[index];
+            console.log('✅ Selected restaurant:', selected);
+
+            // Hide search results
+            document.getElementById('search-results').style.display = 'none';
+
+            // Clear search input
+            document.getElementById('restaurant-search').value = selected.name;
+
+            // Show loading state
+            showLoadingState();
+
+            // Populate form with selected restaurant data
+            populateFormWithData(selected);
+            showSuccessNotification(`Selected: ${selected.name}`);
+        }
+
+        /**
+         * Show search results when input is focused
+         */
+        function showSearchResults() {
+            const query = document.getElementById('restaurant-search').value;
+            if (query.length >= 3) {
+                document.getElementById('search-results').style.display = 'block';
+            }
+        }
+
+        /**
+         * Hide search results when clicking outside
+         */
+        document.addEventListener('click', function(event) {
+            const searchContainer = document.getElementById('search-interface');
+            const searchResults = document.getElementById('search-results');
+
+            if (searchContainer && !searchContainer.contains(event.target)) {
+                searchResults.style.display = 'none';
+            }
+        });
+
+        /**
+         * Fetch restaurant data from Google Apps Script with Maps API integration
+         */
+        async function fetchFromGoogleMapsAPI(mapsUrl) {
+            try {
+                console.log('🗺️ Fetching restaurant details from Google Maps...');
+
+                const response = await fetch(GOOGLE_SHEETS_CONFIG.appsScriptUrl, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'text/plain',
+                    },
+                    body: JSON.stringify({
+                        action: 'autoFetchRestaurant',
+                        mapsUrl: mapsUrl
+                    })
+                });
+
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+
+                const result = await response.json();
+                console.log('📊 Auto-fetch result:', result);
+
+                if (!result.success) {
+                    throw new Error(result.error || 'Failed to fetch restaurant details');
+                }
+
+                return result.data;
+
+            } catch (error) {
+                console.error('❌ Auto-fetch error:', error);
+
+                // Try with no-cors mode as fallback
+                try {
+                    console.log('🔄 Trying no-cors fallback...');
+
+                    const fallbackResponse = await fetch(GOOGLE_SHEETS_CONFIG.appsScriptUrl, {
+                        method: 'POST',
+                        mode: 'no-cors',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            action: 'autoFetchRestaurant',
+                            mapsUrl: mapsUrl
+                        })
+                    });
+
+                    // With no-cors, we can't read the response, so we assume it worked
+                    // This is a limitation of the no-cors mode
+                    throw new Error('Cannot verify auto-fetch result with no-cors mode. Please check Google Apps Script logs.');
+
+                } catch (fallbackError) {
+                    console.error('❌ Fallback also failed:', fallbackError);
+                    throw new Error(`Auto-fetch failed: ${error.message}. Make sure your Google Apps Script is properly configured with the Maps API key.`);
+                }
+            }
+        }
+
+        /**
+         * Populate form with fetched data
+         */
+        function populateFormWithData(data) {
+            document.getElementById('search-interface').style.display = 'none';
+            document.getElementById('loading-interface').style.display = 'none';
+            document.getElementById('add-hotel-form').style.display = 'block';
+
+            const form = document.getElementById('add-hotel-form');
+
+            // Populate form fields
+            if (data.name) {
+                form.hotelName.value = data.name;
+            }
+
+            if (data.address) {
+                form.location.value = data.address;
+            }
+
+            if (data.googleMapsUrl) {
+                form.googleMaps.value = data.googleMapsUrl;
+            }
+
+            // Map price level to price range
+            if (data.priceLevel) {
+                const priceRanges = {
+                    1: "€20-50",
+                    2: "€50-100",
+                    3: "€100-200",
+                    4: "€200+"
+                };
+                if (priceRanges[data.priceLevel]) {
+                    form.priceRange.value = priceRanges[data.priceLevel];
+                }
+            }
+
+            // Populate cuisine tags if available
+            if (data.cuisineTypes && data.cuisineTypes.length > 0) {
+                form.cuisineTags.value = data.cuisineTypes.join(', ');
+            }
+
+            // Add fetched info to notes
+            let notesText = '';
+            if (data.rating) {
+                notesText += `Google Rating: ${data.rating}⭐ `;
+            }
+            if (data.phone) {
+                notesText += `Phone: ${data.phone} `;
+            }
+            if (data.website) {
+                notesText += `Website: ${data.website} `;
+            }
+
+            if (notesText) {
+                form.notes.value = notesText.trim();
+            }
+        }
+
+        /**
+         * Show error notification
+         */
+        function showErrorNotification(message) {
+            // Remove any existing notifications
+            const existing = document.querySelectorAll('.error-notification, .success-notification');
+            existing.forEach(el => el.remove());
+
+            const notification = document.createElement('div');
+            notification.className = 'error-notification';
+            notification.innerHTML = `<i class="fa-solid fa-exclamation-triangle"></i> ${message}`;
+
+            const container = document.getElementById('search-interface') ||
+                            document.getElementById('add-hotel-form').parentNode;
+            container.insertBefore(notification, container.firstChild.nextSibling.nextSibling);
+
+            // Auto-remove after 5 seconds
+            setTimeout(() => {
+                if (notification.parentNode) {
+                    notification.remove();
+                }
+            }, 5000);
+        }
+
+        /**
+         * Show success notification
+         */
+        function showSuccessNotification(message) {
+            // Remove any existing notifications
+            const existing = document.querySelectorAll('.error-notification, .success-notification');
+            existing.forEach(el => el.remove());
+
+            const notification = document.createElement('div');
+            notification.className = 'success-notification';
+            notification.innerHTML = `<i class="fa-solid fa-check-circle"></i> ${message}`;
+
+            const container = document.getElementById('add-hotel-form').parentNode;
+            container.insertBefore(notification, document.getElementById('add-hotel-form'));
+
+            // Auto-remove after 3 seconds
+            setTimeout(() => {
+                if (notification.parentNode) {
+                    notification.remove();
+                }
+            }, 3000);
         }
 
         /**
