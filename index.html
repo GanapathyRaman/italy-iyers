@@ -1218,30 +1218,50 @@
 
 
         @media (max-width: 768px) {
+            .modal {
+                padding: 20px 10px;
+            }
+
             .modal-content.document-modal {
-                width: 98%;
-                max-width: 98%;
-                max-height: 95vh;
+                width: 100%;
+                max-width: 100%;
+                max-height: calc(100vh - 40px);
                 padding: 10px;
+                margin: 0;
             }
 
             .modal-iframe {
-                height: 80vh;
+                height: 70vh;
             }
 
             /* General modal content for mobile */
             .modal-content {
-                max-height: 90vh;
-                width: 95%;
-                padding: 20px;
+                max-height: calc(100vh - 40px);
+                width: 100%;
+                padding: 15px;
+                margin: 0;
             }
 
             /* Attraction modal for mobile */
             .modal-content.attraction-modal {
-                width: 98%;
-                max-width: 98%;
-                max-height: 92vh;
-                padding: 15px;
+                width: 100%;
+                max-width: 100%;
+                max-height: calc(100vh - 40px);
+                padding: 10px;
+                margin: 0;
+            }
+
+            #attraction-info-content {
+                max-height: calc(100vh - 140px) !important;
+            }
+
+            .modal-header {
+                margin-bottom: 10px;
+                padding-bottom: 8px;
+            }
+
+            .modal-title {
+                font-size: 1.2rem;
             }
         }
 
@@ -1251,9 +1271,6 @@
         }
 
         .modal-close {
-            position: absolute;
-            top: 15px;
-            right: 20px;
             display: inline-flex;
             align-items: center;
             justify-content: center;
@@ -1268,6 +1285,7 @@
             transition: all .3s ease;
             width: 32px;
             height: 32px;
+            flex-shrink: 0;
         }
 
         .modal-close:hover {
@@ -4625,9 +4643,12 @@
          ATTRACTION INFO MODAL - Wiki-like information for attractions
     ═══════════════════════════════════════ -->
     <div id="attraction-info-modal" class="modal">
-        <div class="modal-content attraction-modal" style="overflow-y: auto;">
-            <button class="modal-close" onclick="closeAttractionInfoModal()"><i class="fa-solid fa-xmark"></i></button>
-            <div id="attraction-info-content">
+        <div class="modal-content attraction-modal">
+            <div class="modal-header">
+                <h3 class="modal-title" id="attraction-modal-title">Attraction Information</h3>
+                <button class="modal-close" onclick="closeAttractionInfoModal()"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div id="attraction-info-content" style="overflow-y: auto; max-height: calc(90vh - 120px);">
                 <!-- Dynamic content will be loaded here -->
             </div>
         </div>
@@ -6428,8 +6449,10 @@
         async function openAttractionInfo(attractionKey) {
             const modal = document.getElementById('attraction-info-modal');
             const content = document.getElementById('attraction-info-content');
+            const titleElement = document.getElementById('attraction-modal-title');
 
-            // Show loading state
+            // Set initial title and show loading state
+            titleElement.textContent = 'Loading...';
             content.innerHTML = `
                 <div class="attraction-info">
                     <h1><i class="fa-solid fa-spinner fa-spin"></i> Loading...</h1>
@@ -6445,9 +6468,13 @@
                 const attraction = await loadAttractionInfo(attractionKey);
 
                 if (attraction) {
+                    // Set the modal title to the attraction name
+                    titleElement.textContent = attraction.name;
                     // Render the full content
                     content.innerHTML = renderAttractionContent(attraction);
                 } else {
+                    // Set fallback title
+                    titleElement.textContent = 'Information Coming Soon';
                     // Show fallback content
                     content.innerHTML = `
                         <div class="attraction-info">
@@ -6461,6 +6488,8 @@
                     `;
                 }
             } catch (error) {
+                // Set error title
+                titleElement.textContent = 'Loading Error';
                 // Show error state
                 content.innerHTML = `
                     <div class="attraction-info">
