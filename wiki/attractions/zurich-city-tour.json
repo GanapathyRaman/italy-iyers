@@ -1,0 +1,22 @@
+{
+  "name": "Zurich City Tour",
+  "overview": "Zurich city tours showcase Switzerland's largest city and global financial hub, combining medieval Old Town charm with modern urban sophistication. Explore historic churches, luxury shopping streets, and beautiful lake vistas.",
+  "history": "Zurich's history spans over 2,000 years, from Roman settlement Turicum to medieval guild city to modern banking center. The city perfectly balances preservation of its historic core with cutting-edge architecture and cultural innovation.",
+  "highlights": [
+    "Old Town (Altstadt) with medieval guildhalls and cobblestone streets",
+    "Bahnhofstrasse - world's most expensive shopping street",
+    "Lake Zurich waterfront with panoramic Alpine views",
+    "Grossmünster twin towers - Protestant cathedral with city views",
+    "Fraumünster Church with famous Chagall stained glass windows",
+    "Swiss National Museum showcasing Swiss cultural history",
+    "University of Zurich and ETH Zurich campuses",
+    "Niederdorf district with restaurants, bars, and boutiques"
+  ],
+  "tips": "Walking tours cover Old Town efficiently. Tram day passes provide easy city navigation. Lake cruises offer different perspective. Swiss museums are often closed Mondays. Summer evening lake swimming is popular with locals.",
+  "facts": {
+    "Population": "434,000 (city), 1.5M (metro)",
+    "Founded": "Roman era (Turicum)",
+    "Languages": "German (Swiss German dialect)",
+    "Economy": "Global financial center"
+  }
+}

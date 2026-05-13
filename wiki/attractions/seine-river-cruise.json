@@ -1,0 +1,18 @@
+{
+  "name": "Seine River Cruise",
+  "overview": "Seine River cruises offer a magical way to see Paris from the water, passing iconic landmarks like the Eiffel Tower, Notre-Dame, and the Louvre. These scenic boat tours provide unique perspectives of the City of Light's most famous monuments.",
+  "history": "The Seine has been Paris's lifeline for over 2,000 years. River cruises began in the 19th century, and today's 'Bateaux-mouches' (literally 'fly boats') started operating in the 1950s, named after the Mouche district in Lyon where they were originally built.",
+  "highlights": [
+    "Eiffel Tower views from the water",
+    "Notre-Dame Cathedral and Île de la Cité",
+    "Louvre Museum and Musée d'Orsay facades",
+    "Evening cruises with illuminated monuments"
+  ],
+  "tips": "Evening cruises offer magical illuminated city views. Audio guides available in multiple languages. Dress warmly for evening cruises. Book dinner cruises well in advance. Day cruises offer better photography opportunities.",
+  "facts": {
+    "River Length": "777 kilometers",
+    "Paris Section": "13 kilometers",
+    "Bridges Passed": "37 bridges in Paris",
+    "Operating Since": "1950s (modern Bateaux-mouches)"
+  }
+}

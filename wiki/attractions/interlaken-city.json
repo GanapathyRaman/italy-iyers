@@ -1,0 +1,23 @@
+{
+  "name": "Interlaken City",
+  "overview": "Interlaken is a picturesque resort town nestled between Lake Thun and Lake Brienz in the heart of the Bernese Oberland. Known as the adventure capital of Switzerland, it offers stunning Alpine scenery, outdoor activities, and serves as the gateway to the Jungfrau region.",
+  "history": "The name Interlaken means 'between lakes' in Latin. Originally a monastery town founded in 1133, it developed into a fashionable tourist resort in the 19th century when British tourists discovered the scenic beauty of the Swiss Alps. The town became a major hub for Alpine tourism.",
+  "highlights": [
+    "Höhematte - large park in town center with Jungfrau massif views",
+    "Lake Thun (48.3 km²) with turquoise glacial waters and castle views",
+    "Lake Brienz (29.8 km²) famous for woodcarving villages and Giessbach Falls",
+    "Harder Kulm - local mountain with panoramic viewing platform",
+    "Adventure sports: paragliding, skydiving, bungee jumping, white-water rafting",
+    "Historic paddle steamers operating on both lakes since 1800s",
+    "Charming lakeside promenades perfect for strolling",
+    "Gateway to Jungfraujoch 'Top of Europe' via cogwheel trains"
+  ],
+  "tips": "Best visited May-October for outdoor activities and lake cruises. Book adventure sports in advance. Combined lake cruise tickets available for both lakes. Stay near Höhematte for best mountain views. Take early morning walks along lake shores for stunning reflections.",
+  "facts": {
+    "Elevation": "568 meters above sea level",
+    "Lake Thun Depth": "217 meters maximum",
+    "Lake Brienz Depth": "260 meters maximum",
+    "Founded": "1133 (monastery)",
+    "Tourist Season": "May to October"
+  }
+}

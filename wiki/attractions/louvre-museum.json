@@ -1,0 +1,18 @@
+{
+  "name": "Louvre Museum",
+  "overview": "The Louvre is the world's largest art museum and historic monument in Paris, housing over 380,000 objects including the Mona Lisa and Venus de Milo. The museum's iconic glass pyramid entrance has become a symbol of modern Paris architecture.",
+  "history": "Originally built as a fortress in the 12th century, the Louvre became a royal palace in the 16th century. It opened as a public museum in 1793 during the French Revolution. The famous glass pyramid entrance was added in 1989 by architect I.M. Pei.",
+  "highlights": [
+    "I.M. Pei's glass pyramid entrance (1989)",
+    "Historic palace architecture spanning 800 years",
+    "Vast courtyard perfect for photography",
+    "Underground shopping and dining complex"
+  ],
+  "tips": "Even exterior visits are impressive - the courtyard and pyramid are architectural marvels. Best photographed in evening with pyramid illumination. Free WiFi available in courtyard. Underground Carrousel du Louvre offers shopping and restaurants.",
+  "facts": {
+    "Opened as Museum": "1793",
+    "Glass Pyramid": "Completed 1989",
+    "Architect": "I.M. Pei (pyramid)",
+    "Courtyard Size": "Cour Napoléon - 19,000 m²"
+  }
+}

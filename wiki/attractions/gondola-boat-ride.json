@@ -1,0 +1,18 @@
+{
+  "name": "Gondola Boat Ride",
+  "overview": "A gondola ride is Venice's most iconic experience - gliding through the historic canals in a traditional black boat steered by a gondolier. This romantic journey offers unique perspectives of Venetian palaces, bridges, and hidden waterways.",
+  "history": "These elegant black boats are living symbols of Venice's unique culture! For over 1,000 years, gondolas have been the 'taxis' of Venice, perfectly designed for the city's shallow canals. Originally, they were painted in bright colors until a 1562 sumptuary law required them to be black to prevent ostentatious displays of wealth - only the Doge could have a golden gondola! The asymmetrical design (left side is longer) compensates for the gondolier's weight and rowing from one side. Becoming a gondolier is incredibly difficult - it's almost a hereditary profession passed down through generations, with only 3-4 new licenses issued yearly. Candidates must pass grueling tests including navigating blindfolded through narrow canals! Each gondola is handcrafted from 8 types of wood, takes 2 months to build, and costs €30,000. The iron 'ferro' at the front represents Venice's 6 districts and the Doge's hat. Once there were 10,000 gondolas; today only 400 remain, making each ride a journey through living history as you glide along the same routes that carried merchants, nobles, and lovers for a millennium.",
+  "highlights": [
+    "Navigate narrow canals inaccessible to larger boats",
+    "Pass under historic bridges and alongside ancient palaces",
+    "Traditional gondolier songs and stories (upon request)",
+    "Romantic sunset rides with magical lighting"
+  ],
+  "tips": "Prices are regulated by the city - approximately €80 for 30 minutes during day, €100 at night. Negotiate route beforehand. Sharing with others reduces cost. Book sunset rides in advance. Be prepared for crowds at popular pickup points.",
+  "facts": {
+    "Active Gondolas": "~400",
+    "Length": "10.85 meters",
+    "Weight": "600 kg",
+    "Licensed Gondoliers": "~400"
+  }
+}

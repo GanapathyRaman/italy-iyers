@@ -1,0 +1,24 @@
+{
+  "name": "Toot Bus",
+  "overview": "Toot Bus is Paris's premium hop-on hop-off sightseeing service, offering panoramic views of the city's major attractions from open-top double-decker buses. With multiple routes and multilingual audio guides, it's an ideal way to explore Paris at your own pace.",
+  "history": "Toot Bus began operations in Paris as part of the City Sightseeing global network, providing convenient tourist transportation around major European cities. The service has evolved to offer eco-friendly buses and enhanced digital experiences.",
+  "highlights": [
+    "Eiffel Tower - iconic iron lattice tower and Paris symbol",
+    "Arc de Triomphe - triumphal arch at Champs-Élysées western end",
+    "Notre-Dame Cathedral - Gothic masterpiece (exterior viewing)",
+    "Louvre Museum - world's largest art museum with glass pyramid",
+    "Opera Garnier - ornate 19th-century opera house",
+    "Place de la Concorde - largest public square in Paris",
+    "Invalides - Napoleon's tomb and military museums",
+    "Trocadéro - best Eiffel Tower viewing platform",
+    "Champs-Élysées - famous shopping avenue",
+    "Open-top buses with multilingual audio commentary (8+ languages)"
+  ],
+  "tips": "Start early to maximize your day ticket. Sit on upper deck for best views and photos. Download the app for real-time bus tracking. Tickets include Seine river cruise combo options. Avoid rush hours for quicker boarding.",
+  "facts": {
+    "Routes": "4 main routes covering central Paris",
+    "Languages": "8+ audio guide languages",
+    "Frequency": "Every 10-15 minutes",
+    "Operating Hours": "9:30 AM - 7:30 PM (varies by season)"
+  }
+}
