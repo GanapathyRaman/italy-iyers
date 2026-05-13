@@ -1183,9 +1183,17 @@
             padding: 20px;
         }
 
+        /* Attraction Info Modal - wide and tall like document modal */
+        .modal-content.attraction-modal {
+            max-width: 90%;
+            width: 90%;
+            max-height: 90vh;
+            padding: 25px;
+        }
+
         .modal-iframe {
             width: 100%;
-            height: 70vh;
+            height: 75vh;
             border: none;
             border-radius: 12px;
             background: white;
@@ -1213,11 +1221,27 @@
             .modal-content.document-modal {
                 width: 98%;
                 max-width: 98%;
-                padding: 15px;
+                max-height: 95vh;
+                padding: 10px;
             }
 
             .modal-iframe {
-                height: 60vh;
+                height: 80vh;
+            }
+
+            /* General modal content for mobile */
+            .modal-content {
+                max-height: 90vh;
+                width: 95%;
+                padding: 20px;
+            }
+
+            /* Attraction modal for mobile */
+            .modal-content.attraction-modal {
+                width: 98%;
+                max-width: 98%;
+                max-height: 92vh;
+                padding: 15px;
             }
         }
 
@@ -1601,7 +1625,7 @@
         <p></p>
         <h1 id="heroTitle">The Grand Euro Travel</h1>
         <span class="badge">
-            <i class="fa-solid fa-calendar"></i> June 4 - June 12, 2026
+            <i class="fa-solid fa-calendar"></i> June 5 - June 14, 2026
         </span>
     </section>
 
@@ -2692,7 +2716,7 @@
                             <a href="https://maps.app.goo.gl/m1b7nui8qqaBtaGL9" class="hotel-link">
                                 <i class="fa-solid fa-map-location-dot"></i> Google Maps
                             </a>
-                            <a href="https://drive.google.com/file/d/1a6WfInyoM5aA1M9EMPP57036OHk8J9Wx/view" class="hotel-link">
+                            <a href="https://drive.google.com/file/d/1a6WfInyoM5aA1M9EMPP57036OHk8J9Wx/view" onclick="openDocumentModal(this.href, 'Rome Hotel Reservation'); return false;" class="hotel-link">
                                 <i class="fa-brands fa-google-drive"></i> Reservation
                             </a>
                         </div>
@@ -2733,7 +2757,7 @@
                             <a href="https://maps.app.goo.gl/9X8BwoHtt5gQ9LjK7" class="hotel-link">
                                 <i class="fa-solid fa-map-location-dot"></i> Google Maps
                             </a>
-                            <a href="https://drive.google.com/file/d/1mWhcz-LeE7QRLX0cnUHrpz_d1Jw_cs2R/view" class="hotel-link">
+                            <a href="https://drive.google.com/file/d/1mWhcz-LeE7QRLX0cnUHrpz_d1Jw_cs2R/view" onclick="openDocumentModal(this.href, 'Florence Hotel Reservation'); return false;" class="hotel-link">
                                 <i class="fa-brands fa-google-drive"></i> Reservation
                             </a>
                         </div>
@@ -2774,7 +2798,7 @@
                             <a href="https://maps.app.goo.gl/B5ZqrZCCMujQ4SCZ9" class="hotel-link">
                                 <i class="fa-solid fa-map-location-dot"></i> Google Maps
                             </a>
-                            <a href="https://drive.google.com/file/d/1KyWbP2X7Edki0XAJKlcj5V2VewIyGwML/view" class="hotel-link">
+                            <a href="https://drive.google.com/file/d/1KyWbP2X7Edki0XAJKlcj5V2VewIyGwML/view" onclick="openDocumentModal(this.href, 'Venice Hotel Reservation'); return false;" class="hotel-link">
                                 <i class="fa-brands fa-google-drive"></i> Reservation
                             </a>
                         </div>
@@ -2815,7 +2839,7 @@
                             <a href="https://maps.app.goo.gl/zpm1BjCJnVzAp4eY9" class="hotel-link">
                                 <i class="fa-solid fa-map-location-dot"></i> Google Maps
                             </a>
-                            <a href="https://drive.google.com/file/d/1zLKi1-XwOhg0yETQxIbTUqicWiznk0Yi/view" class="hotel-link">
+                            <a href="https://drive.google.com/file/d/1zLKi1-XwOhg0yETQxIbTUqicWiznk0Yi/view" onclick="openDocumentModal(this.href, 'Lucerne Hotel Reservation'); return false;" class="hotel-link">
                                 <i class="fa-brands fa-google-drive"></i> Reservation
                             </a>
                         </div>
@@ -2856,7 +2880,7 @@
                             <a href="https://maps.app.goo.gl/YKCDJdaZN1AoHvbM8" class="hotel-link">
                                 <i class="fa-solid fa-map-location-dot"></i> Google Maps
                             </a>
-                            <a href="https://drive.google.com/file/d/1ZBZM7cZ2FRJvU7fvQb6bXbYWxHN8EoTp/view" class="hotel-link">
+                            <a href="https://drive.google.com/file/d/1ZBZM7cZ2FRJvU7fvQb6bXbYWxHN8EoTp/view" onclick="openDocumentModal(this.href, 'Paris Hotel Reservation'); return false;" class="hotel-link">
                                 <i class="fa-brands fa-google-drive"></i> Reservation
                             </a>
                         </div>
@@ -4601,7 +4625,7 @@
          ATTRACTION INFO MODAL - Wiki-like information for attractions
     ═══════════════════════════════════════ -->
     <div id="attraction-info-modal" class="modal">
-        <div class="modal-content" style="max-width: 600px; max-height: 80vh; overflow-y: auto;">
+        <div class="modal-content attraction-modal" style="overflow-y: auto;">
             <button class="modal-close" onclick="closeAttractionInfoModal()"><i class="fa-solid fa-xmark"></i></button>
             <div id="attraction-info-content">
                 <!-- Dynamic content will be loaded here -->
