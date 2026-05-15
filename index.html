@@ -1354,6 +1354,276 @@
             font-size: 0.9rem;
         }
 
+        /* ═══════════════════════════════════════
+           TRAVEL CHECKLIST STYLES
+        ═══════════════════════════════════════ */
+        .checklist-category {
+            margin-bottom: 35px;
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 25px;
+            box-shadow: 0 4px 12px rgba(0,0,0,.08);
+        }
+
+        .checklist-title {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--accent);
+        }
+
+        .checklist-title.mandatory {
+            color: #dc2626;
+            border-bottom-color: #dc2626;
+        }
+
+        .checklist-title.mandatory i {
+            color: #dc2626;
+            animation: pulse 2s infinite;
+        }
+
+        .checklist-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 15px;
+        }
+
+        .checklist-grid.mandatory {
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        }
+
+        .checklist-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: linear-gradient(135deg, #f8fafc, #f1f5f9);
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .checklist-item:hover {
+            border-color: var(--accent);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.15);
+        }
+
+        .checklist-item input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            accent-color: var(--accent);
+            cursor: pointer;
+        }
+
+        .checklist-item label {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: var(--text-main);
+            cursor: pointer;
+            flex: 1;
+        }
+
+        .checklist-item label i {
+            color: var(--accent);
+            width: 20px;
+            text-align: center;
+        }
+
+        .checklist-item input[type="checkbox"]:checked + label {
+            color: #059669;
+            text-decoration: line-through;
+            opacity: 0.7;
+        }
+
+        .checklist-item input[type="checkbox"]:checked + label i {
+            color: #059669;
+        }
+
+        .mandatory .checklist-item {
+            border-color: #fecaca;
+            background: linear-gradient(135deg, #fef2f2, #fee2e2);
+        }
+
+        .mandatory .checklist-item:hover {
+            border-color: #dc2626;
+            box-shadow: 0 4px 15px rgba(220, 38, 38, 0.15);
+        }
+
+        .mandatory .checklist-item label i {
+            color: #dc2626;
+        }
+
+        .checklist-summary {
+            background: linear-gradient(135deg, var(--accent), #e8c878);
+            color: var(--primary);
+            border-radius: 16px;
+            padding: 25px;
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .progress-bar-container {
+            margin-bottom: 20px;
+        }
+
+        .progress-bar {
+            background: rgba(255, 255, 255, 0.3);
+            height: 12px;
+            border-radius: 6px;
+            overflow: hidden;
+            margin-bottom: 10px;
+        }
+
+        .progress-fill {
+            background: var(--primary);
+            height: 100%;
+            border-radius: 6px;
+            transition: width 0.3s ease;
+            width: 0%;
+        }
+
+        .progress-text {
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .checklist-note {
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 12px;
+            padding: 15px;
+            margin-top: 20px;
+        }
+
+        .checklist-note p {
+            margin: 0;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        /* Emergency Contacts Styles */
+
+        .emergency-content {
+            display: none;
+        }
+
+        .emergency-content.active {
+            display: block;
+        }
+
+        .emergency-section {
+            margin-bottom: 25px;
+            background: linear-gradient(135deg, #fefefe, #f9fafb);
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 20px;
+        }
+
+        .emergency-section h4 {
+            color: var(--primary);
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border-bottom: 1px solid var(--accent);
+            padding-bottom: 8px;
+        }
+
+        .emergency-info {
+            display: grid;
+            gap: 12px;
+        }
+
+        .emergency-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 8px;
+            border-left: 3px solid var(--accent);
+        }
+
+        .emergency-label {
+            font-weight: 600;
+            color: var(--primary);
+            font-size: 0.9rem;
+            flex: 1;
+        }
+
+        .emergency-number {
+            font-weight: 700;
+            color: #dc2626;
+            font-size: 1rem;
+            background: rgba(220, 38, 38, 0.1);
+            padding: 4px 8px;
+            border-radius: 6px;
+            font-family: 'Courier New', monospace;
+        }
+
+        .emergency-address {
+            color: var(--text-main);
+            font-size: 0.85rem;
+            text-align: right;
+            max-width: 60%;
+            line-height: 1.4;
+        }
+
+        @media (max-width: 768px) {
+            .checklist-grid {
+                grid-template-columns: 1fr;
+                gap: 12px;
+            }
+
+            .checklist-grid.mandatory {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .checklist-item {
+                padding: 12px;
+            }
+
+            .checklist-item label {
+                font-size: 0.9rem;
+            }
+
+            .checklist-title {
+                font-size: 1.1rem;
+            }
+
+            .checklist-category {
+                padding: 20px;
+                margin-bottom: 25px;
+            }
+
+
+            .emergency-item {
+                flex-direction: column;
+                gap: 8px;
+                align-items: flex-start;
+            }
+
+            .emergency-address {
+                max-width: 100%;
+                text-align: left;
+            }
+
+            .emergency-section {
+                padding: 15px;
+                margin-bottom: 20px;
+            }
+        }
+
         /* Auto-fetch Restaurant Interface Styles */
         .auto-fetch-container {
             text-align: center;
@@ -1667,11 +1937,11 @@
                     <div class="dash-sub">5 hotels · 3 countries</div>
                 </div>
 
-                <!-- Nearby Restaurants Card -->
-                <div class="dash-card" onclick="navigate('nearby-hotels')">
-                    <i class="fa-solid fa-utensils dash-icon"></i>
-                    <div class="dash-title">Nearby Restaurants</div>
-                    <div class="dash-sub">Local recommendations</div>
+                <!-- Travel Checklist Card -->
+                <div class="dash-card" onclick="navigate('checklist')">
+                    <i class="fa-solid fa-list-check dash-icon"></i>
+                    <div class="dash-title">Travel Checklist</div>
+                    <div class="dash-sub">Essential items to pack & carry</div>
                 </div>
 
                 <!-- Attractions Card -->
@@ -1681,11 +1951,11 @@
                     <div class="dash-sub">Day-wise entry tickets & Wiki</div>
                 </div>
 
-                <!-- Documents Card (Full Width) -->
+                <!-- Travel Hub Card (Full Width) -->
                 <div class="dash-card full-width" onclick="navigate('documents')">
-                    <i class="fa-solid fa-folder-open dash-icon"></i>
-                    <div class="dash-title">All Documents</div>
-                    <div class="dash-sub">Flights · Passports · Visa · Insurance · Train Tickets · Attractions</div>
+                    <i class="fa-solid fa-compass dash-icon"></i>
+                    <div class="dash-title">Travel Hub</div>
+                    <div class="dash-sub">Documents · Emergency Contacts · Restaurants · Expense Tracker</div>
                 </div>
             </div>
             <div class="footer">10 Travellers · 3 Countries · 7 Cities</div>
@@ -1758,34 +2028,34 @@
                         <div class="img-overlay">Arrival at Rome FCO</div>
                     </div>
                     <div class="details">
-                        <h2>June 5 - Arrival Day</h2>
+                        <h2>June 4 - Arrival Day</h2>
                         <div class="connection-alert">
                             <i class="fa-solid fa-route"></i>
                             <span><strong>Onward Journey:</strong> BLR → DXB → FCO (Total: 12h 10min)</span>
                         </div>
                         <div class="timeline">
                             <div class="timeline-item">
-                                <span class="item-time">04:45 IST</span>
+                                <span class="item-time">04:45</span>
                                 <span class="item-text">Departure: Bengaluru (BLR)</span>
                                 <span class="item-sub">Terminal 1 • Emirates EK569 • A380-800 • 3h 50min</span>
                             </div>
                             <div class="timeline-item connection">
-                                <span class="item-time">07:05 GST</span>
+                                <span class="item-time">07:05</span>
                                 <span class="item-text">Arrive: Dubai (DXB)</span>
                                 <span class="item-sub">Terminal 3 • <strong>Connection Time: 2h 5min</strong></span>
                             </div>
                             <div class="timeline-item">
-                                <span class="item-time">09:10 GST</span>
+                                <span class="item-time">09:10</span>
                                 <span class="item-text">Departure: Dubai (DXB)</span>
                                 <span class="item-sub">Terminal 3 • Emirates EK097 • A380-800 • 6h 15min</span>
                             </div>
                             <div class="timeline-item">
-                                <span class="item-time">13:25 CET</span>
+                                <span class="item-time">13:25</span>
                                 <span class="item-text">Arrival: Rome Fiumicino (FCO)</span>
                                 <span class="item-sub">Terminal 3 • Bus transfer to hotel via Roma Termini</span>
                             </div>
                             <div class="timeline-item">
-                                <span class="item-time">16:00 CET</span>
+                                <span class="item-time">16:00</span>
                                 <span class="item-text">Hotel Check-In</span>
                                 <span class="item-sub">🏨 Check-In at Gioberti Art Hotel • Relax and Dinner</span>
                             </div>
@@ -2648,27 +2918,27 @@
                         </div>
                         <div class="timeline">
                             <div class="timeline-item">
-                                <span class="item-time">07:30 CET</span>
+                                <span class="item-time">07:30</span>
                                 <span class="item-text">Hotel Check-out & Airport Transfer</span>
                                 <span class="item-sub">Travel to Paris CDG • Check-in 3 hours early</span>
                             </div>
                             <div class="timeline-item">
-                                <span class="item-time">11:20 CET</span>
+                                <span class="item-time">11:20</span>
                                 <span class="item-text">Departure: Paris CDG</span>
                                 <span class="item-sub">Terminal 2C • Emirates EK072 • A380-800 • 6h 40min</span>
                             </div>
                             <div class="timeline-item connection">
-                                <span class="item-time">20:00 GST</span>
+                                <span class="item-time">20:00</span>
                                 <span class="item-text">Arrive: Dubai (DXB)</span>
                                 <span class="item-sub">Terminal 3 • <strong>Connection Time: 1h 15min</strong></span>
                             </div>
                             <div class="timeline-item">
-                                <span class="item-time">21:15 GST</span>
+                                <span class="item-time">21:15</span>
                                 <span class="item-text">Departure: Dubai (DXB)</span>
                                 <span class="item-sub">Terminal 3 • Emirates EK568 • A380-800 • 4h 05min</span>
                             </div>
                             <div class="timeline-item">
-                                <span class="item-time">02:50 IST (Next Day, 13th June Early Morning)</span>
+                                <span class="item-time">02:50 (Next Day, 13th June Early Morning)</span>
                                 <span class="item-text">Arrival: Bengaluru (BLR)</span>
                                 <span class="item-sub">Terminal 1 • Saturday, June 13 • Home Sweet Home! 🏠</span>
                             </div>
@@ -3833,6 +4103,410 @@
     </div>
 
     <!-- ═══════════════════════════════════════
+         TRAVEL CHECKLIST PAGE - Essential packing & travel items
+    ═══════════════════════════════════════ -->
+    <div id="page-checklist" class="page">
+        <div class="back-bar">
+            <button class="back-btn" onclick="navigateBack()">
+                <i class="fa-solid fa-arrow-left"></i> Back
+            </button>
+        </div>
+
+        <div class="container">
+            <div class="section-box">
+                <h2 style="text-align: center; color: var(--primary); margin-bottom: 30px; font-family: 'Playfair Display', serif;">
+                    <i class="fa-solid fa-suitcase-rolling" style="margin-right: 12px; color: var(--accent);"></i>
+                    Travel Checklist for Europe 2026
+                </h2>
+
+                <!-- Mandatory Items -->
+                <div class="checklist-category">
+                    <h3 class="checklist-title mandatory">
+                        <i class="fa-solid fa-star"></i>
+                        Mandatory Essentials - Important '4 P-P-P-P'
+                    </h3>
+                    <div class="checklist-grid mandatory">
+                        <div class="checklist-item">
+                            <input type="checkbox" id="passport">
+                            <label for="passport">
+                                <i class="fa-solid fa-passport"></i>
+                                Passport
+                            </label>
+                        </div>
+                        <div class="checklist-item">
+                            <input type="checkbox" id="phone">
+                            <label for="phone">
+                                <i class="fa-solid fa-mobile-screen-button"></i>
+                                Phone
+                            </label>
+                        </div>
+                        <div class="checklist-item">
+                            <input type="checkbox" id="purse">
+                            <label for="purse">
+                                <i class="fa-solid fa-wallet"></i>
+                                Purse (Wallet)
+                            </label>
+                        </div>
+                        <div class="checklist-item">
+                            <input type="checkbox" id="pai">
+                            <label for="pai">
+                                <i class="fa-solid fa-bag-shopping"></i>
+                                Pai (Your Daily Bag)
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Electronics & Accessories -->
+                <div class="checklist-category">
+                    <h3 class="checklist-title">
+                        <i class="fa-solid fa-plug"></i>
+                        Electronics & Accessories
+                    </h3>
+                    <div class="checklist-grid">
+                        <div class="checklist-item">
+                            <input type="checkbox" id="mobile-charger">
+                            <label for="mobile-charger">
+                                <i class="fa-solid fa-mobile-screen-button"></i>
+                                Mobile Charger
+                            </label>
+                        </div>
+                        <div class="checklist-item">
+                            <input type="checkbox" id="power-bank">
+                            <label for="power-bank">
+                                <i class="fa-solid fa-battery-three-quarters"></i>
+                                Power bank
+                            </label>
+                        </div>
+                        <div class="checklist-item">
+                            <input type="checkbox" id="adapter">
+                            <label for="adapter">
+                                <i class="fa-solid fa-plug"></i>
+                                Travel Adapter Plug
+                            </label>
+                        </div>
+                        <div class="checklist-item">
+                            <input type="checkbox" id="watch">
+                            <label for="watch">
+                                <i class="fa-regular fa-clock"></i>
+                                Watch (if SmartWatch and its charger)
+                            </label>
+                        </div>
+                        <div class="checklist-item">
+                            <input type="checkbox" id="earphones">
+                            <label for="earphones">
+                                <i class="fa-solid fa-headphones"></i>
+                                Earphones/Headphones
+                            </label>
+                        </div>
+                        <div class="checklist-item">
+                            <input type="checkbox" id="belt">
+                            <label for="belt">
+                                <i class="fa-solid fa-bandage"></i>
+                                Belt
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Travel Essentials -->
+                <div class="checklist-category">
+                    <h3 class="checklist-title">
+                        <i class="fa-solid fa-route"></i>
+                        Travel Essentials
+                    </h3>
+                    <div class="checklist-grid">
+                        <div class="checklist-item">
+                            <input type="checkbox" id="water-bottle">
+                            <label for="water-bottle">
+                                <i class="fa-solid fa-bottle-water"></i>
+                                Water bottle
+                            </label>
+                        </div>
+                        <div class="checklist-item">
+                            <input type="checkbox" id="bag-lock">
+                            <label for="bag-lock">
+                                <i class="fa-solid fa-lock"></i>
+                                Safety Locks for your Handpack/Backpack
+                            </label>
+                        </div>
+                        <div class="checklist-item">
+                            <input type="checkbox" id="portable-bidet">
+                            <label for="portable-bidet">
+                                <i class="fa-solid fa-shower"></i>
+                                Portable Bidet
+                            </label>
+                        </div>
+                        <div class="checklist-item">
+                            <input type="checkbox" id="snacks">
+                            <label for="snacks">
+                                <i class="fa-solid fa-pizza-slice"></i>
+                                Food and Snacks for Daily Travel
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Health & Personal Care -->
+                <div class="checklist-category">
+                    <h3 class="checklist-title">
+                        <i class="fa-solid fa-heart-pulse"></i>
+                        Health & Personal Care
+                    </h3>
+                    <div class="checklist-grid">
+                        <div class="checklist-item">
+                            <input type="checkbox" id="medications">
+                            <label for="medications">
+                                <i class="fa-solid fa-prescription-bottle"></i>
+                                Personal Medicines with Doctor's Prescription
+                            </label>
+                        </div>
+                        <div class="checklist-item">
+                            <input type="checkbox" id="hand-sanitizer">
+                            <label for="hand-sanitizer">
+                                <i class="fa-solid fa-pump-medical"></i>
+                                Hand Sanitizer
+                            </label>
+                        </div>
+                        <div class="checklist-item">
+                            <input type="checkbox" id="face-mask">
+                            <label for="face-mask">
+                                <i class="fa-solid fa-mask-face"></i>
+                                N95 Mask
+                            </label>
+                        </div>
+                        <div class="checklist-item">
+                            <input type="checkbox" id="body-cream">
+                            <label for="body-cream">
+                                <i class="fa-solid fa-pump-soap"></i>
+                                Moisturizer, Body Lotion, Sunscreen Lotion
+                            </label>
+                        </div>
+                        <div class="checklist-item">
+                            <input type="checkbox" id="tooth-brush">
+                            <label for="tooth-brush">
+                                <i class="fa-solid fa-teeth-open"></i>
+                                Toothbrush and Toothpaste
+                            </label>
+                        </div>
+                        <div class="checklist-item">
+                            <input type="checkbox" id="comb">
+                            <label for="comb">
+                                <i class="fa-solid fa-brush"></i>
+                                Comb
+                            </label>
+                        </div>
+                        </div>
+                        <div class="checklist-item">
+                            <input type="checkbox" id="lip-balm">
+                            <label for="lip-balm">
+                                <i class="fa-brands fa-ello"></i>
+                                Lip balm
+                            </label>
+                        </div>
+                       <div class="checklist-item">
+                            <input type="checkbox" id="soap">
+                            <label for="soap">
+                                <i class="fa-brands fa-soap"></i>
+                                Soap, Shower Gel, Shampoo, Conditioner
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Clothing & Personal Items -->
+                <div class="checklist-category">
+                    <h3 class="checklist-title">
+                        <i class="fa-solid fa-tshirt"></i>
+                        Clothing & Personal Items
+                    </h3>
+                    <div class="checklist-grid">
+                        <div class="checklist-item">
+                            <input type="checkbox" id="dress">
+                            <label for="dress">
+                                <i class="fa-solid fa-user-tie"></i>
+                                Comfortable dress for 10 days
+                            </label>
+                        </div>
+                        <div class="checklist-item">
+                            <input type="checkbox" id="inner-wear">
+                            <label for="inner-wear">
+                                <i class="fa-solid fa-tshirt"></i>
+                                Inner Wear for 10 days
+                            </label>
+                        </div>
+                        <div class="checklist-item">
+                            <input type="checkbox" id="sunglasses">
+                            <label for="sunglasses">
+                                <i class="fa-solid fa-glasses"></i>
+                                Sun Glasses
+                            </label>
+                        </div>
+                        <div class="checklist-item">
+                            <input type="checkbox" id="shoe">
+                            <label for="shoe">
+                                <i class="fa-solid fa-shoe-prints"></i>
+                                Shoe
+                            </label>
+                        </div>
+                        <div class="checklist-item">
+                            <input type="checkbox" id="socks">
+                            <label for="socks">
+                                <i class="fa-solid fa-socks"></i>
+                                5 Normal Socks & 1 Woolen Sock (for Swiss Alps)
+                            </label>
+                        </div>
+                        <div class="checklist-item">
+                            <input type="checkbox" id="slipper">
+                            <label for="slipper">
+                                <i class="fa-sharp fa-solid fa-shoe-prints"></i>
+                                Slippers (Optional)
+                            </label>
+                        </div>
+                        <div class="checklist-item">
+                            <input type="checkbox" id="cap">
+                            <label for="cap">
+                                <i class="fa-solid fa-hat-cowboy"></i>
+                                Cap/Hat (Optional)
+                            </label>
+                        </div>
+                        <div class="checklist-item">
+                            <input type="checkbox" id="thermals">
+                            <label for="thermals">
+                                <i class="fa-solid fa-temperature-low"></i>
+                                Thermals
+                            </label>
+                        </div>
+                        <div class="checklist-item">
+                            <input type="checkbox" id="sweater">
+                            <label for="sweater">
+                                <i class="fa-solid fa-vest"></i>
+                                Sweater/Winter Coat/Jacket
+                            </label>
+                        </div>
+                        <div class="checklist-item">
+                            <input type="checkbox" id="gloves">
+                            <label for="gloves">
+                                <i class="fa-solid fa-mitten"></i>
+                                Hand gloves
+                            </label>
+                        </div>
+                        <div class="checklist-item">
+                            <input type="checkbox" id="shoes">
+                            <label for="shoes">
+                                <i class="fa-solid fa-shoe-prints"></i>
+                                Socks & Sports Shoes
+                            </label>
+                        </div>
+                        <div class="checklist-item">
+                            <input type="checkbox" id="umbrella">
+                            <label for="umbrella">
+                                <i class="fa-solid fa-umbrella"></i>
+                                Folding umbrella (Optional)
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Travel Documents & Cards -->
+                <div class="checklist-category">
+                    <h3 class="checklist-title">
+                        <i class="fa-solid fa-file-text"></i>
+                        Travel Documents & Cards
+                    </h3>
+                    <div class="checklist-grid">
+                        <div class="checklist-item">
+                            <input type="checkbox" id="passport-copy">
+                            <label for="passport-copy">
+                                <i class="fa-solid fa-passport"></i>
+                                Passport Photocopy (Xerox)
+                            </label>
+                        </div>
+                        <div class="checklist-item">
+                            <input type="checkbox" id="visa-copy">
+                            <label for="visa-copy">
+                                <i class="fa-brands fa-cc-visa"></i>
+                                VISA Photocopy (Xerox)
+                            </label>
+                        </div>
+                        <div class="checklist-item">
+                            <input type="checkbox" id="insurance">
+                            <label for="insurance">
+                                <i class="fa-solid fa-shield-heart"></i>
+                                Travel Insurance Documents
+                            </label>
+                        </div>
+                        <div class="checklist-item">
+                            <input type="checkbox" id="air-ticket">
+                            <label for="air-ticket">
+                                <i class="fa-solid fa-plane"></i>
+                                Air Tickets Printout
+                            </label>
+                        </div>
+                        <div class="checklist-item">
+                            <input type="checkbox" id="hotel-ticket">
+                            <label for="hotel-ticket">
+                                <i class="fa-solid fa-hotel"></i>
+                                Hotel Accomodation Printout
+                            </label>
+                        </div>
+                        <div class="checklist-item">
+                            <input type="checkbox" id="attraction-ticket">
+                            <label for="attraction-ticket">
+                                <i class="fa-solid fa-archway"></i>
+                                Attraction Tickets Prinout
+                            </label>
+                        </div>
+                        <div class="checklist-item">
+                            <input type="checkbox" id="train-ticket">
+                            <label for="train-ticket">
+                                <i class="fa-solid fa-train"></i>
+                                Train Tickets Printout
+                            </label>
+                        </div>
+                        <div class="checklist-item">
+                            <input type="checkbox" id="credit-cards">
+                            <label for="credit-cards">
+                                <i class="fa-solid fa-credit-card"></i>
+                                International Credit/Debit Cards
+                            </label>
+                        </div>
+                        <div class="checklist-item">
+                            <input type="checkbox" id="currency">
+                            <label for="currency">
+                                <i class="fa-solid fa-euro-sign"></i>
+                                Adequate Cash - Euro & Swiss Francs (CHF)
+                            </label>
+                        </div>
+                        <div class="checklist-item">
+                            <input type="checkbox" id="emergency-contacts">
+                            <label for="emergency-contacts">
+                                <i class="fa-solid fa-phone-volume"></i>
+                                Enable International Roaming
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Progress Summary -->
+                <div class="checklist-summary">
+                    <div class="progress-bar-container">
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="progress-fill"></div>
+                        </div>
+                        <div class="progress-text">
+                            <span id="progress-text">0 of 34 items packed</span>
+                        </div>
+                    </div>
+                    <div class="checklist-note">
+                        <p><strong>💡 Pro Tip:</strong> Pack essentials in your carry-on bag. Keep all important documents in your body pouch for easy access during travel.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════
          ATTRACTIONS PAGE - Entry tickets and bookings
     ═══════════════════════════════════════ -->
     <div id="page-attractions" class="page">
@@ -4431,7 +5105,7 @@
     </div>
 
     <!-- ═══════════════════════════════════════
-         ALL DOCUMENTS PAGE - Travel documents and expense tracker
+         TRAVEL HUB PAGE - Documents, emergency contacts, restaurants & expense tracker
     ═══════════════════════════════════════ -->
     <div id="page-documents" class="page">
         <div class="back-bar">
@@ -4477,6 +5151,20 @@
                     <div class="doc-sub">Eurail + Reservations</div>
                 </div>
 
+                <!-- Nearby Restaurants Card -->
+                <div class="doc-card" onclick="navigate('nearby-hotels')">
+                    <i class="fa-solid fa-utensils"></i>
+                    <div class="doc-title">Nearby Restaurants</div>
+                    <div class="doc-sub">Local recommendations</div>
+                </div>
+
+                <!-- Emergency Contacts Card -->
+                <div class="doc-card" onclick="navigate('emergency-contacts')">
+                    <i class="fa-solid fa-phone-square-alt"></i>
+                    <div class="doc-title">Emergency Contacts</div>
+                    <div class="doc-sub">Police, Medical, Embassy details by country</div>
+                </div>
+
                 <!-- Expense Tracker Card -->
                 <a href="https://www.kittysplit.com/k/h1XI73YqGzl8fHTv1rOiqqAfdx4qBuOV-2" onclick="openWebsiteModal(this.href, 'Expense Tracker'); return false;" class="doc-card">
                     <i class="fa-solid fa-calculator"></i>
@@ -4486,6 +5174,273 @@
             </div>
 
             <div class="footer">| Italy Iyers | Venice Vadamals | Paris Brhatcharanam | 2026 |</div>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════
+         EMERGENCY CONTACTS PAGE - Emergency numbers and embassy details
+    ═══════════════════════════════════════ -->
+    <div id="page-emergency-contacts" class="page">
+        <div class="back-bar">
+            <button class="back-btn" onclick="navigateBack()">
+                <i class="fa-solid fa-arrow-left"></i> Back
+            </button>
+        </div>
+
+        <!-- Country navigation tabs -->
+        <nav class="nav-container">
+            <button class="nav-btn active" onclick="showEmergencyCountry('italy')">
+                Italy
+            </button>
+            <button class="nav-btn" onclick="showEmergencyCountry('switzerland')">
+                Switzerland
+            </button>
+            <button class="nav-btn" onclick="showEmergencyCountry('france')">
+                France
+            </button>
+        </nav>
+
+        <div class="container">
+
+            <!-- Italy Emergency Info -->
+            <div id="emergency-italy" class="day-card active">
+                <div class="section-box">
+                    <div class="img-container">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/32/Police_Lamborghini.jpg/1280px-Police_Lamborghini.jpg?q=80&w=2070&auto=format&fit=crop" alt="Italy Emergency">
+                        <div class="img-overlay">Polizia Italiana</div>
+                    </div>
+                    <div class="details">
+                        <h2>Italy - Emergency Information</h2>
+
+                        <div class="emergency-section">
+                            <h4><i class="fa-solid fa-shield-halved"></i> Emergency Services</h4>
+                            <div class="emergency-info">
+                                <div class="emergency-item">
+                                    <span class="emergency-label">General Emergency:</span>
+                                    <span class="emergency-number">112</span>
+                                </div>
+                                <div class="emergency-item">
+                                    <span class="emergency-label">Police (Carabinieri):</span>
+                                    <span class="emergency-number">112 / 113</span>
+                                </div>
+                                <div class="emergency-item">
+                                    <span class="emergency-label">Medical Emergency:</span>
+                                    <span class="emergency-number">118</span>
+                                </div>
+                                <div class="emergency-item">
+                                    <span class="emergency-label">Fire Emergency:</span>
+                                    <span class="emergency-number">115</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="emergency-section">
+                            <h4><i class="fa-solid fa-building-flag"></i> Indian Embassy - Rome</h4>
+                            <div class="emergency-info">
+                                <div class="emergency-item">
+                                    <span class="emergency-label">Emergency Helpline:</span>
+                                    <span class="emergency-number">+39 06 4884642</span>
+                                </div>
+                                <div class="emergency-item">
+                                    <span class="emergency-label">Consular Services:</span>
+                                    <span class="emergency-number">+39 06 4884643</span>
+                                </div>
+                                <div class="emergency-item">
+                                    <span class="emergency-label">Address:</span>
+                                    <span class="emergency-address">Via XX Settembre 5, 00187 Roma RM, Italy</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="emergency-section">
+                            <h4><i class="fa-solid fa-exclamation-triangle"></i> Theft/Lost Documents</h4>
+                            <div class="emergency-info">
+                                <div class="emergency-item">
+                                    <span class="emergency-label">Report to Local Police:</span>
+                                    <span class="emergency-number">113</span>
+                                </div>
+                                <div class="emergency-item">
+                                    <span class="emergency-label">Tourist Police Rome:</span>
+                                    <span class="emergency-number">+39 06 46861</span>
+                                </div>
+                                <div class="emergency-item">
+                                    <span class="emergency-label">Lost Passport:</span>
+                                    <span class="emergency-address">Contact Indian Embassy immediately</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Switzerland Emergency Info -->
+            <div id="emergency-switzerland" class="day-card">
+                <div class="section-box">
+                    <div class="img-container">
+                        <img src="https://ipi.media/wp-content/uploads/2020/04/w_52663367.jpg?q=80&w=2070&auto=format&fit=crop" alt="Switzerland Emergency">
+                        <div class="img-overlay">Schweizer Polizei</div>
+                    </div>
+                    <div class="details">
+                        <h2>Swiss - Emergency Information</h2>
+
+                        <div class="emergency-section">
+                            <h4><i class="fa-solid fa-shield-halved"></i> Emergency Services</h4>
+                            <div class="emergency-info">
+                                <div class="emergency-item">
+                                    <span class="emergency-label">General Emergency:</span>
+                                    <span class="emergency-number">112</span>
+                                </div>
+                                <div class="emergency-item">
+                                    <span class="emergency-label">Police:</span>
+                                    <span class="emergency-number">117</span>
+                                </div>
+                                <div class="emergency-item">
+                                    <span class="emergency-label">Medical Emergency:</span>
+                                    <span class="emergency-number">144</span>
+                                </div>
+                                <div class="emergency-item">
+                                    <span class="emergency-label">Fire Emergency:</span>
+                                    <span class="emergency-number">118</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="emergency-section">
+                            <h4><i class="fa-solid fa-building-flag"></i> Indian Embassy - Bern</h4>
+                            <div class="emergency-info">
+                                <div class="emergency-item">
+                                    <span class="emergency-label">Emergency Helpline:</span>
+                                    <span class="emergency-number">+41 31 351 1130</span>
+                                </div>
+                                <div class="emergency-item">
+                                    <span class="emergency-label">Consular Services:</span>
+                                    <span class="emergency-number">+41 31 351 1130</span>
+                                </div>
+                                <div class="emergency-item">
+                                    <span class="emergency-label">Address:</span>
+                                    <span class="emergency-address">Kirchenfeldstrasse 28, 3005 Bern, Switzerland</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="emergency-section">
+                            <h4><i class="fa-solid fa-exclamation-triangle"></i> Theft/Lost Documents</h4>
+                            <div class="emergency-info">
+                                <div class="emergency-item">
+                                    <span class="emergency-label">Report to Local Police:</span>
+                                    <span class="emergency-number">117</span>
+                                </div>
+                                <div class="emergency-item">
+                                    <span class="emergency-label">Tourist Police Lucerne:</span>
+                                    <span class="emergency-number">+41 41 248 81 17</span>
+                                </div>
+                                <div class="emergency-item">
+                                    <span class="emergency-label">Lost Passport:</span>
+                                    <span class="emergency-address">Contact Indian Embassy Bern immediately</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- France Emergency Info -->
+            <div id="emergency-france" class="day-card">
+                <div class="section-box">
+                    <div class="img-container">
+                        <img src="https://images.indianexpress.com/2024/03/march-85.jpg?q=80&w=2073&auto=format&fit=crop" alt="France Emergency">
+                        <div class="img-overlay">La Police Française </div>
+                    </div>
+                    <div class="details">
+                        <h2>France - Emergency Information</h2>
+
+                        <div class="emergency-section">
+                            <h4><i class="fa-solid fa-shield-halved"></i> Emergency Services</h4>
+                            <div class="emergency-info">
+                                <div class="emergency-item">
+                                    <span class="emergency-label">General Emergency:</span>
+                                    <span class="emergency-number">112</span>
+                                </div>
+                                <div class="emergency-item">
+                                    <span class="emergency-label">Police:</span>
+                                    <span class="emergency-number">17</span>
+                                </div>
+                                <div class="emergency-item">
+                                    <span class="emergency-label">Medical Emergency (SAMU):</span>
+                                    <span class="emergency-number">15</span>
+                                </div>
+                                <div class="emergency-item">
+                                    <span class="emergency-label">Fire Emergency:</span>
+                                    <span class="emergency-number">18</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="emergency-section">
+                            <h4><i class="fa-solid fa-building-flag"></i> Indian Embassy - Paris</h4>
+                            <div class="emergency-info">
+                                <div class="emergency-item">
+                                    <span class="emergency-label">Emergency Helpline:</span>
+                                    <span class="emergency-number">+33 1 40 50 70 70</span>
+                                </div>
+                                <div class="emergency-item">
+                                    <span class="emergency-label">Consular Services:</span>
+                                    <span class="emergency-number">+33 1 40 50 71 71</span>
+                                </div>
+                                <div class="emergency-item">
+                                    <span class="emergency-label">Address:</span>
+                                    <span class="emergency-address">15 Rue Alfred Dehodencq, 75016 Paris, France</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="emergency-section">
+                            <h4><i class="fa-solid fa-exclamation-triangle"></i> Theft/Lost Documents</h4>
+                            <div class="emergency-info">
+                                <div class="emergency-item">
+                                    <span class="emergency-label">Report to Local Police:</span>
+                                    <span class="emergency-number">17</span>
+                                </div>
+                                <div class="emergency-item">
+                                    <span class="emergency-label">Tourist Police Paris:</span>
+                                    <span class="emergency-number">+33 1 53 71 53 71</span>
+                                </div>
+                                <div class="emergency-item">
+                                    <span class="emergency-label">Lost Passport:</span>
+                                    <span class="emergency-address">Contact Indian Embassy Paris immediately</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Lost Passport Procedure -->
+            <div class="emergency-section" style="background: linear-gradient(135deg, #fee2e2, #fecaca); border-color: #dc2626; margin: 20px; border-radius: 16px; padding: 20px;">
+                <h4 style="color: #dc2626;"><i class="fa-solid fa-passport"></i> Lost Passport - Immediate Steps</h4>
+                <div class="emergency-info">
+                    <div class="emergency-item" style="border-left-color: #dc2626;">
+                        <span class="emergency-label" style="color: #dc2626; font-weight: 700;">Step 1: Report to Local Police</span>
+                        <span class="emergency-address">File FIR immediately. Get police report copy for embassy.</span>
+                    </div>
+                    <div class="emergency-item" style="border-left-color: #dc2626;">
+                        <span class="emergency-label" style="color: #dc2626; font-weight: 700;">Step 2: Contact Indian Embassy</span>
+                        <span class="emergency-address">Call embassy helpline immediately for emergency travel document.</span>
+                    </div>
+                    <div class="emergency-item" style="border-left-color: #dc2626;">
+                        <span class="emergency-label" style="color: #dc2626; font-weight: 700;">Step 3: Required Documents</span>
+                        <span class="emergency-address">Passport copy, police report, photos, visa copy, flight tickets.</span>
+                    </div>
+                    <div class="emergency-item" style="border-left-color: #dc2626;">
+                        <span class="emergency-label" style="color: #dc2626; font-weight: 700;">Step 4: Emergency Certificate</span>
+                        <span class="emergency-address">Embassy will issue Emergency Certificate for return to India.</span>
+                    </div>
+                    <div class="emergency-item" style="border-left-color: #dc2626;">
+                        <span class="emergency-label" style="color: #dc2626; font-weight: 700;">Step 5: Notify Travel Insurance</span>
+                        <span class="emergency-address">Call insurance company for coverage of emergency travel costs.</span>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -5469,8 +6424,10 @@
             itinerary: 'Itinerary',
             hotels: 'Hotel Details',
             'nearby-hotels': 'Nearby Restaurants',
+            checklist: 'Travel Checklist',
             attractions: 'Attractions',
-            documents: 'All Documents',
+            documents: 'Travel Hub',
+            'emergency-contacts': 'Emergency Contacts',
             flights: 'Flight Details',
             trains: 'Train Tickets'
         };
@@ -5763,6 +6720,13 @@
             // Update current page
             currentPage = page;
 
+            // Initialize page-specific functionality
+            if (page === 'checklist') {
+                setTimeout(initializeChecklist, 100);
+            } else if (page === 'nearby-hotels') {
+                fetchAvailableCities();
+            }
+
             // Push to browser history (unless we're handling a popstate event)
             if (pushToHistory) {
                 // Add to navigation history stack
@@ -5814,8 +6778,10 @@
             const parentPages = {
                 'itinerary': 'dashboard',
                 'hotels': 'dashboard',
-                'nearby-hotels': 'dashboard',
+                'nearby-hotels': 'documents',
+                'checklist': 'dashboard',
                 'attractions': 'documents',
+                'emergency-contacts': 'documents',
                 'flights': 'documents',
                 'trains': 'documents',
                 'documents': 'dashboard'
@@ -7106,6 +8072,11 @@
             if (initialPage === 'nearby-hotels') {
                 fetchAvailableCities();
             }
+
+            // Initialize checklist if we're starting on that page
+            if (initialPage === 'checklist') {
+                setTimeout(initializeChecklist, 100);
+            }
         });
 
         /**
@@ -7134,6 +8105,162 @@
                 }
             }
         }, { passive: true });
+
+        /* ═══════════════════════════════════════
+           TRAVEL CHECKLIST FUNCTIONALITY
+        ═══════════════════════════════════════ */
+
+        /**
+         * Initialize checklist functionality
+         */
+        function initializeChecklist() {
+            const checkboxes = document.querySelectorAll('#page-checklist input[type="checkbox"]');
+            const totalItems = checkboxes.length;
+
+            // Load saved checklist state from localStorage
+            checkboxes.forEach(checkbox => {
+                const saved = localStorage.getItem(`checklist-${checkbox.id}`);
+                if (saved === 'true') {
+                    checkbox.checked = true;
+                }
+
+                // Add event listener for state changes
+                checkbox.addEventListener('change', function() {
+                    // Save state to localStorage
+                    localStorage.setItem(`checklist-${this.id}`, this.checked.toString());
+
+                    // Update progress
+                    updateChecklistProgress();
+
+                    // Add visual feedback
+                    const item = this.closest('.checklist-item');
+                    if (this.checked) {
+                        item.style.background = 'linear-gradient(135deg, #d1fae5, #a7f3d0)';
+                        item.style.borderColor = '#059669';
+                    } else {
+                        item.style.background = '';
+                        item.style.borderColor = '';
+                    }
+                });
+            });
+
+            // Initial progress update
+            updateChecklistProgress();
+        }
+
+        /**
+         * Update the progress bar and text
+         */
+        function updateChecklistProgress() {
+            const checkboxes = document.querySelectorAll('#page-checklist input[type="checkbox"]');
+            const checkedBoxes = document.querySelectorAll('#page-checklist input[type="checkbox"]:checked');
+            const totalItems = checkboxes.length;
+            const checkedItems = checkedBoxes.length;
+            const percentage = Math.round((checkedItems / totalItems) * 100);
+
+            const progressFill = document.getElementById('progress-fill');
+            const progressText = document.getElementById('progress-text');
+
+            if (progressFill && progressText) {
+                progressFill.style.width = percentage + '%';
+                progressText.textContent = `${checkedItems} of ${totalItems} items packed (${percentage}%)`;
+
+                // Change color based on progress
+                if (percentage === 100) {
+                    progressFill.style.background = '#059669'; // Green when complete
+                } else if (percentage >= 75) {
+                    progressFill.style.background = '#0891b2'; // Blue when almost done
+                } else if (percentage >= 50) {
+                    progressFill.style.background = '#ca8a04'; // Yellow when half done
+                } else {
+                    progressFill.style.background = '#dc2626'; // Red when just starting
+                }
+            }
+        }
+
+        /**
+         * Reset all checklist items
+         */
+        function resetChecklist() {
+            const checkboxes = document.querySelectorAll('#page-checklist input[type="checkbox"]');
+            checkboxes.forEach(checkbox => {
+                checkbox.checked = false;
+                localStorage.removeItem(`checklist-${checkbox.id}`);
+                const item = checkbox.closest('.checklist-item');
+                item.style.background = '';
+                item.style.borderColor = '';
+            });
+            updateChecklistProgress();
+        }
+
+        /**
+         * Export checklist as text
+         */
+        function exportChecklist() {
+            const categories = document.querySelectorAll('#page-checklist .checklist-category');
+            let exportText = "🧳 Europe 2026 Travel Checklist\n\n";
+
+            categories.forEach(category => {
+                const title = category.querySelector('.checklist-title').textContent.trim();
+                exportText += `${title}\n`;
+                exportText += "=".repeat(title.length) + "\n";
+
+                const items = category.querySelectorAll('.checklist-item');
+                items.forEach(item => {
+                    const checkbox = item.querySelector('input[type="checkbox"]');
+                    const label = item.querySelector('label').textContent.trim();
+                    const status = checkbox.checked ? "✅" : "⬜";
+                    exportText += `${status} ${label}\n`;
+                });
+                exportText += "\n";
+            });
+
+            // Copy to clipboard
+            navigator.clipboard.writeText(exportText).then(() => {
+                alert('Checklist copied to clipboard!');
+            }).catch(() => {
+                // Fallback: create a text area and select it
+                const textArea = document.createElement('textarea');
+                textArea.value = exportText;
+                document.body.appendChild(textArea);
+                textArea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textArea);
+                alert('Checklist copied to clipboard!');
+            });
+        }
+
+        /**
+         * Show emergency contacts for specific country
+         */
+        function showEmergencyCountry(country) {
+            // Hide all emergency day cards
+            document.querySelectorAll('#page-emergency-contacts .day-card').forEach(card => {
+                card.classList.remove('active');
+            });
+
+            // Remove active class from all tabs in emergency contacts page
+            document.querySelectorAll('#page-emergency-contacts .nav-btn').forEach(tab => {
+                tab.classList.remove('active');
+            });
+
+            // Show selected country content
+            const selectedContent = document.getElementById(`emergency-${country}`);
+            if (selectedContent) {
+                selectedContent.classList.add('active');
+            }
+
+            // Add active class to clicked tab
+            event.target.classList.add('active');
+        }
+
+        // Initialize checklist when the page loads and when navigating to checklist
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize if checklist page is already visible
+            if (document.getElementById('page-checklist') && document.getElementById('page-checklist').classList.contains('active')) {
+                initializeChecklist();
+            }
+        });
     </script>
 
 </body>
