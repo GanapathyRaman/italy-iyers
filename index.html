@@ -235,11 +235,14 @@
 
         .page {
             display: none;
-            animation: fadeIn .5s ease;
+            animation: fadeIn .5s ease forwards;
+            opacity: 0;
         }
 
         .page.active {
             display: block;
+            opacity: 1;
+            animation: fadeIn .5s ease forwards;
         }
 
         /* Day cards for itinerary navigation */
@@ -2028,7 +2031,7 @@
                         <div class="img-overlay">Arrival at Rome FCO</div>
                     </div>
                     <div class="details">
-                        <h2>June 4 - Arrival Day</h2>
+                        <h2>June 5 - Arrival Day</h2>
                         <div class="connection-alert">
                             <i class="fa-solid fa-route"></i>
                             <span><strong>Onward Journey:</strong> BLR → DXB → FCO (Total: 12h 10min)</span>
@@ -2401,14 +2404,14 @@
                                 <span class="item-sub">Check out from Hotel Il Moro Di Venezia</span>
                             </div>
                             <div class="timeline-item">
-                                <span class="item-time">07:15</span>
+                                <span class="item-time">06:48</span>
                                 <span class="item-text">🚄 Train to Lucerne via Milan</span>
-                                <span class="item-sub">Depart Venezia S. Lucia • Frecciarossa 9708 • 1st Class</span>
+                                <span class="item-sub">Depart Venezia S. Lucia • Frecciarossa 9706 • 1st Class</span>
                             </div>
                             <div class="timeline-item">
-                                <span class="item-time">09:45</span>
+                                <span class="item-time">09:15</span>
                                 <span class="item-text">🔄 Connection in Milan</span>
-                                <span class="item-sub">Milano Centrale • 25-minute transfer • Onward to Lucerne</span>
+                                <span class="item-sub">Milano Centrale • 55-minute transfer • Onward to Lucerne</span>
                             </div>
                             <div class="timeline-item">
                                 <span class="item-time">12:00</span>
@@ -2451,7 +2454,7 @@
                                 <i class="fa-solid fa-suitcase"></i> 6:30 AM checkout from Venice hotel
                             </div>
                             <div class="logistics-item">
-                                <i class="fa-solid fa-train"></i> Venice → Lucerne via Milan (07:15 → 13:41)
+                                <i class="fa-solid fa-train"></i> Venice → Lucerne via Milan (06:48 → 13:41)
                             </div>
                             <div class="logistics-item">
                                 <i class="fa-solid fa-utensils"></i> Lunch service available on train
@@ -2951,6 +2954,664 @@
         </div>
     </div>
 
+
+     <!-- ═══════════════════════════════════════
+         TRAVEL CHECKLIST PAGE - Essential packing & travel items
+    ═══════════════════════════════════════ -->
+    <div id="page-checklist" class="page">
+        <div class="back-bar">
+            <button class="back-btn" onclick="navigateBack()">
+                <i class="fa-solid fa-arrow-left"></i> Back
+            </button>
+        </div>
+
+        <div class="container">
+            <div class="section-box">
+                <!-- Mandatory Items -->
+                <div class="checklist-category">
+                    <h3 class="checklist-title mandatory">
+                        <i class="fa-solid fa-star"></i>
+                        Mandatory Essentials - Important '4 P-P-P-P'
+                    </h3>
+                    <div class="checklist-grid mandatory">
+                        <div class="checklist-item">
+                            <input type="checkbox" id="passport">
+                            <label for="passport">
+                                <i class="fa-solid fa-passport"></i>
+                                Passport
+                            </label>
+                        </div>
+                        <div class="checklist-item">
+                            <input type="checkbox" id="phone">
+                            <label for="phone">
+                                <i class="fa-solid fa-mobile-screen-button"></i>
+                                Phone
+                            </label>
+                        </div>
+                        <div class="checklist-item">
+                            <input type="checkbox" id="purse">
+                            <label for="purse">
+                                <i class="fa-solid fa-wallet"></i>
+                                Purse (Wallet)
+                            </label>
+                        </div>
+                        <div class="checklist-item">
+                            <input type="checkbox" id="pai">
+                            <label for="pai">
+                                <i class="fa-solid fa-bag-shopping"></i>
+                                Pai (Your Daily Bag)
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Electronics & Accessories -->
+                <div class="checklist-category">
+                    <h3 class="checklist-title">
+                        <i class="fa-solid fa-plug"></i>
+                        Electronics & Accessories
+                    </h3>
+                    <div class="checklist-grid">
+                        <div class="checklist-item">
+                            <input type="checkbox" id="mobile-charger">
+                            <label for="mobile-charger">
+                                <i class="fa-solid fa-mobile-screen-button"></i>
+                                Mobile Charger
+                            </label>
+                        </div>
+                        <div class="checklist-item">
+                            <input type="checkbox" id="power-bank">
+                            <label for="power-bank">
+                                <i class="fa-solid fa-battery-three-quarters"></i>
+                                Power bank
+                            </label>
+                        </div>
+                        <div class="checklist-item">
+                            <input type="checkbox" id="adapter">
+                            <label for="adapter">
+                                <i class="fa-solid fa-plug"></i>
+                                Travel Adapter Plug
+                            </label>
+                        </div>
+                        <div class="checklist-item">
+                            <input type="checkbox" id="watch">
+                            <label for="watch">
+                                <i class="fa-regular fa-clock"></i>
+                                Watch (if SmartWatch and its charger)
+                            </label>
+                        </div>
+                        <div class="checklist-item">
+                            <input type="checkbox" id="earphones">
+                            <label for="earphones">
+                                <i class="fa-solid fa-headphones"></i>
+                                Earphones/Headphones
+                            </label>
+                        </div>
+                        <div class="checklist-item">
+                            <input type="checkbox" id="belt">
+                            <label for="belt">
+                                <i class="fa-solid fa-bandage"></i>
+                                Belt
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Travel Essentials -->
+                <div class="checklist-category">
+                    <h3 class="checklist-title">
+                        <i class="fa-solid fa-route"></i>
+                        Travel Essentials
+                    </h3>
+                    <div class="checklist-grid">
+                        <div class="checklist-item">
+                            <input type="checkbox" id="water-bottle">
+                            <label for="water-bottle">
+                                <i class="fa-solid fa-bottle-water"></i>
+                                Water bottle
+                            </label>
+                        </div>
+                        <div class="checklist-item">
+                            <input type="checkbox" id="bag-lock">
+                            <label for="bag-lock">
+                                <i class="fa-solid fa-lock"></i>
+                                Safety Locks for your Handpack/Backpack
+                            </label>
+                        </div>
+                        <div class="checklist-item">
+                            <input type="checkbox" id="portable-bidet">
+                            <label for="portable-bidet">
+                                <i class="fa-solid fa-shower"></i>
+                                Portable Bidet
+                            </label>
+                        </div>
+                        <div class="checklist-item">
+                            <input type="checkbox" id="snacks">
+                            <label for="snacks">
+                                <i class="fa-solid fa-pizza-slice"></i>
+                                Food and Snacks for Daily Travel
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Health & Personal Care -->
+                <div class="checklist-category">
+                    <h3 class="checklist-title">
+                        <i class="fa-solid fa-heart-pulse"></i>
+                        Health & Personal Care
+                    </h3>
+                    <div class="checklist-grid">
+                        <div class="checklist-item">
+                            <input type="checkbox" id="medications">
+                            <label for="medications">
+                                <i class="fa-solid fa-prescription-bottle"></i>
+                                Personal Medicines with Doctor's Prescription
+                            </label>
+                        </div>
+                        <div class="checklist-item">
+                            <input type="checkbox" id="hand-sanitizer">
+                            <label for="hand-sanitizer">
+                                <i class="fa-solid fa-pump-medical"></i>
+                                Hand Sanitizer
+                            </label>
+                        </div>
+                        <div class="checklist-item">
+                            <input type="checkbox" id="face-mask">
+                            <label for="face-mask">
+                                <i class="fa-solid fa-mask-face"></i>
+                                N95 Mask
+                            </label>
+                        </div>
+                        <div class="checklist-item">
+                            <input type="checkbox" id="body-cream">
+                            <label for="body-cream">
+                                <i class="fa-solid fa-pump-soap"></i>
+                                Moisturizer, Body Lotion, Sunscreen Lotion
+                            </label>
+                        </div>
+                        <div class="checklist-item">
+                            <input type="checkbox" id="tooth-brush">
+                            <label for="tooth-brush">
+                                <i class="fa-solid fa-teeth-open"></i>
+                                Toothbrush and Toothpaste
+                            </label>
+                        </div>
+                        <div class="checklist-item">
+                            <input type="checkbox" id="comb">
+                            <label for="comb">
+                                <i class="fa-solid fa-brush"></i>
+                                Comb
+                            </label>
+                        </div>
+                        <div class="checklist-item">
+                            <input type="checkbox" id="lip-balm">
+                            <label for="lip-balm">
+                                <i class="fa-brands fa-ello"></i>
+                                Lip balm
+                            </label>
+                        </div>
+                       <div class="checklist-item">
+                            <input type="checkbox" id="soap">
+                            <label for="soap">
+                                <i class="fa-brands fa-soap"></i>
+                                Soap, Shower Gel, Shampoo, Conditioner
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Clothing & Personal Items -->
+                <div class="checklist-category">
+                    <h3 class="checklist-title">
+                        <i class="fa-solid fa-tshirt"></i>
+                        Clothing & Personal Items
+                    </h3>
+                    <div class="checklist-grid">
+                        <div class="checklist-item">
+                            <input type="checkbox" id="dress">
+                            <label for="dress">
+                                <i class="fa-solid fa-user-tie"></i>
+                                Comfortable dress for 10 days
+                            </label>
+                        </div>
+                        <div class="checklist-item">
+                            <input type="checkbox" id="inner-wear">
+                            <label for="inner-wear">
+                                <i class="fa-solid fa-tshirt"></i>
+                                Inner Wear for 10 days
+                            </label>
+                        </div>
+                        <div class="checklist-item">
+                            <input type="checkbox" id="sunglasses">
+                            <label for="sunglasses">
+                                <i class="fa-solid fa-glasses"></i>
+                                Sun Glasses
+                            </label>
+                        </div>
+                        <div class="checklist-item">
+                            <input type="checkbox" id="shoe">
+                            <label for="shoe">
+                                <i class="fa-solid fa-shoe-prints"></i>
+                                Shoe
+                            </label>
+                        </div>
+                        <div class="checklist-item">
+                            <input type="checkbox" id="socks">
+                            <label for="socks">
+                                <i class="fa-solid fa-socks"></i>
+                                5 Normal Socks & 1 Woolen Sock (for Swiss Alps)
+                            </label>
+                        </div>
+                        <div class="checklist-item">
+                            <input type="checkbox" id="slipper">
+                            <label for="slipper">
+                                <i class="fa-sharp fa-solid fa-shoe-prints"></i>
+                                Slippers (Optional)
+                            </label>
+                        </div>
+                        <div class="checklist-item">
+                            <input type="checkbox" id="cap">
+                            <label for="cap">
+                                <i class="fa-solid fa-hat-cowboy"></i>
+                                Cap/Hat (Optional)
+                            </label>
+                        </div>
+                        <div class="checklist-item">
+                            <input type="checkbox" id="thermals">
+                            <label for="thermals">
+                                <i class="fa-solid fa-temperature-low"></i>
+                                Thermals
+                            </label>
+                        </div>
+                        <div class="checklist-item">
+                            <input type="checkbox" id="sweater">
+                            <label for="sweater">
+                                <i class="fa-solid fa-vest"></i>
+                                Sweater/Winter Coat/Jacket
+                            </label>
+                        </div>
+                        <div class="checklist-item">
+                            <input type="checkbox" id="gloves">
+                            <label for="gloves">
+                                <i class="fa-solid fa-mitten"></i>
+                                Hand gloves
+                            </label>
+                        </div>
+                        <div class="checklist-item">
+                            <input type="checkbox" id="shoes">
+                            <label for="shoes">
+                                <i class="fa-solid fa-shoe-prints"></i>
+                                Socks & Sports Shoes
+                            </label>
+                        </div>
+                        <div class="checklist-item">
+                            <input type="checkbox" id="umbrella">
+                            <label for="umbrella">
+                                <i class="fa-solid fa-umbrella"></i>
+                                Folding umbrella (Optional)
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Travel Documents & Cards -->
+                <div class="checklist-category">
+                    <h3 class="checklist-title">
+                        <i class="fa-solid fa-file-text"></i>
+                        Travel Documents & Cards
+                    </h3>
+                    <div class="checklist-grid">
+                        <div class="checklist-item">
+                            <input type="checkbox" id="passport-copy">
+                            <label for="passport-copy">
+                                <i class="fa-solid fa-passport"></i>
+                                Passport Photocopy (Xerox)
+                            </label>
+                        </div>
+                        <div class="checklist-item">
+                            <input type="checkbox" id="visa-copy">
+                            <label for="visa-copy">
+                                <i class="fa-brands fa-cc-visa"></i>
+                                VISA Photocopy (Xerox)
+                            </label>
+                        </div>
+                        <div class="checklist-item">
+                            <input type="checkbox" id="insurance">
+                            <label for="insurance">
+                                <i class="fa-solid fa-shield-heart"></i>
+                                Travel Insurance Documents
+                            </label>
+                        </div>
+                        <div class="checklist-item">
+                            <input type="checkbox" id="air-ticket">
+                            <label for="air-ticket">
+                                <i class="fa-solid fa-plane"></i>
+                                Air Tickets Printout
+                            </label>
+                        </div>
+                        <div class="checklist-item">
+                            <input type="checkbox" id="hotel-ticket">
+                            <label for="hotel-ticket">
+                                <i class="fa-solid fa-hotel"></i>
+                                Hotel Accomodation Printout
+                            </label>
+                        </div>
+                        <div class="checklist-item">
+                            <input type="checkbox" id="attraction-ticket">
+                            <label for="attraction-ticket">
+                                <i class="fa-solid fa-archway"></i>
+                                Attraction Tickets Prinout
+                            </label>
+                        </div>
+                        <div class="checklist-item">
+                            <input type="checkbox" id="train-ticket">
+                            <label for="train-ticket">
+                                <i class="fa-solid fa-train"></i>
+                                Train Tickets Printout
+                            </label>
+                        </div>
+                        <div class="checklist-item">
+                            <input type="checkbox" id="credit-cards">
+                            <label for="credit-cards">
+                                <i class="fa-solid fa-credit-card"></i>
+                                International Credit/Debit Cards
+                            </label>
+                        </div>
+                        <div class="checklist-item">
+                            <input type="checkbox" id="currency">
+                            <label for="currency">
+                                <i class="fa-solid fa-euro-sign"></i>
+                                Adequate Cash - Euro & Swiss Francs (CHF)
+                            </label>
+                        </div>
+                        <div class="checklist-item">
+                            <input type="checkbox" id="international-roaming">
+                            <label for="international-roaming">
+                                <i class="fa-solid fa-phone-volume"></i>
+                                Enable International Roaming
+                            </label>
+                        </div>                                         
+                    </div>
+                </div>
+
+                <!-- Progress Summary -->
+                <div class="checklist-summary">
+                    <div class="progress-bar-container">
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="progress-fill"></div>
+                        </div>
+                        <div class="progress-text">
+                            <span id="progress-text">0 of 34 items packed</span>
+                        </div>
+                    </div>
+                    <div class="checklist-note">
+                        <p><strong>💡 Pro Tip:</strong> Pack essentials in your carry-on bag. Keep all important documents in your body pouch for easy access during travel.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════
+    FLIGHTS PAGE - Flight tickets and schedules
+    ═══════════════════════════════════════ -->
+    <div id="page-flights" class="page">
+        <div class="back-bar">
+            <button class="back-btn" onclick="navigateBack()">
+                <i class="fa-solid fa-arrow-left"></i> Back
+            </button>
+        </div>
+
+        <!-- Flight navigation tabs -->
+        <nav class="nav-container">
+            <button class="nav-btn active" onclick="showFlight(0)">Outbound</button>
+            <button class="nav-btn" onclick="showFlight(1)">Return</button>
+        </nav>
+
+        <div class="container">
+            <!-- Outbound Flight: BLR → FCO -->
+            <div id="flight0" class="sub-card active">
+                <div class="section-box">
+                    <div class="img-container">
+                        <img src="https://i.ytimg.com/vi/lCAaD5FBLVk/hq720.jpg??q=80&w=2069&auto=format&fit=crop" alt="Emirates A380 Dubai">
+                        <div class="img-overlay">Bengaluru → Rome (via Dubai)</div>
+                    </div>
+                    <div class="details">
+                        <h2 style="display: flex; justify-content: space-between; align-items: center;">
+                            <span>June 5, 2026 - Thursday</span>
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/0/0c/Emirates_banner_logo.svg"
+                                 alt="Emirates"
+                                 style="height: 52px; width: 52px;">
+                        </h2>
+                        <div class="connection-alert" style="display: flex; justify-content: space-between; align-items: center;">
+                            <div>
+                                <i class="fa-solid fa-route"></i>
+                                <span><strong>Onward Journey:</strong> BLR → DXB → FCO (Total: 12h 10min)</span>
+                            </div>
+                            <a href="https://drive.google.com/drive/folders/1Gb8S4Axq98rF2opqi6MsbY5U8OgJIQnJ" onclick="openDocumentModal(this.href, getContextualTitle(this)); return false;" class="attraction-link">
+                                <i class="fa-brands fa-google-drive"></i> Tickets
+                            </a>
+                        </div>
+                        <div class="timeline">
+                            <div class="timeline-item">
+                                <span class="item-time">04:45</span>
+                                <span class="item-text">Departure: Bengaluru (BLR)</span>
+                                <span class="item-sub">Terminal 1 • Check-in 3 hours early</span>
+                            </div>
+                            <div class="timeline-item connection">
+                                <span class="item-time">07:05</span>
+                                <span class="item-text">Arrive: Dubai (DXB)</span>
+                                <span class="item-sub"><strong>Connection Time: 2h 5min</strong></span>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="item-time">09:10</span>
+                                <span class="item-text">Departure: Dubai (DXB)</span>
+                                <span class="item-sub">Terminal 3 • A380 Gate</span>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="item-time">13:25</span>
+                                <span class="item-text">Arrival: Rome Fiumicino (FCO)</span>
+                                <span class="item-sub">Terminal 3 • Total Journey: 12h 10min</span>
+                            </div>
+                        </div>
+
+                        <!-- First Leg Details -->
+                        <div class="train-details-card" style="margin-bottom: 12px;">
+                            <div class="train-header">
+                                <div class="train-info">
+                                    <span class="train-number">Flight EK569</span>
+                                    <span class="train-service">Airbus A380-800 • Economy</span>
+                                </div>
+                            </div>
+                            <div class="train-coach-info">
+                                <div class="coach-detail">
+                                    <i class="fa-solid fa-plane"></i>
+                                    <span><strong>BLR → DXB</strong> • Duration: 3h 50min</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Second Leg Details -->
+                        <div class="train-details-card">
+                            <div class="train-header">
+                                <div class="train-info">
+                                    <span class="train-number">Flight EK097</span>
+                                    <span class="train-service">Airbus A380-800 • Economy</span>
+                                </div>
+                            </div>
+                            <div class="train-coach-info">
+                                <div class="coach-detail">
+                                    <i class="fa-solid fa-plane"></i>
+                                    <span><strong>DXB → FCO</strong> • Duration: 6h 15min</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Outbound Booking Details -->
+                <div class="passengers-section">
+                    <h3><i class="fa-solid fa-ticket-airline"></i> Outbound Journey Information</h3>
+                    <div class="passenger-grid" style="grid-template-columns: repeat(2, 1fr); gap: 16px;">
+                        <div class="passenger-card">
+                            <div class="passenger-name">Booking Ref</div>
+                            <div class="passenger-seat">MTV5Z6</div>
+                        </div>
+                        <div class="passenger-card">
+                            <div class="passenger-name">Class</div>
+                            <div class="passenger-seat">Economy Saver</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Outbound Flight Check-in -->
+                <div class="passengers-section">
+                    <h3><i class="fa-solid fa-plane-departure"></i> Outbound Flight Check-in</h3>
+                    <div class="passenger-grid" style="grid-template-columns: repeat(2, 1fr); gap: 16px;">
+                        <div class="passenger-card">
+                            <div class="passenger-name">Web Check-in</div>
+                            <div class="passenger-seat">48hrs before departure</div>
+                        </div>
+                        <div class="passenger-card">
+                            <div class="passenger-name">Airport Check-in</div>
+                            <div class="passenger-seat">3 hours before departure</div>
+                        </div>
+                        <div class="passenger-card">
+                            <div class="passenger-name">Cabin Baggage</div>
+                            <div class="passenger-seat">7kg + Personal item</div>
+                        </div>
+                        <div class="passenger-card">
+                            <div class="passenger-name">Checked Baggage</div>
+                            <div class="passenger-seat">23kg per person</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Return Flight: CDG → BLR -->
+            <div id="flight1" class="sub-card">
+                <div class="section-box">
+                    <div class="img-container">
+                        <img src="https://i.ytimg.com/vi/lCAaD5FBLVk/hq720.jpg??q=80&w=2069&auto=format&fit=crop" alt="Emirates A380 Paris">
+                        <div class="img-overlay">Paris → Bengaluru (via Dubai)</div>
+                    </div>
+                    <div class="details">
+                        <h2 style="display: flex; justify-content: space-between; align-items: center;">
+                            <span>June 12, 2026 - Friday</span>
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/0/0c/Emirates_banner_logo.svg"
+                                 alt="Emirates"
+                                 style="height: 52px; width: 52px;">
+                        </h2>
+                        <div class="connection-alert" style="display: flex; justify-content: space-between; align-items: center;">
+                            <div>
+                                <i class="fa-solid fa-route"></i>
+                                <span><strong>Return Journey:</strong> CDG → DXB → BLR (Total: 12h)</span>
+                            </div>
+                            <a href="https://drive.google.com/drive/folders/1Gb8S4Axq98rF2opqi6MsbY5U8OgJIQnJ" onclick="openDocumentModal(this.href, getContextualTitle(this)); return false;" class="attraction-link">
+                                <i class="fa-brands fa-google-drive"></i> Tickets
+                            </a>
+                        </div>
+                        <div class="timeline">
+                            <div class="timeline-item">
+                                <span class="item-time">11:20</span>
+                                <span class="item-text">Departure: Paris CDG</span>
+                                <span class="item-sub">Terminal 2C • Check-in 3 hours early</span>
+                            </div>
+                            <div class="timeline-item connection">
+                                <span class="item-time">20:00</span>
+                                <span class="item-text">Arrive: Dubai (DXB)</span>
+                                <span class="item-sub"><strong>Transit Time: 1h 15min</strong></span>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="item-time">21:15</span>
+                                <span class="item-text">Departure: Dubai (DXB)</span>
+                                <span class="item-sub">Terminal 3 • A380 Gate</span>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="item-time">02:50+1</span>
+                                <span class="item-text">Arrival: Bengaluru (BLR)</span>
+                                <span class="item-sub">Terminal 1 • Total Journey: 12h 0min</span>
+                            </div>
+                        </div>
+
+                        <!-- First Leg Details -->
+                        <div class="train-details-card" style="margin-bottom: 12px;">
+                            <div class="train-header">
+                                <div class="train-info">
+                                    <span class="train-number">Flight EK072</span>
+                                    <span class="train-service">Airbus A380-800 • Economy</span>
+                                </div>
+                            </div>
+                            <div class="train-coach-info">
+                                <div class="coach-detail">
+                                    <i class="fa-solid fa-plane"></i>
+                                    <span><strong>CDG → DXB</strong> • Duration: 6h 40min</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Second Leg Details -->
+                        <div class="train-details-card">
+                            <div class="train-header">
+                                <div class="train-info">
+                                    <span class="train-number">Flight EK568</span>
+                                    <span class="train-service">Airbus A380-800 • Economy</span>
+                                </div>
+                            </div>
+                            <div class="train-coach-info">
+                                <div class="coach-detail">
+                                    <i class="fa-solid fa-plane"></i>
+                                    <span><strong>DXB → BLR</strong> • Duration: 4h 05min</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Return Booking Details -->
+                <div class="passengers-section">
+                    <h3><i class="fa-solid fa-ticket-airline"></i> Return Journey Information</h3>
+                    <div class="passenger-grid" style="grid-template-columns: repeat(2, 1fr); gap: 16px;">
+                        <div class="passenger-card">
+                            <div class="passenger-name">Booking Ref</div>
+                            <div class="passenger-seat">MTV5Z6</div>
+                        </div>
+                        <div class="passenger-card">
+                            <div class="passenger-name">Class</div>
+                            <div class="passenger-seat">Economy Saver</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Return Flight Baggage & Check-in -->
+                <div class="passengers-section">
+                    <h3><i class="fa-solid fa-plane-departure"></i> Return Flight Check-in</h3>
+                    <div class="passenger-grid" style="grid-template-columns: repeat(2, 1fr); gap: 16px;">
+                        <div class="passenger-card">
+                            <div class="passenger-name">Web Check-in</div>
+                            <div class="passenger-seat">48hrs before departure</div>
+                        </div>
+                        <div class="passenger-card">
+                            <div class="passenger-name">Airport Check-in</div>
+                            <div class="passenger-seat">3 hours before departure</div>
+                        </div>
+                        <div class="passenger-card">
+                            <div class="passenger-name">Cabin Baggage</div>
+                            <div class="passenger-seat">7kg + Personal item</div>
+                        </div>
+                        <div class="passenger-card">
+                            <div class="passenger-name">Checked Baggage</div>
+                            <div class="passenger-seat">23kg per person</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">| Italy Iyers | Venice Vadamals | Paris Brhatcharanam | 2026 |</div>
+    </div>
+
     <!-- ═══════════════════════════════════════
          HOTELS PAGE - Accommodation details
     ═══════════════════════════════════════ -->
@@ -2983,7 +3644,7 @@
                     </div>
                     <div class="hotel-body">
                         <div class="hotel-detail">
-                            <i class="fa-solid fa-calendar-days"></i> June 4 – 6 (2 nights)
+                            <i class="fa-solid fa-calendar-days"></i> June 5 – 7 (2 nights)
                         </div>
                         <div class="hotel-detail">
                             <i class="fa-solid fa-door-open"></i> 4 Rooms — 3 Twin Sharing · 1 Triple Sharing
@@ -3197,7 +3858,9 @@
             <button class="nav-btn" onclick="showTrain(1)">Jun 7</button>
             <button class="nav-btn" onclick="showTrain(2)">Jun 8</button>
             <button class="nav-btn" onclick="showTrain(3)">Jun 9</button>
-            <button class="nav-btn" onclick="showTrain(4)">Jun 12</button>
+            <button class="nav-btn" onclick="showTrain(4)">Jun 10</button>
+            <button class="nav-btn" onclick="showTrain(5)">Jun 11</button>
+            <button class="nav-btn" onclick="showTrain(6)">Jun 12</button>
         </nav>
 
         <div class="container">
@@ -3493,14 +4156,14 @@
                         </div>
                         <div class="timeline">
                             <div class="timeline-item">
-                                <span class="item-time">07:18</span>
+                                <span class="item-time">06:48</span>
                                 <span class="item-text">Departure: Venezia S. Lucia</span>
                                 <span class="item-sub">Platform: TBD (Check 1 hour before)</span>
                             </div>
                             <div class="timeline-item connection">
-                                <span class="item-time">09:45</span>
+                                <span class="item-time">09:15</span>
                                 <span class="item-text">Arrive: Milano Centrale</span>
-                                <span class="item-sub"><strong>Transfer Time: 25 minutes</strong></span>
+                                <span class="item-sub"><strong>Transfer Time: 55 minutes</strong></span>
                             </div>
                             <div class="timeline-item">
                                 <span class="item-time">10:10</span>
@@ -3518,11 +4181,11 @@
                         <div class="train-details-card" style="margin-bottom: 12px;">
                             <div class="train-header">
                                 <div class="train-info">
-                                    <span class="train-number">Leg 1: Frecciarossa 9708</span>
+                                    <span class="train-number">Leg 1: Frecciarossa 9706</span>
                                     <span class="train-service">1° Business Class</span>
                                 </div>
                                 <div class="train-badge">
-                                    <a href="https://drive.google.com/file/d/1h47vIVC25mONiqGPcwpG34GKygutIkU_/view?usp=sharing" onclick="openDocumentModal(this.href, getContextualTitle(this)); return false;" class="attraction-link">
+                                    <a href="https://drive.google.com/file/d/1yTjFZ5IJ1_d_mW5W-HoIMOcIAow7WJB_/view?usp=sharing" onclick="openDocumentModal(this.href, getContextualTitle(this)); return false;" class="attraction-link">
                                         <i class="fa-brands fa-google-drive"></i> Tickets
                                     </a>
                                 </div>
@@ -3534,7 +4197,7 @@
                             <div class="train-coach-info">
                                 <div class="coach-detail">
                                     <i class="fa-solid fa-train"></i>
-                                    <span><strong>Coach 3</strong> • PNR: SBS5Q5</span>
+                                    <span><strong>Coach 1</strong> • PNR: SBS5Q5</span>
                                 </div>
                             </div>
                         </div>
@@ -3568,43 +4231,43 @@
 
                 <!-- Passenger Details Section - Leg 1 -->
                 <div class="passengers-section">
-                    <h3><i class="fa-solid fa-users"></i> Passenger Details - Leg 1: Coach 3</h3>
+                    <h3><i class="fa-solid fa-users"></i> Passenger Details - Leg 1: Coach 1</h3>
                     <div class="passenger-grid">
                         <div class="passenger-card">
                             <div class="passenger-name">Ganapathy</div>
-                            <div class="passenger-seat">Seat 10B</div>
-                        </div>
-                        <div class="passenger-card">
-                            <div class="passenger-name">Madanagopal</div>
-                            <div class="passenger-seat">Seat 7D</div>
-                        </div>
-                        <div class="passenger-card">
-                            <div class="passenger-name">Gurumoorthi</div>
-                            <div class="passenger-seat">Seat 9A</div>
-                        </div>
-                        <div class="passenger-card">
-                            <div class="passenger-name">Saradha</div>
-                            <div class="passenger-seat">Seat 7A</div>
-                        </div>
-                        <div class="passenger-card">
-                            <div class="passenger-name">Kamala</div>
-                            <div class="passenger-seat">Seat 8D</div>
-                        </div>
-                        <div class="passenger-card">
-                            <div class="passenger-name">Bhagyalakshmi</div>
-                            <div class="passenger-seat">Seat 7B</div>
+                            <div class="passenger-seat">Seat 13A</div>
                         </div>
                         <div class="passenger-card">
                             <div class="passenger-name">Kaushalya</div>
-                            <div class="passenger-seat">Seat 10A</div>
+                            <div class="passenger-seat">Seat 13B</div>
                         </div>
                         <div class="passenger-card">
                             <div class="passenger-name">Rishith</div>
-                            <div class="passenger-seat">Seat 8B</div>
+                            <div class="passenger-seat">Seat 13C</div>
                         </div>
                         <div class="passenger-card">
                             <div class="passenger-name">Ramakrishnan</div>
-                            <div class="passenger-seat">Seat 8A</div>
+                            <div class="passenger-seat">Seat 13D</div>
+                        </div>
+                        <div class="passenger-card">
+                            <div class="passenger-name">Saradha</div>
+                            <div class="passenger-seat">Seat 14A</div>
+                        </div>
+                        <div class="passenger-card">
+                            <div class="passenger-name">Madanagopal</div>
+                            <div class="passenger-seat">Seat 14B</div>
+                        </div>
+                        <div class="passenger-card">
+                            <div class="passenger-name">Gurumoorthi</div>
+                            <div class="passenger-seat">Seat 14C</div>
+                        </div>
+                        <div class="passenger-card">
+                            <div class="passenger-name">Bhagyalakshmi</div>
+                            <div class="passenger-seat">Seat 14D</div>
+                        </div>
+                        <div class="passenger-card">
+                            <div class="passenger-name">Kamala</div>
+                            <div class="passenger-seat">Seat 15D</div>
                         </div>
                     </div>
                 </div>
@@ -3654,7 +4317,7 @@
             </div>
 
             <!-- June 12: Lucerne to Paris (Connection via Basel) -->
-            <div id="train4" class="sub-card">
+            <div id="train6" class="sub-card">
                 <div class="section-box">
                     <div class="img-container">
                         <img src="https://www.nic.funet.fi/index/railways/Switzerland/Lyria/ch-lyria-4730-cornavin-090220-full.jpg?q=80&w=2070&auto=format&fit=crop" alt="Lucerne to Paris via Basel">
@@ -3711,7 +4374,7 @@
                             <div class="train-coach-info">
                                 <div class="coach-detail">
                                     <i class="fa-solid fa-train"></i>
-                                    <span><strong>Standard Coach</strong> • Eurail Pass Valid</span>
+                                    <span><strong>Standard Coach</strong> • Use Eurail Pass</span>
                                 </div>
                             </div>
                         </div>
@@ -3838,676 +4501,520 @@
                 </div>
             </div>
 
-            <div class="footer">| Italy Iyers | Venice Vadamals | Paris Brhatcharanam | 2026 |</div>
-        </div>
-    </div>
-
-    <!-- ═══════════════════════════════════════
-         FLIGHTS PAGE - Emirates booking and flight details
-    ═══════════════════════════════════════ -->
-    <div id="page-flights" class="page">
-        <div class="back-bar">
-            <button class="back-btn" onclick="navigateBack()">
-                <i class="fa-solid fa-arrow-left"></i> Back
-            </button>
-        </div>
-
-        <!-- Flight navigation tabs -->
-        <nav class="nav-container">
-            <button class="nav-btn active" onclick="showFlight(0)">Onward</button>
-            <button class="nav-btn" onclick="showFlight(1)">Return</button>
-        </nav>
-
-        <div class="container">
-            <!-- Onward Flight: BLR → FCO -->
-            <div id="flight0" class="sub-card active">
+            <!-- June 10: Complete Jungfraujoch Day Trip -->
+            <div id="train4" class="sub-card">
                 <div class="section-box">
                     <div class="img-container">
-                        <img src="https://www.italyintours.com/wp-content/uploads/2024/03/ae65f218031bad767c5d9fc467154018.jpg?q=80&w=2074&auto=format&fit=crop" alt="Emirates A380">
-                        <div class="img-overlay">Bengaluru → Rome (via Dubai)</div>
+                        <img src="https://plus.unsplash.com/premium_photo-1689977092774-8febf6e5edc8?q=80&w=2070&auto=format&fit=crop" alt="Jungfraujoch Day Trip">
+                        <div class="img-overlay">Complete Jungfraujoch Day Trip</div>
                     </div>
                     <div class="details">
                         <h2 style="display: flex; justify-content: space-between; align-items: center;">
-                            <span>June 4, 2026 - Wednesday</span>
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/0/0c/Emirates_banner_logo.svg"
-                                 alt="Emirates"
-                                 style="height: 52px; width: 52px;">
+                            <span>June 10, 2026 - Tuesday</span>
+                            <span class="flexi-badge separate">RESERVED SEATS</span>
                         </h2>
-                        <div class="connection-alert" style="display: flex; justify-content: space-between; align-items: center;">
-                            <div>
-                                <i class="fa-solid fa-route"></i>
-                                <span><strong>Onward Journey:</strong> BLR → DXB → FCO (Total: 12h)</span>
-                            </div>
-                            <a href="https://drive.google.com/drive/folders/1Gb8S4Axq98rF2opqi6MsbY5U8OgJIQnJ" onclick="openDocumentModal(this.href, getContextualTitle(this)); return false;" class="attraction-link">
-                                <i class="fa-brands fa-google-drive"></i> Tickets
-                            </a>
+
+                        <div class="connection-alert">
+                            <i class="fa-solid fa-mountain"></i>
+                            <span><strong>Complete Day Trip:</strong> Luzern → Interlaken → Jungfraujoch → Halderkulm → Return to Luzern via Panoramic Express</span>
                         </div>
+                        
                         <div class="timeline">
                             <div class="timeline-item">
-                                <span class="item-time">04:45</span>
-                                <span class="item-text">Departure: Bengaluru (BLR)</span>
-                                <span class="item-sub">Terminal 1 • Check-in 3 hours early</span>
-                            </div>
-                            <div class="timeline-item connection">
-                                <span class="item-time">07:05</span>
-                                <span class="item-text">Arrive: Dubai (DXB)</span>
-                                <span class="item-sub"><strong>Transit Time: 2h 5min</strong></span>
+                                <span class="item-time">08:06</span>
+                                <span class="item-text">Departure: Luzern</span>
+                                <span class="item-sub">LIX 2916 • Luzern-Interlaken Express • Carriage 3</span>
                             </div>
                             <div class="timeline-item">
-                                <span class="item-time">09:10</span>
-                                <span class="item-text">Departure: Dubai (DXB)</span>
-                                <span class="item-sub">Terminal 3 • A380 Gate</span>
+                                <span class="item-time">09:54</span>
+                                <span class="item-text">Arrival: Interlaken Ost</span>
+                                <span class="item-sub">Transfer for Jungfraujoch excursions</span>
                             </div>
                             <div class="timeline-item">
-                                <span class="item-time">13:25</span>
-                                <span class="item-text">Arrival: Rome Fiumicino (FCO)</span>
-                                <span class="item-sub">Terminal 3 • Total Journey: 12h 10min</span>
+                                <span class="item-time">10:04</span>
+                                <span class="item-text">Interlaken Ost → Grindelwald Terminal</span>
+                                <span class="item-sub">Jungfrau Railway • Booking 266275</span>
                             </div>
+                            <div class="timeline-item">
+                                <span class="item-time">10:43</span>
+                                <span class="item-text">Grindelwald Terminal → Eigergletscher</span>
+                                <span class="item-sub">Mountain railway connection</span>
                             </div>
-
-                            <!-- First Leg Details -->
-                        <div class="train-details-card" style="margin-bottom: 12px;">
-                            <div class="train-header">
-                                <div class="train-info">
-                                    <span class="train-number">Flight EK569</span>
-                                    <span class="train-service">Airbus A380-800 • Economy</span>
-                                </div>
+                            <div class="timeline-item">
+                                <span class="item-time">11:13</span>
+                                <span class="item-text">Eigergletscher → Jungfraujoch</span>
+                                <span class="item-sub">Final ascent to "Top of Europe"</span>
                             </div>
-                            <div class="train-coach-info">
-                                <div class="coach-detail">
-                                    <i class="fa-solid fa-plane"></i>
-                                    <span><strong>BLR → DXB</strong> • Duration: 3h 50min</span>
-                                </div>
+                            <div class="timeline-item">
+                                <span class="item-time">11:41</span>
+                                <span class="item-text">At Jungfraujoch</span>
+                                <span class="item-sub">2.5 hours exploring "Top of Europe"</span>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="item-time">14:15</span>
+                                <span class="item-text">Jungfraujoch → Eigergletscher</span>
+                                <span class="item-sub">Return journey begins</span>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="item-time">14:48</span>
+                                <span class="item-text">Eigergletscher → Grindelwald Terminal</span>
+                                <span class="item-sub">Descent continues</span>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="item-time">15:21</span>
+                                <span class="item-text">Grindelwald Terminal → Interlaken Ost</span>
+                                <span class="item-sub">Back to Interlaken for Harder Kulm</span>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="item-time">15:54</span>
+                                <span class="item-text">Interlaken Ost</span>
+                                <span class="item-sub">Reach Interlaken OST station</span>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="item-time">16:40-17:40</span>
+                                <span class="item-text">Harder Kulm Round Trip</span>
+                                <span class="item-sub">Interlaken Harderbahn ↔ Harder Kulm • Booking 261417 • Flexible times</span>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="item-time">20:04</span>
+                                <span class="item-text">Departure: Interlaken Ost</span>
+                                <span class="item-sub">LIX 2941 • Luzern-Interlaken Express • Carriage 5</span>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="item-time">21:55</span>
+                                <span class="item-text">Arrival: Luzern</span>
+                                <span class="item-sub">End of complete day trip</span>
                             </div>
                         </div>
 
-                        <!-- Second Leg Details -->
+                        <!-- Train 1: Luzern to Interlaken -->
                         <div class="train-details-card">
                             <div class="train-header">
                                 <div class="train-info">
-                                    <span class="train-number">Flight EK097</span>
-                                    <span class="train-service">Airbus A380-800 • Economy</span>
+                                    <span class="train-number">Train 1: LIX 2916</span>
+                                    <span class="train-service">Luzern-Interlaken Express • Panoramic</span>
                                 </div>
+                                <div class="train-badge">
+                                    <a href="https://drive.google.com/file/d/1IqFke32kg_owDIIj1wmYzN-Mtr67RVYx/view?usp=sharing" onclick="openDocumentModal(this.href, getContextualTitle(this)); return false;" class="attraction-link">
+                                        <i class="fa-brands fa-google-drive"></i> Tickets
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="train-info">
+                                <i class="fa-solid fa-route"></i>
+                                <span class="train-service">Train Source: Luzern | Train Destination: Interlaken Ost</span>
                             </div>
                             <div class="train-coach-info">
                                 <div class="coach-detail">
-                                    <i class="fa-solid fa-plane"></i>
-                                    <span><strong>DXB → FCO</strong> • Duration: 6h 15min</span>
+                                    <i class="fa-solid fa-train"></i>
+                                    <span><strong>Carriage 3</strong> • 2nd Class • Panoramic Windows</span>
+                                </div>
+                                <div class="coach-detail">
+                                    <i class="fa-solid fa-users"></i>
+                                    <span><strong>Seats 103, 105-110, 115-116</strong> • Reservation: 1163139-1</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Train 2: Interlaken to Jungfraujoch -->
+                        <div class="train-details-card">
+                            <div class="train-header">
+                                <div class="train-info">
+                                    <span class="train-number">Train 2: Interlaken → Jungfraujoch</span>
+                                    <span class="train-service">via Eigergletscher + Grindelwald</span>
+                                </div>
+                                <div class="train-badge">
+                                    <a href="https://drive.google.com/file/d/1VSllo7KyQC223fz_dKi93gBWLpCcaQp7/view?usp=sharing" onclick="openDocumentModal(this.href, getContextualTitle(this)); return false;" class="attraction-link">
+                                        <i class="fa-brands fa-google-drive"></i> Tickets
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="train-info">
+                                <i class="fa-solid fa-route"></i>
+                                <span class="train-service">Jungfrau Railway to "Top of Europe" • Booking 266275</span>
+                            </div>
+                        </div>
+
+                        <!-- Train 3: Jungfraujoch to Interlaken -->
+                        <div class="train-details-card">
+                            <div class="train-header">
+                                <div class="train-info">
+                                    <span class="train-number">Train 3: Jungfraujoch → Interlaken</span>
+                                    <span class="train-service">Return Journey</span>
+                                </div>
+                                <div class="train-badge">
+                                    <a href="https://drive.google.com/file/d/1VSllo7KyQC223fz_dKi93gBWLpCcaQp7/view?usp=sharing" onclick="openDocumentModal(this.href, getContextualTitle(this)); return false;" class="attraction-link">
+                                        <i class="fa-brands fa-google-drive"></i> Tickets
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="train-info">
+                                <i class="fa-solid fa-route"></i>
+                                <span class="train-service">Descent from Jungfraujoch back to Interlaken • Booking 266275</span>
+                            </div>
+                        </div>
+
+                        <!-- Train 4: Halderkulm Round Trip -->
+                        <div class="train-details-card">
+                            <div class="train-header">
+                                <div class="train-info">
+                                    <span class="train-number">Train 4: Halderkulm Round Trip</span>
+                                    <span class="train-service">Up & Down Trip</span>
+                                </div>
+                                <div class="train-badge">
+                                    <a href="C:\Users\eganama\OneDrive - Ericsson\Desktop\Europe\Train Tickets\10th-June-Jungfrauoch-Interlaken\Interlaken-Harder-Kulm-Round-Trip\Hader-Kulm.pdf" onclick="openDocumentModal(this.href, getContextualTitle(this)); return false;" class="attraction-link">
+                                        <i class="fa-brands fa-google-drive"></i> Tickets
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="train-info">
+                                <i class="fa-solid fa-route"></i>
+                                <span class="train-service">Scenic mountain railway excursion • Booking 261417 • Flexible times</span>
+                            </div>
+                        </div>
+
+                        <!-- Train 5: Panoramic Express Return -->
+                        <div class="train-details-card">
+                            <div class="train-header">
+                                <div class="train-info">
+                                    <span class="train-number">Train 5: LIX 2941</span>
+                                    <span class="train-service">Luzern-Interlaken Express • Panoramic</span>
+                                </div>
+                                <div class="train-badge">
+                                    <a href="https://drive.google.com/file/d/1IqFke32kg_owDIIj1wmYzN-Mtr67RVYx/view?usp=sharing" onclick="openDocumentModal(this.href, getContextualTitle(this)); return false;" class="attraction-link">
+                                        <i class="fa-brands fa-google-drive"></i> Tickets
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="train-info">
+                                <i class="fa-solid fa-route"></i>
+                                <span class="train-service">Train Source: Interlaken Ost | Train Destination: Luzern</span>
+                            </div>
+                            <div class="train-coach-info">
+                                <div class="coach-detail">
+                                    <i class="fa-solid fa-train"></i>
+                                    <span><strong>Carriage 5</strong> • 2nd Class • Panoramic Windows</span>
+                                </div>
+                                <div class="coach-detail">
+                                    <i class="fa-solid fa-users"></i>
+                                    <span><strong>Seats 187-194, 199</strong> • Reservation: 1163137-1</span>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Booking Details Section -->
+                <!-- Outbound Train - Seat Allocation -->
                 <div class="passengers-section">
-                    <h3><i class="fa-solid fa-ticket-airline"></i> Booking Information</h3>
-                    <div class="passenger-grid" style="grid-template-columns: repeat(2, 1fr); gap: 16px;">
+                    <h3><i class="fa-solid fa-users"></i> Outbound: LIX 2916 (08:06-09:54) - Carriage 3</h3>
+                    <div class="passenger-grid">
                         <div class="passenger-card">
-                            <div class="passenger-name">Booking Reference</div>
-                            <div class="passenger-seat">MTV5Z6</div>
+                            <div class="passenger-name">Rishith</div>
+                            <div class="passenger-seat">Seat 103</div>
                         </div>
                         <div class="passenger-card">
-                            <div class="passenger-name">Class</div>
-                            <div class="passenger-seat">Economy Saver</div>
+                            <div class="passenger-name">Saradha</div>
+                            <div class="passenger-seat">Seat 105</div>
+                        </div>
+                        <div class="passenger-card">
+                            <div class="passenger-name">Ramakrishnan</div>
+                            <div class="passenger-seat">Seat 106</div>
+                        </div>
+                        <div class="passenger-card">
+                            <div class="passenger-name">Gurumoorthi</div>
+                            <div class="passenger-seat">Seat 107</div>
+                        </div>
+                        <div class="passenger-card">
+                            <div class="passenger-name">Bhagyalakshmi</div>
+                            <div class="passenger-seat">Seat 108</div>
+                        </div>
+                        <div class="passenger-card">
+                            <div class="passenger-name">Madanagopal</div>
+                            <div class="passenger-seat">Seat 109</div>
+                        </div>
+                        <div class="passenger-card">
+                            <div class="passenger-name">Kamala</div>
+                            <div class="passenger-seat">Seat 110</div>
+                        </div>
+                        <div class="passenger-card">
+                            <div class="passenger-name">Meera</div>
+                            <div class="passenger-seat">Seat 115</div>
+                        </div>
+                        <div class="passenger-card">
+                            <div class="passenger-name">Ganapathy</div>
+                            <div class="passenger-seat">Seat 116</div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Check-in & Baggage Details Section -->
+                <!-- Return Train - Seat Allocation -->
                 <div class="passengers-section">
-                    <h3><i class="fa-solid fa-suitcase-rolling"></i> Check-in & Baggage Details</h3>
-                    <div class="passenger-grid" style="grid-template-columns: repeat(2, 1fr); gap: 16px;">
+                    <h3><i class="fa-solid fa-users"></i> Return: LIX 2941 (20:04-21:55) - Carriage 5</h3>
+                    <div class="passenger-grid">
                         <div class="passenger-card">
-                            <div class="passenger-name">Web Check-in</div>
-                            <div class="passenger-seat">48hrs before departure</div>
+                            <div class="passenger-name">Saradha</div>
+                            <div class="passenger-seat">Seat 187</div>
                         </div>
                         <div class="passenger-card">
-                            <div class="passenger-name">Airport Check-in</div>
-                            <div class="passenger-seat">3 hours before departure</div>
+                            <div class="passenger-name">Ramakrishnan</div>
+                            <div class="passenger-seat">Seat 188</div>
                         </div>
                         <div class="passenger-card">
-                            <div class="passenger-name">Cabin Baggage</div>
-                            <div class="passenger-seat">7kg + Personal item</div>
+                            <div class="passenger-name">Gurumoorthi</div>
+                            <div class="passenger-seat">Seat 189</div>
                         </div>
                         <div class="passenger-card">
-                            <div class="passenger-name">Checked Baggage</div>
-                            <div class="passenger-seat">23kg per person</div>
+                            <div class="passenger-name">Bhagyalakshmi</div>
+                            <div class="passenger-seat">Seat 190</div>
+                        </div>
+                        <div class="passenger-card">
+                            <div class="passenger-name">Madanagopal</div>
+                            <div class="passenger-seat">Seat 191</div>
+                        </div>
+                        <div class="passenger-card">
+                            <div class="passenger-name">Kamala</div>
+                            <div class="passenger-seat">Seat 192</div>
+                        </div>
+                        <div class="passenger-card">
+                            <div class="passenger-name">Meera</div>
+                            <div class="passenger-seat">Seat 193</div>
+                        </div>
+                        <div class="passenger-card">
+                            <div class="passenger-name">Ganapathy</div>
+                            <div class="passenger-seat">Seat 194</div>
+                        </div>
+                        <div class="passenger-card">
+                            <div class="passenger-name">Rishith</div>
+                            <div class="passenger-seat">Seat 199</div>
                         </div>
                     </div>
                 </div>
 
+                <!-- Important Notes -->
+                <div class="passengers-section">
+                    <h3><i class="fa-solid fa-info-circle"></i> Important Notes</h3>
+                    <div class="passenger-grid" style="grid-template-columns: 1fr;">
+                        <div class="passenger-card">
+                            <div class="passenger-name">Seat Reservations</div>
+                            <div class="passenger-seat">Outbound: 103, 105-110, 115-116 | Return: 187-194, 199</div>
+                        </div>
+                        <div class="passenger-card">
+                            <div class="passenger-name">Special Features</div>
+                            <div class="passenger-seat">Both trains have panoramic windows for scenic views</div>
+                        </div>
+                        <div class="passenger-card">
+                            <div class="passenger-name">Ticket Requirement</div>
+                            <div class="passenger-seat">This confirmation is not the ticket - use with Eurail Pass</div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
-            <!-- Return Flight: CDG → BLR -->
-            <div id="flight1" class="sub-card">
+            <!-- June 11: Mount Pilatus & Zurich Trains -->
+            <div id="train5" class="sub-card">
                 <div class="section-box">
                     <div class="img-container">
-                        <img src="https://i.ytimg.com/vi/lCAaD5FBLVk/hq720.jpg??q=80&w=2069&auto=format&fit=crop" alt="Emirates A380 Paris">
-                        <div class="img-overlay">Paris → Bengaluru (via Dubai)</div>
+                        <img src="https://cdn.pilatus.ch/content-media/uploads/bahn/Zahnradbahn/_1920x1080_crop_center-center_none_ns/9316/Pilatus_Zahnradbahn_Eselwand.webp?q=80&w=2070&auto=format&fit=crop" alt="Mount Pilatus Cogwheel Railway">
+                        <div class="img-overlay">Mount Pilatus & Zurich Day</div>
                     </div>
                     <div class="details">
                         <h2 style="display: flex; justify-content: space-between; align-items: center;">
-                            <span>June 12, 2026 - Friday</span>
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/0/0c/Emirates_banner_logo.svg"
-                                 alt="Emirates"
-                                 style="height: 52px; width: 52px;">
+                            <span>June 11, 2026 - Wednesday</span>
+                            <span class="flexi-badge">FLEXI DAY 4</span>
                         </h2>
-                        <div class="connection-alert" style="display: flex; justify-content: space-between; align-items: center;">
-                            <div>
-                                <i class="fa-solid fa-route"></i>
-                                <span><strong>Return Journey:</strong> CDG → DXB → BLR (Total: 12h)</span>
-                            </div>
-                            <a href="https://drive.google.com/drive/folders/1Gb8S4Axq98rF2opqi6MsbY5U8OgJIQnJ" onclick="openDocumentModal(this.href, getContextualTitle(this)); return false;" class="attraction-link">
-                                <i class="fa-brands fa-google-drive"></i> Tickets
-                            </a>
+
+                        <div class="connection-alert">
+                            <i class="fa-solid fa-mountain"></i>
+                            <span><strong>Mount Pilatus & Zurich:</strong> Cogwheel railway and train connections</span>
                         </div>
-                        <div class="timeline">
+
+                         <div class="timeline">
                             <div class="timeline-item">
-                                <span class="item-time">11:20</span>
-                                <span class="item-text">Departure: Paris CDG</span>
-                                <span class="item-sub">Terminal 2C • Check-in 3 hours early</span>
-                            </div>
-                            <div class="timeline-item connection">
-                                <span class="item-time">20:00</span>
-                                <span class="item-text">Arrive: Dubai (DXB)</span>
-                                <span class="item-sub"><strong>Transit Time: 1h 15min</strong></span>
+                                <span class="item-time">11:04</span>
+                                <span class="item-text">Mount Pilatus Kulm → Alpnachstad</span>
+                                <span class="item-sub">World's steepest cogwheel railway • 48% gradient • 30min journey</span>
                             </div>
                             <div class="timeline-item">
-                                <span class="item-time">21:15</span>
-                                <span class="item-text">Departure: Dubai (DXB)</span>
-                                <span class="item-sub">Terminal 3 • A380 Gate</span>
+                                <span class="item-time">11:37</span>
+                                <span class="item-text">Arrive: Alpnachstad</span>
+                                <span class="item-sub">End of cogwheel railway descent</span>
                             </div>
                             <div class="timeline-item">
-                                <span class="item-time">02:50+1</span>
-                                <span class="item-text">Arrival: Bengaluru (BLR)</span>
-                                <span class="item-sub">Terminal 1 • Total Journey: 12h 0min</span>
+                                <span class="item-time">11:59</span>
+                                <span class="item-text">Alpnachstad → Luzern</span>
+                                <span class="item-sub">Regional train • Platform 1 → Platform 14</span>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="item-time">12:16</span>
+                                <span class="item-text">Arrive: Luzern</span>
+                                <span class="item-sub">Lunch break and preparation for Zurich</span>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="item-time">13:35</span>
+                                <span class="item-text">Luzern → Zurich</span>
+                                <span class="item-sub">Platform 5 → Platform 9</span>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="item-time">14:25</span>
+                                <span class="item-text">Arrive: Zurich</span>
+                                <span class="item-sub">City tour and Lindt factory visit</span>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="item-time">16:21</span>
+                                <span class="item-text">Zurich → Kilchberg ZH</span>
+                                <span class="item-sub">To Lindt & Sprüngli factory</span>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="item-time">18:20</span>
+                                <span class="item-text">Return: Kilchberg → Zurich</span>
+                                <span class="item-sub">After chocolate factory tour</span>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="item-time">19:10</span>
+                                <span class="item-text">Zurich → Luzern</span>
+                                <span class="item-sub">Return to hotel</span>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="item-time">19:51</span>
+                                <span class="item-text">Arrive: Luzern</span>
+                                <span class="item-sub">Back at Hotel Alpha Garni</span>
                             </div>
                         </div>
 
-                        <!-- First Leg Details -->
-                        <div class="train-details-card" style="margin-bottom: 12px;">
-                            <div class="train-header">
-                                <div class="train-info">
-                                    <span class="train-number">Flight EK072</span>
-                                    <span class="train-service">Airbus A380-800 • Economy</span>
-                                </div>
-                            </div>
-                            <div class="train-coach-info">
-                                <div class="coach-detail">
-                                    <i class="fa-solid fa-plane"></i>
-                                    <span><strong>CDG → DXB</strong> • Duration: 6h 40min</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Second Leg Details -->
+                        <!-- Train 1: Mount Pilatus Complete Journey -->
                         <div class="train-details-card">
                             <div class="train-header">
                                 <div class="train-info">
-                                    <span class="train-number">Flight EK568</span>
-                                    <span class="train-service">Airbus A380-800 • Economy</span>
+                                    <span class="train-number">Train 1: Mount Pilatus → Luzern</span>
+                                    <span class="train-service">Silver Triangle + Regional Train</span>
                                 </div>
+                                <div class="train-badge">
+                                    <a href="https://drive.google.com/file/d/1DJuA_2a5dqSb-KERuJ9w-e2lOPRz9gCZ/view?usp=sharing" onclick="openDocumentModal(this.href, getContextualTitle(this)); return false;" class="attraction-link">
+                                        <i class="fa-brands fa-google-drive"></i> Tickets
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="train-info">
+                                <i class="fa-solid fa-route"></i>
+                                <span class="train-service">Complete journey: Mount Pilatus Kulm → Alpnachstad → Luzern</span>
                             </div>
                             <div class="train-coach-info">
                                 <div class="coach-detail">
-                                    <i class="fa-solid fa-plane"></i>
-                                    <span><strong>DXB → BLR</strong> • Duration: 4h 05min</span>
+                                    <i class="fa-solid fa-mountain"></i>
+                                    <span><strong>Leg 1: Cogwheel Railway</strong> • Mount Pilatus Kulm → Alpnachstad • 48% gradient</span>
                                 </div>
+                                <div class="coach-detail">
+                                    <i class="fa-solid fa-clock"></i>
+                                    <span><strong>Cogwheel:</strong> 11:04 departure → 11:37 arrival (33 min) • Silver Triangle ticket</span>
+                                </div>
+                                <div class="coach-detail">
+                                    <i class="fa-solid fa-train"></i>
+                                    <span><strong>Leg 2: Regional Train</strong> • Platform 1 Alpnachstad → Platform 14 Luzern</span>
+                                </div>
+                                <div class="coach-detail">
+                                    <i class="fa-solid fa-clock"></i>
+                                    <span><strong>Train:</strong> 11:59 departure → 12:16 arrival (17 min) • Eurail Pass valid</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Train 2: Lucerne to Zurich -->
+                        <div class="train-details-card">
+                            <div class="train-header">
+                                <div class="train-info">
+                                    <span class="train-number">Train 2: Luzern → Zurich</span>
+                                    <span class="train-service">Main Connection</span>
+                                </div>
+                                <div class="train-badge">
+                                    <span style="font-size: 0.72rem; color: var(--text-muted);">Eurail Pass Valid</span>
+                                </div>
+                            </div>
+                            <div class="train-info">
+                                <i class="fa-solid fa-route"></i>
+                                <span class="train-service">Platform 5 Luzern → Platform 9 Zurich</span>
+                            </div>
+                            <div class="train-coach-info">
+                                <div class="coach-detail">
+                                    <i class="fa-solid fa-clock"></i>
+                                    <span><strong>Journey:</strong> 13:35 departure → 14:25 arrival (50 minutes)</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Train 3: Zurich to Kilchberg -->
+                        <div class="train-details-card">
+                            <div class="train-header">
+                                <div class="train-info">
+                                    <span class="train-number">Train 3: Zurich → Kilchberg ZH</span>
+                                    <span class="train-service">To Lindt Factory</span>
+                                </div>
+                                <div class="train-badge">
+                                    <span style="font-size: 0.72rem; color: var(--text-muted);">Eurail Pass Valid</span>
+                                </div>
+                            </div>
+                            <div class="train-info">
+                                <i class="fa-solid fa-route"></i>
+                                <span class="train-service">Connection to Lindt & Sprüngli factory</span>
+                            </div>
+                        </div>
+
+                        <!-- Train 4: Return Journey -->
+                        <div class="train-details-card">
+                            <div class="train-header">
+                                <div class="train-info">
+                                    <span class="train-number">Train 4: Return Journey</span>
+                                    <span class="train-service">Kilchberg → Zurich → Luzern</span>
+                                </div>
+                                <div class="train-badge">
+                                    <span style="font-size: 0.72rem; color: var(--text-muted);">Eurail Pass Valid</span>
+                                </div>
+                            </div>
+                            <div class="train-info">
+                                <i class="fa-solid fa-route"></i>
+                                <span class="train-service">Final return to Hotel Alpha Garni</span>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Return Booking Details -->
+                <!-- Train Journey Details -->
                 <div class="passengers-section">
-                    <h3><i class="fa-solid fa-ticket-airline"></i> Return Journey Information</h3>
-                    <div class="passenger-grid" style="grid-template-columns: repeat(2, 1fr); gap: 16px;">
+                    <h3><i class="fa-solid fa-ticket"></i> Complete Journey - Flexi Day 4</h3>
+                    <div class="passenger-grid" style="grid-template-columns: repeat(2, 1fr);">
                         <div class="passenger-card">
-                            <div class="passenger-name">Booking Ref</div>
-                            <div class="passenger-seat">MTV5Z6</div>
-                        </div>
-                        <div class="passenger-card">
-                            <div class="passenger-name">Class</div>
-                            <div class="passenger-seat">Economy Saver</div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Return Flight Baggage & Check-in -->
-                <div class="passengers-section">
-                    <h3><i class="fa-solid fa-plane-departure"></i> Return Flight Check-in</h3>
-                    <div class="passenger-grid" style="grid-template-columns: repeat(2, 1fr); gap: 16px;">
-                        <div class="passenger-card">
-                            <div class="passenger-name">Web Check-in</div>
-                            <div class="passenger-seat">48hrs before departure</div>
+                            <div class="passenger-name">Mount Pilatus Cogwheel</div>
+                            <div class="passenger-seat">11:04 - 11:37 (33 min) • Separate ticket</div>
                         </div>
                         <div class="passenger-card">
-                            <div class="passenger-name">Airport Check-in</div>
-                            <div class="passenger-seat">3 hours before departure</div>
+                            <div class="passenger-name">Alpnachstad → Luzern</div>
+                            <div class="passenger-seat">11:59 - 12:16 (17 min) • Eurail Pass</div>
                         </div>
                         <div class="passenger-card">
-                            <div class="passenger-name">Cabin Baggage</div>
-                            <div class="passenger-seat">7kg + Personal item</div>
+                            <div class="passenger-name">Luzern → Zurich</div>
+                            <div class="passenger-seat">13:35 - 14:25 (50 min) • Eurail Pass</div>
                         </div>
                         <div class="passenger-card">
-                            <div class="passenger-name">Checked Baggage</div>
-                            <div class="passenger-seat">23kg per person</div>
+                            <div class="passenger-name">Zurich → Kilchberg ZH</div>
+                            <div class="passenger-seat">16:21 - 16:33 (12 min) • Eurail Pass</div>
                         </div>
-                    </div>
-                </div>
-
-            </div>
-            <div class="footer">| Italy Iyers | Venice Vadamals | Paris Brhatcharanam | 2026 |</div>
-        </div>
-    </div>
-
-    <!-- ═══════════════════════════════════════
-         TRAVEL CHECKLIST PAGE - Essential packing & travel items
-    ═══════════════════════════════════════ -->
-    <div id="page-checklist" class="page">
-        <div class="back-bar">
-            <button class="back-btn" onclick="navigateBack()">
-                <i class="fa-solid fa-arrow-left"></i> Back
-            </button>
-        </div>
-
-        <div class="container">
-            <div class="section-box">
-                <h2 style="text-align: center; color: var(--primary); margin-bottom: 30px; font-family: 'Playfair Display', serif;">
-                    <i class="fa-solid fa-suitcase-rolling" style="margin-right: 12px; color: var(--accent);"></i>
-                    Travel Checklist for Europe 2026
-                </h2>
-
-                <!-- Mandatory Items -->
-                <div class="checklist-category">
-                    <h3 class="checklist-title mandatory">
-                        <i class="fa-solid fa-star"></i>
-                        Mandatory Essentials - Important '4 P-P-P-P'
-                    </h3>
-                    <div class="checklist-grid mandatory">
-                        <div class="checklist-item">
-                            <input type="checkbox" id="passport">
-                            <label for="passport">
-                                <i class="fa-solid fa-passport"></i>
-                                Passport
-                            </label>
+                        <div class="passenger-card">
+                            <div class="passenger-name">Kilchberg ZH → Zurich</div>
+                            <div class="passenger-seat">18:20 - 18:40 (20 min) • Eurail Pass</div>
                         </div>
-                        <div class="checklist-item">
-                            <input type="checkbox" id="phone">
-                            <label for="phone">
-                                <i class="fa-solid fa-mobile-screen-button"></i>
-                                Phone
-                            </label>
+                        <div class="passenger-card">
+                            <div class="passenger-name">Zurich → Luzern</div>
+                            <div class="passenger-seat">19:10 - 19:51 (41 min) • Eurail Pass</div>
                         </div>
-                        <div class="checklist-item">
-                            <input type="checkbox" id="purse">
-                            <label for="purse">
-                                <i class="fa-solid fa-wallet"></i>
-                                Purse (Wallet)
-                            </label>
-                        </div>
-                        <div class="checklist-item">
-                            <input type="checkbox" id="pai">
-                            <label for="pai">
-                                <i class="fa-solid fa-bag-shopping"></i>
-                                Pai (Your Daily Bag)
-                            </label>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Electronics & Accessories -->
-                <div class="checklist-category">
-                    <h3 class="checklist-title">
-                        <i class="fa-solid fa-plug"></i>
-                        Electronics & Accessories
-                    </h3>
-                    <div class="checklist-grid">
-                        <div class="checklist-item">
-                            <input type="checkbox" id="mobile-charger">
-                            <label for="mobile-charger">
-                                <i class="fa-solid fa-mobile-screen-button"></i>
-                                Mobile Charger
-                            </label>
-                        </div>
-                        <div class="checklist-item">
-                            <input type="checkbox" id="power-bank">
-                            <label for="power-bank">
-                                <i class="fa-solid fa-battery-three-quarters"></i>
-                                Power bank
-                            </label>
-                        </div>
-                        <div class="checklist-item">
-                            <input type="checkbox" id="adapter">
-                            <label for="adapter">
-                                <i class="fa-solid fa-plug"></i>
-                                Travel Adapter Plug
-                            </label>
-                        </div>
-                        <div class="checklist-item">
-                            <input type="checkbox" id="watch">
-                            <label for="watch">
-                                <i class="fa-regular fa-clock"></i>
-                                Watch (if SmartWatch and its charger)
-                            </label>
-                        </div>
-                        <div class="checklist-item">
-                            <input type="checkbox" id="earphones">
-                            <label for="earphones">
-                                <i class="fa-solid fa-headphones"></i>
-                                Earphones/Headphones
-                            </label>
-                        </div>
-                        <div class="checklist-item">
-                            <input type="checkbox" id="belt">
-                            <label for="belt">
-                                <i class="fa-solid fa-bandage"></i>
-                                Belt
-                            </label>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Travel Essentials -->
-                <div class="checklist-category">
-                    <h3 class="checklist-title">
-                        <i class="fa-solid fa-route"></i>
-                        Travel Essentials
-                    </h3>
-                    <div class="checklist-grid">
-                        <div class="checklist-item">
-                            <input type="checkbox" id="water-bottle">
-                            <label for="water-bottle">
-                                <i class="fa-solid fa-bottle-water"></i>
-                                Water bottle
-                            </label>
-                        </div>
-                        <div class="checklist-item">
-                            <input type="checkbox" id="bag-lock">
-                            <label for="bag-lock">
-                                <i class="fa-solid fa-lock"></i>
-                                Safety Locks for your Handpack/Backpack
-                            </label>
-                        </div>
-                        <div class="checklist-item">
-                            <input type="checkbox" id="portable-bidet">
-                            <label for="portable-bidet">
-                                <i class="fa-solid fa-shower"></i>
-                                Portable Bidet
-                            </label>
-                        </div>
-                        <div class="checklist-item">
-                            <input type="checkbox" id="snacks">
-                            <label for="snacks">
-                                <i class="fa-solid fa-pizza-slice"></i>
-                                Food and Snacks for Daily Travel
-                            </label>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Health & Personal Care -->
-                <div class="checklist-category">
-                    <h3 class="checklist-title">
-                        <i class="fa-solid fa-heart-pulse"></i>
-                        Health & Personal Care
-                    </h3>
-                    <div class="checklist-grid">
-                        <div class="checklist-item">
-                            <input type="checkbox" id="medications">
-                            <label for="medications">
-                                <i class="fa-solid fa-prescription-bottle"></i>
-                                Personal Medicines with Doctor's Prescription
-                            </label>
-                        </div>
-                        <div class="checklist-item">
-                            <input type="checkbox" id="hand-sanitizer">
-                            <label for="hand-sanitizer">
-                                <i class="fa-solid fa-pump-medical"></i>
-                                Hand Sanitizer
-                            </label>
-                        </div>
-                        <div class="checklist-item">
-                            <input type="checkbox" id="face-mask">
-                            <label for="face-mask">
-                                <i class="fa-solid fa-mask-face"></i>
-                                N95 Mask
-                            </label>
-                        </div>
-                        <div class="checklist-item">
-                            <input type="checkbox" id="body-cream">
-                            <label for="body-cream">
-                                <i class="fa-solid fa-pump-soap"></i>
-                                Moisturizer, Body Lotion, Sunscreen Lotion
-                            </label>
-                        </div>
-                        <div class="checklist-item">
-                            <input type="checkbox" id="tooth-brush">
-                            <label for="tooth-brush">
-                                <i class="fa-solid fa-teeth-open"></i>
-                                Toothbrush and Toothpaste
-                            </label>
-                        </div>
-                        <div class="checklist-item">
-                            <input type="checkbox" id="comb">
-                            <label for="comb">
-                                <i class="fa-solid fa-brush"></i>
-                                Comb
-                            </label>
-                        </div>
-                        </div>
-                        <div class="checklist-item">
-                            <input type="checkbox" id="lip-balm">
-                            <label for="lip-balm">
-                                <i class="fa-brands fa-ello"></i>
-                                Lip balm
-                            </label>
-                        </div>
-                       <div class="checklist-item">
-                            <input type="checkbox" id="soap">
-                            <label for="soap">
-                                <i class="fa-brands fa-soap"></i>
-                                Soap, Shower Gel, Shampoo, Conditioner
-                            </label>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Clothing & Personal Items -->
-                <div class="checklist-category">
-                    <h3 class="checklist-title">
-                        <i class="fa-solid fa-tshirt"></i>
-                        Clothing & Personal Items
-                    </h3>
-                    <div class="checklist-grid">
-                        <div class="checklist-item">
-                            <input type="checkbox" id="dress">
-                            <label for="dress">
-                                <i class="fa-solid fa-user-tie"></i>
-                                Comfortable dress for 10 days
-                            </label>
-                        </div>
-                        <div class="checklist-item">
-                            <input type="checkbox" id="inner-wear">
-                            <label for="inner-wear">
-                                <i class="fa-solid fa-tshirt"></i>
-                                Inner Wear for 10 days
-                            </label>
-                        </div>
-                        <div class="checklist-item">
-                            <input type="checkbox" id="sunglasses">
-                            <label for="sunglasses">
-                                <i class="fa-solid fa-glasses"></i>
-                                Sun Glasses
-                            </label>
-                        </div>
-                        <div class="checklist-item">
-                            <input type="checkbox" id="shoe">
-                            <label for="shoe">
-                                <i class="fa-solid fa-shoe-prints"></i>
-                                Shoe
-                            </label>
-                        </div>
-                        <div class="checklist-item">
-                            <input type="checkbox" id="socks">
-                            <label for="socks">
-                                <i class="fa-solid fa-socks"></i>
-                                5 Normal Socks & 1 Woolen Sock (for Swiss Alps)
-                            </label>
-                        </div>
-                        <div class="checklist-item">
-                            <input type="checkbox" id="slipper">
-                            <label for="slipper">
-                                <i class="fa-sharp fa-solid fa-shoe-prints"></i>
-                                Slippers (Optional)
-                            </label>
-                        </div>
-                        <div class="checklist-item">
-                            <input type="checkbox" id="cap">
-                            <label for="cap">
-                                <i class="fa-solid fa-hat-cowboy"></i>
-                                Cap/Hat (Optional)
-                            </label>
-                        </div>
-                        <div class="checklist-item">
-                            <input type="checkbox" id="thermals">
-                            <label for="thermals">
-                                <i class="fa-solid fa-temperature-low"></i>
-                                Thermals
-                            </label>
-                        </div>
-                        <div class="checklist-item">
-                            <input type="checkbox" id="sweater">
-                            <label for="sweater">
-                                <i class="fa-solid fa-vest"></i>
-                                Sweater/Winter Coat/Jacket
-                            </label>
-                        </div>
-                        <div class="checklist-item">
-                            <input type="checkbox" id="gloves">
-                            <label for="gloves">
-                                <i class="fa-solid fa-mitten"></i>
-                                Hand gloves
-                            </label>
-                        </div>
-                        <div class="checklist-item">
-                            <input type="checkbox" id="shoes">
-                            <label for="shoes">
-                                <i class="fa-solid fa-shoe-prints"></i>
-                                Socks & Sports Shoes
-                            </label>
-                        </div>
-                        <div class="checklist-item">
-                            <input type="checkbox" id="umbrella">
-                            <label for="umbrella">
-                                <i class="fa-solid fa-umbrella"></i>
-                                Folding umbrella (Optional)
-                            </label>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Travel Documents & Cards -->
-                <div class="checklist-category">
-                    <h3 class="checklist-title">
-                        <i class="fa-solid fa-file-text"></i>
-                        Travel Documents & Cards
-                    </h3>
-                    <div class="checklist-grid">
-                        <div class="checklist-item">
-                            <input type="checkbox" id="passport-copy">
-                            <label for="passport-copy">
-                                <i class="fa-solid fa-passport"></i>
-                                Passport Photocopy (Xerox)
-                            </label>
-                        </div>
-                        <div class="checklist-item">
-                            <input type="checkbox" id="visa-copy">
-                            <label for="visa-copy">
-                                <i class="fa-brands fa-cc-visa"></i>
-                                VISA Photocopy (Xerox)
-                            </label>
-                        </div>
-                        <div class="checklist-item">
-                            <input type="checkbox" id="insurance">
-                            <label for="insurance">
-                                <i class="fa-solid fa-shield-heart"></i>
-                                Travel Insurance Documents
-                            </label>
-                        </div>
-                        <div class="checklist-item">
-                            <input type="checkbox" id="air-ticket">
-                            <label for="air-ticket">
-                                <i class="fa-solid fa-plane"></i>
-                                Air Tickets Printout
-                            </label>
-                        </div>
-                        <div class="checklist-item">
-                            <input type="checkbox" id="hotel-ticket">
-                            <label for="hotel-ticket">
-                                <i class="fa-solid fa-hotel"></i>
-                                Hotel Accomodation Printout
-                            </label>
-                        </div>
-                        <div class="checklist-item">
-                            <input type="checkbox" id="attraction-ticket">
-                            <label for="attraction-ticket">
-                                <i class="fa-solid fa-archway"></i>
-                                Attraction Tickets Prinout
-                            </label>
-                        </div>
-                        <div class="checklist-item">
-                            <input type="checkbox" id="train-ticket">
-                            <label for="train-ticket">
-                                <i class="fa-solid fa-train"></i>
-                                Train Tickets Printout
-                            </label>
-                        </div>
-                        <div class="checklist-item">
-                            <input type="checkbox" id="credit-cards">
-                            <label for="credit-cards">
-                                <i class="fa-solid fa-credit-card"></i>
-                                International Credit/Debit Cards
-                            </label>
-                        </div>
-                        <div class="checklist-item">
-                            <input type="checkbox" id="currency">
-                            <label for="currency">
-                                <i class="fa-solid fa-euro-sign"></i>
-                                Adequate Cash - Euro & Swiss Francs (CHF)
-                            </label>
-                        </div>
-                        <div class="checklist-item">
-                            <input type="checkbox" id="emergency-contacts">
-                            <label for="emergency-contacts">
-                                <i class="fa-solid fa-phone-volume"></i>
-                                Enable International Roaming
-                            </label>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Progress Summary -->
-                <div class="checklist-summary">
-                    <div class="progress-bar-container">
-                        <div class="progress-bar">
-                            <div class="progress-fill" id="progress-fill"></div>
-                        </div>
-                        <div class="progress-text">
-                            <span id="progress-text">0 of 34 items packed</span>
-                        </div>
-                    </div>
-                    <div class="checklist-note">
-                        <p><strong>💡 Pro Tip:</strong> Pack essentials in your carry-on bag. Keep all important documents in your body pouch for easy access during travel.</p>
                     </div>
                 </div>
             </div>
         </div>
+        
+        <div class="footer">| Italy Iyers | Venice Vadamals | Paris Brhatcharanam | 2026 |</div>
     </div>
 
     <!-- ═══════════════════════════════════════
-         ATTRACTIONS PAGE - Entry tickets and bookings
+        ATTRACTIONS PAGE - Entry tickets and bookings
     ═══════════════════════════════════════ -->
     <div id="page-attractions" class="page">
         <div class="back-bar">
@@ -6547,7 +7054,7 @@
             const platformUpdates = {
                 'roma-termini-13:35': { platform: '14', updated: true },
                 'firenze-sm-11:39': { platform: '8', updated: true },
-                'venezia-lucia-07:18': { platform: '12', updated: true },
+                'venezia-lucia-06:48': { platform: '12', updated: true },
                 'milano-centrale-10:10': { platform: '7', updated: true },
                 'basel-sbb-12:34': { platform: '6', updated: true }
             };
@@ -6629,7 +7136,7 @@
             const departures = [
                 { id: 'train1', date: '2026-06-07', time: '13:35', station: 'Roma Termini' },
                 { id: 'train2', date: '2026-06-08', time: '11:39', station: 'Firenze S.M.' },
-                { id: 'train3', date: '2026-06-09', time: '07:18', station: 'Venezia S. Lucia' },
+                { id: 'train3', date: '2026-06-09', time: '06:48', station: 'Venezia S. Lucia' },
                 { id: 'train4', date: '2026-06-12', time: '12:34', station: 'Basel SBB' }
             ];
 
@@ -6712,7 +7219,26 @@
             document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
 
             // Show selected page
-            document.getElementById('page-' + page).classList.add('active');
+            const targetPage = document.getElementById('page-' + page);
+            console.log(`🎯 Looking for page: page-${page}`, targetPage);
+            if (targetPage) {
+                targetPage.classList.add('active');
+                console.log(`✅ Successfully activated page-${page}`);
+
+                // Debug: Check computed styles
+                const computedStyle = window.getComputedStyle(targetPage);
+                console.log(`📊 Page computed styles:`, {
+                    display: computedStyle.display,
+                    visibility: computedStyle.visibility,
+                    opacity: computedStyle.opacity,
+                    height: computedStyle.height,
+                    width: computedStyle.width,
+                    position: computedStyle.position,
+                    zIndex: computedStyle.zIndex
+                });
+            } else {
+                console.error(`❌ Page not found: page-${page}`);
+            }
 
             // Update hero title
             document.getElementById('heroTitle').textContent = titles[page] || 'The Grand Euro Travel';
@@ -6780,7 +7306,7 @@
                 'hotels': 'dashboard',
                 'nearby-hotels': 'documents',
                 'checklist': 'dashboard',
-                'attractions': 'documents',
+                'attractions': 'dashboard',
                 'emergency-contacts': 'documents',
                 'flights': 'documents',
                 'trains': 'documents',
@@ -7524,7 +8050,7 @@
                         // Map specific legs to routes
                         const legRoutes = {
                             // Venice → Lucerne connection (June 9)
-                            'Leg 1: Frecciarossa 9708': 'Venice → Milan',
+                            'Leg 1: Frecciarossa 9706': 'Venice → Milan',
                             'Leg 2: EuroCity 178': 'Milan → Lucerne',
 
                             // Lucerne → Paris connection (June 12)
