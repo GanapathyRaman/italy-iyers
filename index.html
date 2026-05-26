@@ -1400,6 +1400,16 @@
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
         }
 
+        .checklist-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .checklist-list.mandatory {
+            gap: 12px;
+        }
+
         .checklist-item {
             display: flex;
             align-items: center;
@@ -2045,12 +2055,12 @@
                             <div class="timeline-item connection">
                                 <span class="item-time">07:05</span>
                                 <span class="item-text">Arrive: Dubai (DXB)</span>
-                                <span class="item-sub">Terminal 3 • <strong>Connection Time: 2h 5min</strong></span>
+                                <span class="item-sub">Terminal 3 • <strong>Connection Time: 1h 45min</strong></span>
                             </div>
                             <div class="timeline-item">
-                                <span class="item-time">09:10</span>
+                                <span class="item-time">08:50</span>
                                 <span class="item-text">Departure: Dubai (DXB)</span>
-                                <span class="item-sub">Terminal 3 • Emirates EK097 • A380-800 • 6h 15min</span>
+                                <span class="item-sub">Terminal 3 • Emirates EK097 • A380-800 • 6h 35min</span>
                             </div>
                             <div class="timeline-item">
                                 <span class="item-time">13:25</span>
@@ -2291,7 +2301,12 @@
                             <div class="timeline-item">
                                 <span class="item-time">09:10</span>
                                 <span class="item-text">🚌 C2 Bus to Duomo</span>
-                                <span class="item-sub">From Scala Orti Oricellari → Roma Duomo</span>
+                                <span class="item-sub">From: Scala Orti Oricellari (Stop ID: FI0899) • Near Joy Hotel</span>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="item-time">09:25</span>
+                                <span class="item-text">🚌 Arrive at Roma Duomo</span>
+                                <span class="item-sub">Stop ID: FI5350 • Via Roma (Near Long Champ Shop)</span>
                             </div>
                             <div class="timeline-item">
                                 <span class="item-time">09:30</span>
@@ -2299,19 +2314,24 @@
                                 <span class="item-sub">Florence Cathedral exterior & surroundings</span>
                             </div>
                             <div class="timeline-item">
-                                <span class="item-time">09:45</span>
+                                <span class="item-time">09:50</span>
                                 <span class="item-text">🚶 Walk to Ponte Vecchio</span>
-                                <span class="item-sub">6-minute walk to historic bridge</span>
+                                <span class="item-sub">Via Piazza della Repubblica • Historic route through city center</span>
                             </div>
                             <div class="timeline-item">
-                                <span class="item-time">10:00</span>
+                                <span class="item-time">10:10</span>
                                 <span class="item-text">🌉 Ponte Vecchio</span>
-                                <span class="item-sub">Historic bridge with jewelry shops</span>
+                                <span class="item-sub">Historic bridge with jewelry shops • Photo opportunities</span>
                             </div>
                             <div class="timeline-item">
-                                <span class="item-time">10:15</span>
-                                <span class="item-text">🚌 Return to Hotel via C2 Bus</span>
-                                <span class="item-sub">From Olio Duomo → Hotel (c-Hotel Diplomat)</span>
+                                <span class="item-time">10:25</span>
+                                <span class="item-text">🚌 Return via C4 Bus</span>
+                                <span class="item-sub">From: Borgo San Iacopo (Stop ID: FI2259) • Near Ortigia Sicilia Shop</span>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="item-time">10:35</span>
+                                <span class="item-text">🚌 Return to Hotel</span>
+                                <span class="item-sub">C4 Bus to Scala Orti Oricellari (Stop ID: FI0899) • Near Joy Hotel</span>
                             </div>
                             <div class="timeline-item">
                                 <span class="item-time">10:45</span>
@@ -2366,10 +2386,13 @@
                         </div>
                         <div class="logistics-card">
                             <div class="logistics-item">
-                                <i class="fa-solid fa-bus"></i> Florence C2 Bus: Scala Orti Oricellari ↔ Roma Duomo
+                                <i class="fa-solid fa-bus"></i> Outbound: C2 Bus (Stop FI0899 → FI5350) to Piazza Beccaria
                             </div>
                             <div class="logistics-item">
-                                <i class="fa-solid fa-walking"></i> Ponte Vecchio: 6-minute walk from Duomo
+                                <i class="fa-solid fa-walking"></i> Walk: Duomo → Piazza della Repubblica → Ponte Vecchio
+                            </div>
+                            <div class="logistics-item">
+                                <i class="fa-solid fa-bus"></i> Return: C4 Bus (Stop FI2259 → FI0899) to Santa Maria Maggiore
                             </div>
                             <div class="logistics-item">
                                 <i class="fa-solid fa-train"></i> Florence → Venice: 11:30 AM departure, 14:00 arrival
@@ -2920,33 +2943,44 @@
                         <h2>June 14 - Departure Day</h2>
                         <div class="connection-alert">
                             <i class="fa-solid fa-route"></i>
-                            <span><strong>Return Journey:</strong> CDG → DXB → BLR (Total: 12h 0min)</span>
+                            <span><strong>Return Journey:</strong> CDG → DXB → BLR (Total: 13h 45min)</span>
                         </div>
                         <div class="timeline">
                             <div class="timeline-item">
-                                <span class="item-time">07:30</span>
+                                <span class="item-time">11:30</span>
                                 <span class="item-text">Hotel Check-out & Airport Transfer</span>
                                 <span class="item-sub">Travel to Paris CDG • Check-in 3 hours early</span>
                             </div>
                             <div class="timeline-item">
-                                <span class="item-time">11:20</span>
+                                <span class="item-time">15:35</span>
                                 <span class="item-text">Departure: Paris CDG</span>
-                                <span class="item-sub">Terminal 2C • Emirates EK072 • A380-800 • 6h 40min</span>
+                                <span class="item-sub">Terminal 2C • Emirates EK074 • A380-800 • 7h 10min</span>
                             </div>
                             <div class="timeline-item connection">
-                                <span class="item-time">20:00</span>
+                                <span class="item-time">00:45 (Next Day)</span>
                                 <span class="item-text">Arrive: Dubai (DXB)</span>
-                                <span class="item-sub">Terminal 3 • <strong>Connection Time: 1h 15min</strong></span>
+                                <span class="item-sub">Terminal 3 • <strong>Connection Time: 2h 35min</strong></span>
                             </div>
                             <div class="timeline-item">
-                                <span class="item-time">21:15</span>
+                                <span class="item-time">03:20 (Monday, 15th June)</span>
                                 <span class="item-text">Departure: Dubai (DXB)</span>
-                                <span class="item-sub">Terminal 3 • Emirates EK568 • A380-800 • 4h 05min</span>
+                                <span class="item-sub">Terminal 3 • Emirates EK564 • Boeing 777-300ER • 4h 00min</span>
                             </div>
                             <div class="timeline-item">
-                                <span class="item-time">02:50 (Next Day, 15th June Early Morning)</span>
+                                <span class="item-time">08:50 (Monday, 15th June)</span>
                                 <span class="item-text">Arrival: Bengaluru (BLR)</span>
-                                <span class="item-sub">Terminal 1 • Saturday, June 15 • Home Sweet Home! 🏠</span>
+                                <span class="item-sub">Terminal 1 • Monday Morning • Home Sweet Home! 🏠</span>
+                            </div>
+                        </div>
+                        <div class="logistics-card">
+                            <div class="logistics-item">
+                                <i class="fa-solid fa-plane-departure"></i> Afternoon departure from CDG at 15:35
+                            </div>
+                            <div class="logistics-item">
+                                <i class="fa-solid fa-route"></i> Total journey time: 13h 45min via Dubai
+                            </div>
+                            <div class="logistics-item">
+                                <i class="fa-solid fa-clock"></i> Arrive Bengaluru Monday morning 08:50
                             </div>
                         </div>
                     </div>
@@ -2976,7 +3010,7 @@
                         <i class="fa-solid fa-star"></i>
                         Mandatory Essentials - Important '4 P-P-P-P'
                     </h3>
-                    <div class="checklist-grid mandatory">
+                    <div class="checklist-list mandatory">
                         <div class="checklist-item">
                             <input type="checkbox" id="passport">
                             <label for="passport">
@@ -3405,10 +3439,10 @@
                             <div class="timeline-item connection">
                                 <span class="item-time">07:05</span>
                                 <span class="item-text">Arrive: Dubai (DXB)</span>
-                                <span class="item-sub"><strong>Connection Time: 2h 5min</strong></span>
+                                <span class="item-sub"><strong>Connection Time: 1h 45min</strong></span>
                             </div>
                             <div class="timeline-item">
-                                <span class="item-time">09:10</span>
+                                <span class="item-time">08:50</span>
                                 <span class="item-text">Departure: Dubai (DXB)</span>
                                 <span class="item-sub">Terminal 3 • A380 Gate</span>
                             </div>
@@ -3446,7 +3480,7 @@
                             <div class="train-coach-info">
                                 <div class="coach-detail">
                                     <i class="fa-solid fa-plane"></i>
-                                    <span><strong>DXB → FCO</strong> • Duration: 6h 15min</span>
+                                    <span><strong>DXB → FCO</strong> • Duration: 6h 35min</span>
                                 </div>
                             </div>
                         </div>
@@ -3509,7 +3543,7 @@
                         <div class="connection-alert" style="display: flex; justify-content: space-between; align-items: center;">
                             <div>
                                 <i class="fa-solid fa-route"></i>
-                                <span><strong>Return Journey:</strong> CDG → DXB → BLR (Total: 12h)</span>
+                                <span><strong>Return Journey:</strong> CDG → DXB → BLR (Total: 13h 45min)</span>
                             </div>
                             <a href="https://drive.google.com/drive/folders/1Gb8S4Axq98rF2opqi6MsbY5U8OgJIQnJ" onclick="openDocumentModal(this.href, getContextualTitle(this)); return false;" class="attraction-link">
                                 <i class="fa-brands fa-google-drive"></i> Tickets
@@ -3517,24 +3551,24 @@
                         </div>
                         <div class="timeline">
                             <div class="timeline-item">
-                                <span class="item-time">11:20</span>
+                                <span class="item-time">15:35</span>
                                 <span class="item-text">Departure: Paris CDG</span>
                                 <span class="item-sub">Terminal 2C • Check-in 3 hours early</span>
                             </div>
                             <div class="timeline-item connection">
-                                <span class="item-time">20:00</span>
+                                <span class="item-time">00:45+1</span>
                                 <span class="item-text">Arrive: Dubai (DXB)</span>
-                                <span class="item-sub"><strong>Transit Time: 1h 15min</strong></span>
+                                <span class="item-sub"><strong>Transit Time: 2h 35min</strong></span>
                             </div>
                             <div class="timeline-item">
-                                <span class="item-time">21:15</span>
+                                <span class="item-time">03:20+1</span>
                                 <span class="item-text">Departure: Dubai (DXB)</span>
-                                <span class="item-sub">Terminal 3 • A380 Gate</span>
+                                <span class="item-sub">Terminal 3 • Boeing 777 Gate</span>
                             </div>
                             <div class="timeline-item">
-                                <span class="item-time">02:50+1</span>
+                                <span class="item-time">08:50+1</span>
                                 <span class="item-text">Arrival: Bengaluru (BLR)</span>
-                                <span class="item-sub">Terminal 1 • Total Journey: 12h 0min</span>
+                                <span class="item-sub">Terminal 1 • Total Journey: 13h 45min</span>
                             </div>
                         </div>
 
@@ -3542,14 +3576,14 @@
                         <div class="train-details-card" style="margin-bottom: 12px;">
                             <div class="train-header">
                                 <div class="train-info">
-                                    <span class="train-number">Flight EK072</span>
+                                    <span class="train-number">Flight EK074</span>
                                     <span class="train-service">Airbus A380-800 • Economy</span>
                                 </div>
                             </div>
                             <div class="train-coach-info">
                                 <div class="coach-detail">
                                     <i class="fa-solid fa-plane"></i>
-                                    <span><strong>CDG → DXB</strong> • Duration: 6h 40min</span>
+                                    <span><strong>CDG → DXB</strong> • Duration: 7h 10min</span>
                                 </div>
                             </div>
                         </div>
@@ -3558,14 +3592,14 @@
                         <div class="train-details-card">
                             <div class="train-header">
                                 <div class="train-info">
-                                    <span class="train-number">Flight EK568</span>
-                                    <span class="train-service">Airbus A380-800 • Economy</span>
+                                    <span class="train-number">Flight EK564</span>
+                                    <span class="train-service">Boeing 777-300ER • Economy</span>
                                 </div>
                             </div>
                             <div class="train-coach-info">
                                 <div class="coach-detail">
                                     <i class="fa-solid fa-plane"></i>
-                                    <span><strong>DXB → BLR</strong> • Duration: 4h 05min</span>
+                                    <span><strong>DXB → BLR</strong> • Duration: 4h 00min</span>
                                 </div>
                             </div>
                         </div>
@@ -4967,12 +5001,12 @@
                             </div>
                             <div class="train-service">
                                 <i class="fa-solid fa-route"></i>
-                                <span class="train-service">Complete Journey: Mount Pilatus Kulm → Alpnachstad → Luzern</span>
+                                <span>Complete Journey: Mount Pilatus Kulm → Alpnachstad → Luzern</span>
                             </div>
                             <div class="train-coach-info">
                                 <div class="coach-detail">
                                     <i class="fa-solid fa-train"></i>
-                                    <span><strong>Board 1st Class Coach — But No Seat Reservation </span>
+                                    <span><strong>Board 1st Class Coach — But No Seat Reservation</strong></span>
                                 </div>
                             </div>
                         </div>
@@ -4990,18 +5024,12 @@
                             </div>
                             <div class="train-service">
                                 <i class="fa-solid fa-route"></i>
-                                <span class="train-service">Luzern (Platform 5) → Zurich (Platform 9)</span>
+                                <span>Luzern (Platform 5) → Zurich (Platform 9)</span>
                             </div>
                             <div class="train-coach-info">
                                 <div class="coach-detail">
                                     <i class="fa-solid fa-train"></i>
-                                    <span><strong>Board 1st Class Coach — But No Seat Reservation </span>
-                                </div>
-                            </div>
-                            <div class="train-service">
-                                <div class="coach-detail">
-                                    <i class="fa-solid fa-clock"></i>
-                                    <span class="train-service">Journey: 13:35 departure → 14:25 arrival (50 minutes)</span>
+                                    <span><strong>Board 1st Class Coach — But No Seat Reservation</strong></span>
                                 </div>
                             </div>
                         </div>
@@ -5017,14 +5045,14 @@
                                     <span style="font-size: 0.72rem; color: var(--text-muted);">Use Eurail Pass</span>
                                 </div>
                             </div>
-                            <div class="train-info">
+                            <div class="train-service">
                                 <i class="fa-solid fa-route"></i>
-                                <span class="train-service">Connection to Lindt & Sprüngli factory</span>
+                                <span>Connection to Lindt & Sprüngli factory</span>
                             </div>
                            <div class="train-coach-info">
                                 <div class="coach-detail">
                                     <i class="fa-solid fa-train"></i>
-                                    <span><strong>Board 1st Class Coach — But No Seat Reservation </span>
+                                    <span><strong>Board 1st Class Coach — But No Seat Reservation</strong></span>
                                 </div>
                             </div>
                         </div>
@@ -5040,14 +5068,14 @@
                                     <span style="font-size: 0.72rem; color: var(--text-muted);">Use Eurail Pass</span>
                                 </div>
                             </div>
-                            <div class="train-info">
+                            <div class="train-service">
                                 <i class="fa-solid fa-route"></i>
-                                <span class="train-service">Final return to Hotel Alpha Garni</span>
+                                <span>Final return to Hotel Alpha Garni</span>
                             </div>
                             <div class="train-coach-info">
                                 <div class="coach-detail">
                                     <i class="fa-solid fa-train"></i>
-                                    <span><strong>Board 1st Class Coach — But No Seat Reservation </span>
+                                    <span><strong>Board 1st Class Coach — But No Seat Reservation</strong></span>
                                 </div>
                             </div>
                         </div>
